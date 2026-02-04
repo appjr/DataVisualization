@@ -142,7 +142,7 @@ Preattentive features enable:
 
 **Attention capacity**: ~3-4 visual objects simultaneously
 
-![Selective Attention](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Selective_attention_illustration.svg/640px-Selective_attention_illustration.svg.png)
+![Selective Attention](images/selective_attention.png)
 
 ---
 
@@ -162,7 +162,7 @@ Common in:
 - Use color + position changes together
 - Minimize unnecessary animation
 
-![Change Blindness Example](https://upload.wikimedia.org/wikipedia/commons/5/5f/Change_blindness_example.png)
+![Change Blindness Example](images/change_blindness.png)
 
 ---
 
@@ -179,7 +179,7 @@ Common in:
 
 **Design Principle**: If it's important, make it preattentive or explicitly direct attention to it.
 
-![Invisible Gorilla Experiment](https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Invisible_Gorilla.jpg/640px-Invisible_Gorilla.jpg)
+![Inattentional Blindness](images/inattentional_blindness.png)
 
 ---
 
@@ -199,7 +199,7 @@ Common in:
 
 **Why this matters**: Perception overrides logic. Users will group elements based on visual properties, regardless of what your legend says.
 
-![Gestalt Principles Overview](https://upload.wikimedia.org/wikipedia/commons/5/55/Gestalt_principles_examples.png)
+![Gestalt Principles Overview](images/gestalt_overview.png)
 
 ---
 
@@ -520,7 +520,7 @@ For each, identify:
 
 **Common mistake**: Using arbitrary colors (red, blue, green) for ordered categories.
 
-![Ordinal Data Encoding](https://serialmentor.com/dataviz/directory_of_visualizations_files/figure-html/amounts_multi-1.png)
+![Ordinal Data Encoding](images/ordinal_data.png)
 
 ---
 
@@ -546,7 +546,7 @@ For each, identify:
 
 **Key principle**: For precise comparison, use position or length.
 
-![Quantitative Encodings](https://serialmentor.com/dataviz/visualizing_amounts_files/figure-html/amounts-1.png)
+![Quantitative Encodings](images/quantitative_encodings.png)
 
 ---
 
@@ -572,7 +572,7 @@ For each, identify:
 
 **Note**: Temporal data is a special case—always respect chronological order!
 
-![Time Series Example](https://clauswilke.com/dataviz/time_series_files/figure-html/bio-preprint-growth-1.png)
+![Time Series Example](images/time_series.png)
 
 ---
 
@@ -593,7 +593,7 @@ For each, identify:
 - Others support categorical distinctions (hue, shape)
 - Some are perceptually weaker (texture, orientation)
 
-![Bertin Visual Variables](https://upload.wikimedia.org/wikipedia/commons/3/3f/Bertin_visual_variables.png)
+![Bertin Visual Variables](images/bertin_variables.png)
 
 ---
 
@@ -610,7 +610,7 @@ For each, identify:
 
 **This research transformed visualization from art to science**
 
-![Cleveland McGill Experiment](https://eagereyes.org/media/2016/Cleveland-McGill-Types.png)
+![Cleveland McGill Experiment](images/cleveland_mcgill.png)
 
 ---
 
@@ -653,7 +653,7 @@ For each, identify:
 
 **Best practice**: Use color for categories or as a secondary encoding, not primary for quantities.
 
-![Color Perception Issues](https://blog.datawrapper.de/wp-content/uploads/2019/09/image2.png)
+![Color Perception Issues](images/color_perception.png)
 
 ---
 
@@ -975,7 +975,7 @@ fig, ax = plt.subplots()  # Returns Figure and Axes objects
 - **Axis**: The x and y number lines
 - **Artists**: Everything you see (lines, text, ticks, etc.)
 
-![Matplotlib Anatomy](https://matplotlib.org/stable/_images/anatomy.png)
+![Matplotlib Anatomy](images/matplotlib_anatomy.png)
 
 ---
 
