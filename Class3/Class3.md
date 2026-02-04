@@ -102,7 +102,7 @@ Preattentive features enable:
 
 **Key Design Principle**: Use preattentive features for what matters most in your visualization.
 
-![Preattentive Pop-Out](https://www.csc2.ncsu.edu/faculty/healey/PP/figs/red_o.gif)
+![Preattentive Pop-Out](images/preattentive_popout.png)
 
 ---
 
@@ -226,7 +226,7 @@ Users will see 3 groups, not 27 individual items.
 
 **Real-world mistake**: Dashboard elements randomly placed create confusing relationships.
 
-![Gestalt Proximity](https://upload.wikimedia.org/wikipedia/commons/6/6d/Gestalt_principle_of_proximity.png)
+![Gestalt Proximity](images/gestalt_proximity.png)
 
 ---
 
