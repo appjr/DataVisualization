@@ -5,126 +5,7 @@
 
 ---
 
-# 📚 Table of Contents
-
-## Quick Navigation
-- [Part 1: Visual Perception & Cognitive Load](#part-1-visual-perception--cognitive-load)
-- [Part 2: Data Types & Visual Encodings](#part-2-data-types--visual-encodings)
-- [Part 3: Grammar of Graphics Framework](#part-3-grammar-of-graphics-framework)
-- [Part 4: Python Visualization Implementation](#part-4-python-visualization-implementation)
-
----
-
-## Detailed Index
-
-### Part 1: Visual Perception & Cognitive Load (Slides 1-21)
-- [Visual Perception & Cognitive Load](#visual-perception--cognitive-load)
-- [Class Overview](#class-overview)
-- [Why Visualization Matters in Data Science](#why-visualization-matters-in-data-science)
-- [Visualization as a Human–AI Interface](#visualization-as-a-humanai-interface)
-- [The Two Pathways of Visual Processing](#the-two-pathways-of-visual-processing)
-- [Preattentive Processing: The 200ms Window](#preattentive-processing-the-200ms-window)
-- [Demonstrating Preattentive Processing](#demonstrating-preattentive-processing)
-- [Visual Attention is Limited](#visual-attention-is-limited)
-- [Change Blindness](#change-blindness)
-- [Inattentional Blindness: The Invisible Gorilla](#inattentional-blindness-the-invisible-gorilla)
-- [Gestalt Principles: How We Group Information](#gestalt-principles-how-we-group-information)
-- [Gestalt Principle: Proximity](#gestalt-principle-proximity)
-- [Gestalt Principle: Similarity](#gestalt-principle-similarity)
-- [Gestalt Principle: Enclosure & Common Region](#gestalt-principle-enclosure--common-region)
-- [Gestalt Principle: Connection](#gestalt-principle-connection)
-- [Gestalt and Dashboard Design Mistakes](#gestalt-and-dashboard-design-mistakes)
-- [Introduction to Cognitive Load Theory](#introduction-to-cognitive-load-theory)
-- [Intrinsic Load: Inherent Complexity](#intrinsic-load-inherent-complexity)
-- [Extraneous Load: Unnecessary Complexity](#extraneous-load-unnecessary-complexity)
-- [Germane Load: Productive Mental Effort](#germane-load-productive-mental-effort)
-- [The Cognitive Load Balance](#the-cognitive-load-balance)
-
-### Part 2: Data Types & Visual Encodings (Slides 22-33)
-- [Cognitive Load in Dashboard Design](#cognitive-load-in-dashboard-design)
-- [Exercise: Cognitive Load Analysis](#exercise-cognitive-load-analysis)
-- [Data Types: The Foundation of Encoding](#data-types-the-foundation-of-encoding)
-- [Nominal (Categorical) Data](#nominal-categorical-data)
-- [Ordinal Data](#ordinal-data)
-- [Quantitative Data](#quantitative-data)
-- [Temporal (Time-Series) Data](#temporal-time-series-data)
-- [Visual Variables (Bertin, 1967)](#visual-variables-bertin-1967)
-- [Graphical Perception Research (Cleveland & McGill)](#graphical-perception-research-cleveland--mcgill)
-- [Ranking of Visual Encodings (Most→Least Effective)](#ranking-of-visual-encodings-mostleast-effective)
-- [Why Color Is Weak for Quantitative Data](#why-color-is-weak-for-quantitative-data)
-- [Data × Task × Encoding Framework](#data--task--encoding-framework)
-
-### Part 3: Grammar of Graphics Framework (Slides 34-44)
-- [Common Encoding Violations](#common-encoding-violations)
-- [From Chart Types to Compositional Systems](#from-chart-types-to-compositional-systems)
-- [Introduction to Grammar of Graphics](#introduction-to-grammar-of-graphics)
-- [The Layered Grammar: Core Components](#the-layered-grammar-core-components)
-- [Component 1: Data](#component-1-data)
-- [Component 2: Aesthetic Mappings](#component-2-aesthetic-mappings)
-- [Component 3: Geometric Objects (Marks)](#component-3-geometric-objects-marks)
-- [Component 4: Statistical Transformations](#component-4-statistical-transformations)
-- [Component 5: Scales](#component-5-scales)
-- [Component 6: Coordinate Systems](#component-6-coordinate-systems)
-- [Component 7: Faceting (Small Multiples)](#component-7-faceting-small-multiples)
-
-### Part 4: Python Visualization Implementation (Slides 45-82)
-- [Grammar and Cognitive Load](#grammar-and-cognitive-load)
-- [Transition to Python: Implementing the Grammar](#transition-to-python-implementing-the-grammar)
-- [Python Visualization Ecosystem Overview](#python-visualization-ecosystem-overview)
-- [Matplotlib: Anatomy of a Figure](#matplotlib-anatomy-of-a-figure)
-- [Creating Your First Plot](#creating-your-first-plot)
-- [Customizing Plots: Colors, Labels, Styles](#customizing-plots-colors-labels-styles)
-- [Matplotlib: Common Plot Types](#matplotlib-common-plot-types)
-- [Introduction to Seaborn](#introduction-to-seaborn)
-- [Seaborn: Working with DataFrames](#seaborn-working-with-dataframes)
-- [Seaborn Plot Types](#seaborn-plot-types)
-- [Seaborn Example: Distribution Plot](#seaborn-example-distribution-plot)
-- [Seaborn: Faceting (Small Multiples)](#seaborn-faceting-small-multiples)
-- [Color Palettes in Python: Perception-Aware Choices](#color-palettes-in-python-perception-aware-choices)
-- [Applying Preattentive Features in Code](#applying-preattentive-features-in-code)
-- [Reducing Clutter: Before and After](#reducing-clutter-before-and-after)
-- [Direct Labeling vs. Legend](#direct-labeling-vs-legend)
-- [Exercise: Bar Chart vs. Pie Chart](#exercise-bar-chart-vs-pie-chart)
-- [Putting It All Together: Complete Example](#putting-it-all-together-complete-example)
-- [Common Mistakes to Avoid](#common-mistakes-to-avoid)
-- [Visualization Design Checklist](#visualization-design-checklist)
-- [Exercise 1: Critique This Visualization](#exercise-1-critique-this-visualization)
-- [Exercise 2: Redesign Challenge](#exercise-2-redesign-challenge)
-- [Exercise 3: Build a Grammar-Based Plot](#exercise-3-build-a-grammar-based-plot)
-- [Exercise 4: Color Palette Selection](#exercise-4-color-palette-selection)
-- [Exercise 5: Preattentive Highlighting](#exercise-5-preattentive-highlighting)
-- [Real-World Application: Dashboard Design](#real-world-application-dashboard-design)
-- [Connection to Data Science Workflows](#connection-to-data-science-workflows)
-- [Key Takeaways: Perception & Cognition](#key-takeaways-perception--cognition)
-- [Key Takeaways: Data & Encodings](#key-takeaways-data--encodings)
-- [Key Takeaways: Grammar of Graphics](#key-takeaways-grammar-of-graphics)
-- [Key Takeaways: Python Best Practices](#key-takeaways-python-best-practices)
-- [Looking Ahead: Future Topics](#looking-ahead-future-topics)
-- [Resources for Further Learning](#resources-for-further-learning)
-- [Assignment: Perceptually-Optimized Visualization](#assignment-perceptually-optimized-visualization)
-- [Assignment Tips & Guidance](#assignment-tips--guidance)
-- [Optional Challenge: Build a Dashboard](#optional-challenge-build-a-dashboard)
-- [Common Questions & Answers](#common-questions--answers)
-- [Next Class Preview](#next-class-preview)
-- [Closing Thoughts](#closing-thoughts)
-- [Additional Resources](#additional-resources)
-
----
-
-
-# ═══════════════════════════════════════════════════════════════
-# PART 1: VISUAL PERCEPTION & COGNITIVE LOAD
-# Slides 1-21
-# ═══════════════════════════════════════════════════════════════
-
-# Class 3 – Data Visualization  
-## Visual Perception & Cognitive Load  
-## Data Types, Encodings & Grammar of Graphics
-## Python Visualization Fundamentals
-
----
-
-## Class Overview
+## Slide 1 – Class Overview
 
 **Today's Learning Objectives**
 - Understand how humans perceive visual information
@@ -138,7 +19,7 @@
 
 ---
 
-## Why Visualization Matters in Data Science
+## Slide 2 – Why Visualization Matters in Data Science
 
 **Visualization is not just presentation—it's cognition**
 
@@ -157,7 +38,7 @@
 
 ---
 
-## Visualization as a Human–AI Interface
+## Slide 3 – Visualization as a Human–AI Interface
 
 **In modern analytics and AI systems:**
 
@@ -177,7 +58,7 @@
 
 ---
 
-## The Two Pathways of Visual Processing
+## Slide 4 – The Two Pathways of Visual Processing
 
 **Visual processing happens in two stages:**
 
@@ -199,7 +80,7 @@
 
 ---
 
-## Preattentive Processing: The 200ms Window
+## Slide 5 – Preattentive Processing: The 200ms Window
 
 **Certain visual features are detected instantly**
 
@@ -225,7 +106,7 @@ Preattentive features enable:
 
 ---
 
-## Demonstrating Preattentive Processing
+## Slide 6 – Demonstrating Preattentive Processing
 
 **Interactive Exercise**: Compare these two search tasks
 
@@ -246,7 +127,7 @@ Preattentive features enable:
 
 ---
 
-## Visual Attention is Limited
+## Slide 7 – Visual Attention is Limited
 
 **The harsh reality of human attention:**
 
@@ -265,7 +146,7 @@ Preattentive features enable:
 
 ---
 
-## Change Blindness
+## Slide 8 – Change Blindness
 
 **Large changes can go unnoticed if attention is not directed**
 
@@ -285,7 +166,7 @@ Common in:
 
 ---
 
-## Inattentional Blindness: The Invisible Gorilla
+## Slide 9 – Inattentional Blindness: The Invisible Gorilla
 
 **Famous experiment**: Watch a video of people passing basketballs
 - Task: Count the passes
@@ -302,7 +183,7 @@ Common in:
 
 ---
 
-## Gestalt Principles: How We Group Information
+## Slide 10 – Gestalt Principles: How We Group Information
 
 **Gestalt Psychology**: The whole is greater than the sum of its parts
 
@@ -322,7 +203,7 @@ Common in:
 
 ---
 
-## Gestalt Principle: Proximity
+## Slide 11 – Gestalt Principle: Proximity
 
 **Objects close together are perceived as related**
 
@@ -346,7 +227,7 @@ Users will see 3 groups, not 27 individual items.
 
 ---
 
-## Gestalt Principle: Similarity
+## Slide 12 – Gestalt Principle: Similarity
 
 **Objects that look similar are perceived as related**
 
@@ -369,7 +250,7 @@ Similar:
 
 ---
 
-## Gestalt Principle: Enclosure & Common Region
+## Slide 13 – Gestalt Principle: Enclosure & Common Region
 
 **Objects within a boundary are perceived as grouped**
 
@@ -395,7 +276,7 @@ Similar:
 
 ---
 
-## Gestalt Principle: Connection
+## Slide 14 – Gestalt Principle: Connection
 
 **Physically connected elements are perceived as related**
 
@@ -418,7 +299,7 @@ We see: (A-B), C, D, E, (F-G)
 
 ---
 
-## Gestalt and Dashboard Design Mistakes
+## Slide 15 – Gestalt and Dashboard Design Mistakes
 
 **Common failures when Gestalt principles are ignored:**
 
@@ -436,7 +317,7 @@ We see: (A-B), C, D, E, (F-G)
 
 ---
 
-## Introduction to Cognitive Load Theory
+## Slide 16 – Introduction to Cognitive Load Theory
 
 **Core Concept**: Working memory has limited capacity
 
@@ -456,7 +337,7 @@ We see: (A-B), C, D, E, (F-G)
 
 ---
 
-## Intrinsic Load: Inherent Complexity
+## Slide 17 – Intrinsic Load: Inherent Complexity
 
 **Intrinsic load comes from:**
 - Data complexity (volume, dimensionality)
@@ -476,7 +357,7 @@ We see: (A-B), C, D, E, (F-G)
 
 ---
 
-## Extraneous Load: Unnecessary Complexity
+## Slide 18 – Extraneous Load: Unnecessary Complexity
 
 **Extraneous load comes from poor design choices:**
 
@@ -496,7 +377,7 @@ We see: (A-B), C, D, E, (F-G)
 
 ---
 
-## Germane Load: Productive Mental Effort
+## Slide 19 – Germane Load: Productive Mental Effort
 
 **Germane load supports:**
 - Understanding patterns
@@ -517,7 +398,7 @@ We see: (A-B), C, D, E, (F-G)
 
 ---
 
-## The Cognitive Load Balance
+## Slide 20 – The Cognitive Load Balance
 
 **Visualization design as optimization:**
 
@@ -540,13 +421,7 @@ Total Cognitive Capacity (Fixed)
 
 ---
 
-
-# ═══════════════════════════════════════════════════════════════
-# PART 2: DATA TYPES & VISUAL ENCODINGS  
-# Slides 22-33
-# ═══════════════════════════════════════════════════════════════
-
-## Cognitive Load in Dashboard Design
+## Slide 21 – Cognitive Load in Dashboard Design
 
 **Scenario**: Executive dashboard with 20 KPIs
 
@@ -568,7 +443,7 @@ Total Cognitive Capacity (Fixed)
 
 ---
 
-## Exercise: Cognitive Load Analysis
+## Slide 22 – Exercise: Cognitive Load Analysis
 
 **Look at two versions of the same dashboard (provided)**
 
@@ -581,7 +456,7 @@ For each, identify:
 
 ---
 
-## Data Types: The Foundation of Encoding
+## Slide 23 – Data Types: The Foundation of Encoding
 
 **Understanding data types is critical because:**
 - Data type determines valid encodings
@@ -599,7 +474,7 @@ For each, identify:
 
 ---
 
-## Nominal (Categorical) Data
+## Slide 24 – Nominal (Categorical) Data
 
 **Characteristics:**
 - Discrete categories
@@ -624,7 +499,7 @@ For each, identify:
 
 ---
 
-## Ordinal Data
+## Slide 25 – Ordinal Data
 
 **Characteristics:**
 - Discrete categories with order
@@ -649,7 +524,7 @@ For each, identify:
 
 ---
 
-## Quantitative Data
+## Slide 26 – Quantitative Data
 
 **Characteristics:**
 - Continuous numerical values
@@ -675,7 +550,7 @@ For each, identify:
 
 ---
 
-## Temporal (Time-Series) Data
+## Slide 27 – Temporal (Time-Series) Data
 
 **Characteristics:**
 - Ordered by time
@@ -701,7 +576,7 @@ For each, identify:
 
 ---
 
-## Visual Variables (Bertin, 1967)
+## Slide 28 – Visual Variables (Bertin, 1967)
 
 **Jacques Bertin identified fundamental visual variables:**
 
@@ -722,7 +597,7 @@ For each, identify:
 
 ---
 
-## Graphical Perception Research (Cleveland & McGill)
+## Slide 29 – Graphical Perception Research (Cleveland & McGill)
 
 **Landmark study (1984)**: Empirically tested how accurately people decode visual encodings
 
@@ -739,7 +614,7 @@ For each, identify:
 
 ---
 
-## Ranking of Visual Encodings (Most→Least Effective)
+## Slide 30 – Ranking of Visual Encodings (Most→Least Effective)
 
 **For Quantitative Data:**
 
@@ -759,7 +634,7 @@ For each, identify:
 
 ---
 
-## Why Color Is Weak for Quantitative Data
+## Slide 31 – Why Color Is Weak for Quantitative Data
 
 **Color perception challenges:**
 - Non-linear perception (perceptual vs. actual lightness)
@@ -782,7 +657,7 @@ For each, identify:
 
 ---
 
-## Data × Task × Encoding Framework
+## Slide 32 – Data × Task × Encoding Framework
 
 **Effective visualization requires matching all three:**
 
@@ -805,13 +680,7 @@ For each, identify:
 
 ---
 
-
-# ═══════════════════════════════════════════════════════════════
-# PART 3: GRAMMAR OF GRAPHICS FRAMEWORK
-# Slides 34-44
-# ═══════════════════════════════════════════════════════════════
-
-## Common Encoding Violations
+## Slide 33 – Common Encoding Violations
 
 **Mistakes that violate perception principles:**
 
@@ -826,7 +695,7 @@ For each, identify:
 
 ---
 
-## From Chart Types to Compositional Systems
+## Slide 34 – From Chart Types to Compositional Systems
 
 **Traditional approach:**
 - Think in fixed chart types (bar, line, pie, scatter)
@@ -844,7 +713,7 @@ Enter: **Grammar of Graphics**
 
 ---
 
-## Introduction to Grammar of Graphics
+## Slide 35 – Introduction to Grammar of Graphics
 
 **Just as language has grammar for constructing sentences, visualization has grammar for constructing graphics**
 
@@ -862,7 +731,7 @@ Enter: **Grammar of Graphics**
 
 ---
 
-## The Layered Grammar: Core Components
+## Slide 36 – The Layered Grammar: Core Components
 
 **A visualization is built from layers, each with:**
 
@@ -880,7 +749,7 @@ Enter: **Grammar of Graphics**
 
 ---
 
-## Component 1: Data
+## Slide 37 – Component 1: Data
 
 **The foundation of any visualization**
 
@@ -904,7 +773,7 @@ Enter: **Grammar of Graphics**
 
 ---
 
-## Component 2: Aesthetic Mappings
+## Slide 38 – Component 2: Aesthetic Mappings
 
 **Map data variables to visual properties**
 
@@ -925,7 +794,7 @@ aes(x = Month, y = Sales, color = Product, size = Region)
 
 ---
 
-## Component 3: Geometric Objects (Marks)
+## Slide 39 – Component 3: Geometric Objects (Marks)
 
 **The visual representation of data**
 
@@ -946,7 +815,7 @@ aes(x = Month, y = Sales, color = Product, size = Region)
 
 ---
 
-## Component 4: Statistical Transformations
+## Slide 40 – Component 4: Statistical Transformations
 
 **Compute derived values from data**
 
@@ -967,7 +836,7 @@ aes(x = Month, y = Sales, color = Product, size = Region)
 
 ---
 
-## Component 5: Scales
+## Slide 41 – Component 5: Scales
 
 **Control how data values map to visual values**
 
@@ -990,7 +859,7 @@ Product: A, B, C  →  Colors: blue, red, green
 
 ---
 
-## Component 6: Coordinate Systems
+## Slide 42 – Component 6: Coordinate Systems
 
 **The space in which data is plotted**
 
@@ -1008,7 +877,7 @@ Product: A, B, C  →  Colors: blue, red, green
 
 ---
 
-## Component 7: Faceting (Small Multiples)
+## Slide 43 – Component 7: Faceting (Small Multiples)
 
 **Create subplots for data subsets**
 
@@ -1028,13 +897,7 @@ Product: A, B, C  →  Colors: blue, red, green
 
 ---
 
-
-# ═══════════════════════════════════════════════════════════════
-# PART 4: PYTHON VISUALIZATION IMPLEMENTATION
-# Slides 45-82
-# ═══════════════════════════════════════════════════════════════
-
-## Grammar and Cognitive Load
+## Slide 44 – Grammar and Cognitive Load
 
 **How Grammar of Graphics reduces cognitive load:**
 
@@ -1050,7 +913,7 @@ Product: A, B, C  →  Colors: blue, red, green
 
 ---
 
-## Transition to Python: Implementing the Grammar
+## Slide 45 – Transition to Python: Implementing the Grammar
 
 **Now we'll see how to implement these concepts in Python**
 
@@ -1069,7 +932,7 @@ Product: A, B, C  →  Colors: blue, red, green
 
 ---
 
-## Python Visualization Ecosystem Overview
+## Slide 46 – Python Visualization Ecosystem Overview
 
 **Matplotlib Architecture:**
 ```
@@ -1092,7 +955,7 @@ Product: A, B, C  →  Colors: blue, red, green
 
 ---
 
-## Matplotlib: Anatomy of a Figure
+## Slide 47 – Matplotlib: Anatomy of a Figure
 
 **Every Matplotlib visualization has two main components:**
 
@@ -1116,7 +979,7 @@ fig, ax = plt.subplots()  # Returns Figure and Axes objects
 
 ---
 
-## Creating Your First Plot
+## Slide 48 – Creating Your First Plot
 
 **Basic bar chart in Matplotlib:**
 
@@ -1149,7 +1012,7 @@ plt.show()
 
 ---
 
-## Customizing Plots: Colors, Labels, Styles
+## Slide 49 – Customizing Plots: Colors, Labels, Styles
 
 **Applying perception principles:**
 
@@ -1192,7 +1055,7 @@ plt.show()
 
 ---
 
-## Matplotlib: Common Plot Types
+## Slide 50 – Matplotlib: Common Plot Types
 
 **Quick reference for basic plots:**
 
@@ -1241,7 +1104,7 @@ plt.show()
 
 ---
 
-## Introduction to Seaborn
+## Slide 51 – Introduction to Seaborn
 
 **Seaborn = Statistical Data Visualization**
 
@@ -1267,7 +1130,7 @@ import matplotlib.pyplot as plt
 
 ---
 
-## Seaborn: Working with DataFrames
+## Slide 52 – Seaborn: Working with DataFrames
 
 **Seaborn loves pandas DataFrames:**
 
@@ -1294,7 +1157,7 @@ plt.show()
 
 ---
 
-## Seaborn Plot Types
+## Slide 53 – Seaborn Plot Types
 
 **Common Seaborn plots mapped to tasks:**
 
@@ -1316,7 +1179,7 @@ plt.show()
 
 ---
 
-## Seaborn Example: Distribution Plot
+## Slide 54 – Seaborn Example: Distribution Plot
 
 **Visualizing distributions with built-in statistics:**
 
@@ -1356,7 +1219,7 @@ plt.show()
 
 ---
 
-## Seaborn: Faceting (Small Multiples)
+## Slide 55 – Seaborn: Faceting (Small Multiples)
 
 **Create small multiples with FacetGrid:**
 
@@ -1387,7 +1250,7 @@ plt.show()
 
 ---
 
-## Color Palettes in Python: Perception-Aware Choices
+## Slide 56 – Color Palettes in Python: Perception-Aware Choices
 
 **Choosing the right color palette matters!**
 
@@ -1424,7 +1287,7 @@ plt.show()
 
 ---
 
-## Applying Preattentive Features in Code
+## Slide 57 – Applying Preattentive Features in Code
 
 **Using color for visual pop-out:**
 
@@ -1458,7 +1321,7 @@ plt.show()
 
 ---
 
-## Reducing Clutter: Before and After
+## Slide 58 – Reducing Clutter: Before and After
 
 **Applying "reduce extraneous load" principle:**
 
@@ -1499,7 +1362,7 @@ plt.show()
 
 ---
 
-## Direct Labeling vs. Legend
+## Slide 59 – Direct Labeling vs. Legend
 
 **Reduce cognitive load by eliminating legend lookup:**
 
@@ -1544,7 +1407,7 @@ plt.show()
 
 ---
 
-## Exercise: Bar Chart vs. Pie Chart
+## Slide 60 – Exercise: Bar Chart vs. Pie Chart
 
 **Implementing Cleveland & McGill's findings:**
 
@@ -1581,7 +1444,7 @@ plt.show()
 
 ---
 
-## Putting It All Together: Complete Example
+## Slide 61 – Putting It All Together: Complete Example
 
 **Building a perceptually-optimized visualization from scratch:**
 
@@ -1630,7 +1493,7 @@ plt.show()
 
 ---
 
-## Common Mistakes to Avoid
+## Slide 62 – Common Mistakes to Avoid
 
 **Real-world examples of what NOT to do:**
 
@@ -1647,7 +1510,7 @@ plt.show()
 
 ---
 
-## Visualization Design Checklist
+## Slide 63 – Visualization Design Checklist
 
 **Before finalizing any visualization, ask:**
 
@@ -1673,7 +1536,7 @@ plt.show()
 
 ---
 
-## Exercise 1: Critique This Visualization
+## Slide 64 – Exercise 1: Critique This Visualization
 
 **Task**: Identify all perception and cognitive load issues
 
@@ -1692,7 +1555,7 @@ plt.show()
 
 ---
 
-## Exercise 2: Redesign Challenge
+## Slide 65 – Exercise 2: Redesign Challenge
 
 **Given**: Bad dashboard with high cognitive load
 
@@ -1708,7 +1571,7 @@ plt.show()
 
 ---
 
-## Exercise 3: Build a Grammar-Based Plot
+## Slide 66 – Exercise 3: Build a Grammar-Based Plot
 
 **Task**: Create a visualization using Grammar of Graphics thinking
 
@@ -1725,7 +1588,7 @@ plt.show()
 
 ---
 
-## Exercise 4: Color Palette Selection
+## Slide 67 – Exercise 4: Color Palette Selection
 
 **Scenario**: You need to visualize temperature data from -10°C to +40°C
 
@@ -1745,7 +1608,7 @@ import numpy as np
 
 ---
 
-## Exercise 5: Preattentive Highlighting
+## Slide 68 – Exercise 5: Preattentive Highlighting
 
 **Task**: Create a sales report where Q4 must pop out
 
@@ -1761,7 +1624,7 @@ import numpy as np
 
 ---
 
-## Real-World Application: Dashboard Design
+## Slide 69 – Real-World Application: Dashboard Design
 
 **Scenario**: Executive wants dashboard for:
 - Monthly revenue trends
@@ -1779,7 +1642,7 @@ import numpy as np
 
 ---
 
-## Connection to Data Science Workflows
+## Slide 70 – Connection to Data Science Workflows
 
 **Where visualization fits in your projects:**
 
@@ -1800,7 +1663,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Key Takeaways: Perception & Cognition
+## Slide 71 – Key Takeaways: Perception & Cognition
 
 **What we learned today:**
 
@@ -1821,7 +1684,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Key Takeaways: Data & Encodings
+## Slide 72 – Key Takeaways: Data & Encodings
 
 **What we learned today:**
 
@@ -1841,7 +1704,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Key Takeaways: Grammar of Graphics
+## Slide 73 – Key Takeaways: Grammar of Graphics
 
 **What we learned today:**
 
@@ -1862,7 +1725,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Key Takeaways: Python Best Practices
+## Slide 74 – Key Takeaways: Python Best Practices
 
 **What we learned today:**
 
@@ -1885,7 +1748,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Looking Ahead: Future Topics
+## Slide 75 – Looking Ahead: Future Topics
 
 **How today's content connects to upcoming classes:**
 
@@ -1911,7 +1774,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Resources for Further Learning
+## Slide 76 – Resources for Further Learning
 
 **Books:**
 - *The Visual Display of Quantitative Information* - Edward Tufte
@@ -1932,7 +1795,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Assignment: Perceptually-Optimized Visualization
+## Slide 77 – Assignment: Perceptually-Optimized Visualization
 
 **Due**: Next class
 
@@ -1956,7 +1819,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Assignment Tips & Guidance
+## Slide 78 – Assignment Tips & Guidance
 
 **Where to find bad visualizations:**
 - News media
@@ -1980,7 +1843,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Optional Challenge: Build a Dashboard
+## Slide 79 – Optional Challenge: Build a Dashboard
 
 **For those wanting extra practice:**
 
@@ -2003,7 +1866,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Common Questions & Answers
+## Slide 80 – Common Questions & Answers
 
 **Q**: "Can I ever use pie charts?"  
 **A**: Yes, but only for 2-3 categories showing parts of a whole. Bar charts are almost always better.
@@ -2022,7 +1885,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Next Class Preview
+## Slide 81 – Next Class Preview
 
 **Week 4: Exploratory Data Visualization**
 
@@ -2042,7 +1905,7 @@ Data Collection → Cleaning → EDA → Modeling → Evaluation → Communicati
 
 ---
 
-## Closing Thoughts
+## Slide 82 – Closing Thoughts
 
 **What makes visualization a superpower in data science?**
 
@@ -2091,3 +1954,6 @@ It's the only part of the workflow that:
 
 ---
 
+**END OF CLASS 3**
+
+---
