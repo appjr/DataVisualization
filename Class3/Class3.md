@@ -1706,15 +1706,23 @@ plt.show()
 
 **Given**: Bad dashboard with high cognitive load
 
+![Dashboard Redesign Challenge](images/exercise2_redesign_challenge.png)
+
 **Your task:**
-1. List all sources of extraneous load
-2. Propose a redesigned layout
-3. Justify your encoding choices
-4. Apply Gestalt principles
+1. **List all sources of extraneous load** - What creates unnecessary complexity?
+2. **Propose a redesigned layout** - How would you restructure it?
+3. **Justify your encoding choices** - Why did you choose specific visual encodings?
+4. **Apply Gestalt principles** - How can proximity, similarity, and enclosure improve it?
 
 **Deliverable**: Sketch or code the improved version
 
 **Time**: 15 minutes
+
+**Key Questions to Consider:**
+- Which metrics should be prominent?
+- How can you create clear visual hierarchy?
+- What can be removed without losing information?
+- How can Gestalt principles guide the layout?
 
 ---
 
@@ -1722,16 +1730,34 @@ plt.show()
 
 **Task**: Create a visualization using Grammar of Graphics thinking
 
+![Grammar of Graphics Example](images/exercise3_grammar_example.png)
+
 **Dataset**: Sales by product, region, and quarter
 
 **Requirements:**
-1. Define your data mappings (aesthetics)
-2. Choose appropriate geom
-3. Consider statistical transformation
-4. Use faceting if appropriate
-5. Apply perception principles
+1. **Define your data mappings (aesthetics)** - What data goes to which visual property?
+2. **Choose appropriate geom** - Point, line, bar, or combination?
+3. **Consider statistical transformation** - Identity, count, smooth?
+4. **Use faceting if appropriate** - Would small multiples help?
+5. **Apply perception principles** - Use effective encodings
 
 **Implement in Python** (Matplotlib or Seaborn)
+
+**Starter Template:**
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Your data
+data = pd.DataFrame({...})
+
+# Step 1: Define aesthetics (x, y, color, etc.)
+# Step 2: Choose geom (lineplot, barplot, etc.)
+# Step 3: Apply to create visualization
+```
+
+**Think in layers**: Data → Aesthetics → Geom → Stats → Result
 
 ---
 
@@ -1739,19 +1765,32 @@ plt.show()
 
 **Scenario**: You need to visualize temperature data from -10°C to +40°C
 
+![Color Palette Selection](images/exercise4_color_palette.png)
+
 **Questions:**
-1. What type of color palette should you use?
-2. Why is rainbow/jet inappropriate?
-3. What's a good alternative?
-4. How do you handle the zero point?
+1. **What type of color palette should you use?** (Sequential, Diverging, or Categorical?)
+2. **Why is rainbow/jet inappropriate?** (What perception problems does it create?)
+3. **What's a good alternative?** (Why is it better?)
+4. **How do you handle the zero point?** (Should 0°C have special meaning?)
 
 **Implement:**
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Your code here to create heatmap with appropriate palette
+# Create temperature data
+temp_data = np.random.randn(10, 12) * 15 + 15
+
+# Choose your palette:
+# Option 1: Sequential (viridis, plasma)
+# Option 2: Diverging centered at 0°C (RdBu_r, coolwarm)
+
+plt.imshow(temp_data, cmap='YOUR_CHOICE', vmin=-10, vmax=40)
+plt.colorbar(label='Temperature (°C)')
+plt.show()
 ```
+
+**Answer**: Diverging palette (RdBu_r) centered at 0°C is best because temperature has a meaningful midpoint (freezing point).
 
 ---
 
@@ -1759,15 +1798,35 @@ import numpy as np
 
 **Task**: Create a sales report where Q4 must pop out
 
+![Preattentive Highlighting Example](images/exercise5_preattentive_highlighting.png)
+
 **Data**: Quarterly sales for 5 products
 
 **Requirements:**
-- Use preattentive features (color, size, position)
-- Make Q4 immediately visible
-- Minimize cognitive load
-- Include direct labels
+1. **Use preattentive features** - Color, size, or position to make Q4 stand out
+2. **Make Q4 immediately visible** - User should see Q4 in < 200ms
+3. **Minimize cognitive load** - Keep it simple and clean
+4. **Include direct labels** - No legend hunting required
 
 **Code it**: Use Matplotlib or Seaborn
+
+**Starter Code:**
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Quarterly sales data
+products = ['Product A', 'Product B', 'Product C', 'Product D', 'Product E']
+q1 = [45, 52, 38, 48, 42]
+q2 = [48, 55, 41, 50, 45]
+q3 = [50, 58, 43, 52, 47]
+q4 = [62, 68, 55, 65, 60]
+
+# Your task: Make Q4 pop out using preattentive features!
+# Hint: Use contrasting color for Q4 bars
+```
+
+**Bonus Challenge**: Create both a "bad" and "good" version to demonstrate the difference!
 
 ---
 
