@@ -1675,20 +1675,30 @@ plt.show()
 
 ## Exercise 1: Critique This Visualization
 
-**Task**: Identify all perception and cognitive load issues
+**Task**: Identify all perception and cognitive load issues in this dashboard
 
-```
-[Show intentionally bad visualization with multiple issues]
-```
+![Bad Visualization Example](images/bad_visualization_exercise.png)
 
 **Issues to find:**
-1. Encoding problems
-2. Cognitive load violations
-3. Gestalt principle violations
-4. Color usage problems
-5. Missing context
+1. **Encoding problems** - What visual encodings are inappropriate?
+2. **Cognitive load violations** - What adds unnecessary complexity?
+3. **Gestalt principle violations** - What grouping issues exist?
+4. **Color usage problems** - Where is color misused?
+5. **Missing context** - What information is unclear or missing?
 
-**Work in pairs**: 5 minutes to list all issues
+**Hint**: Look for:
+- Pie charts with too many slices
+- Rainbow/non-perceptual color scales
+- Truncated axes
+- Dual y-axes with different scales
+- Chart junk (decorative elements)
+- Poor labeling and tiny text
+- Inconsistent styling
+- Cluttered layouts
+
+**Work in pairs**: 5 minutes to list all issues you can find
+
+**Expected findings**: This visualization violates at least 10 principles we learned today!
 
 ---
 
