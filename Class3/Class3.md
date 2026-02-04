@@ -295,7 +295,7 @@ We see: (A-B), C, D, E, (F-G)
 
 **Design tip**: Connection is one of the strongest grouping cues.
 
-![Gestalt Connection](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Gestalt_connectedness.svg/640px-Gestalt_connectedness.svg.png)
+![Gestalt Connection](images/gestalt_connection.png)
 
 ---
 
@@ -333,7 +333,7 @@ We see: (A-B), C, D, E, (F-G)
 
 **Goal in visualization**: Minimize extraneous load, manage intrinsic load, maximize germane load.
 
-![Cognitive Load Theory](https://upload.wikimedia.org/wikipedia/commons/9/9b/Cognitive_Load_Theory.png)
+![Cognitive Load Balance](images/cognitive_load_balance.png)
 
 ---
 
@@ -630,7 +630,7 @@ For each, identify:
 - Dot plots > Bubble charts for precision
 - Heatmaps good for patterns, not precise values
 
-![Cleveland McGill Ranking](https://upload.wikimedia.org/wikipedia/commons/8/8e/Graphical_perception_ranking.png)
+![Encoding Effectiveness Ranking](images/encoding_effectiveness.png)
 
 ---
 
@@ -727,7 +727,7 @@ Enter: **Grammar of Graphics**
 - 🎯 More expressive than chart templates
 - 🎯 Foundation for modern tools (ggplot2, Altair, Plotly)
 
-![Grammar of Graphics Concept](https://miro.medium.com/max/1400/1*cKUv_Q_AqL5-T-aX-B6JlA.png)
+![Grammar of Graphics Layers](images/grammar_layers.png)
 
 ---
 
@@ -745,7 +745,7 @@ Enter: **Grammar of Graphics**
 
 **Each component is independent and composable!**
 
-![Grammar Layers](https://upload.wikimedia.org/wikipedia/commons/3/3a/Grammar_of_Graphics_layers.png)
+![Grammar of Graphics Layers](images/grammar_layers.png)
 
 ---
 
