@@ -108,25 +108,22 @@ Preattentive features enable:
 
 ## Slide 6 – Demonstrating Preattentive Processing
 
-**Quick Exercise**: Find the red "O" among blue "O"s
+**Interactive Exercise**: Compare these two search tasks
 
-```
-O O O O O O O O O O
-O O O O O O O O O O
-O O O O O O O O O O
-O O O O ● O O O O O  ← Found it instantly?
-O O O O O O O O O O
-```
+![Feature vs Conjunction Search](images/preattentive_comparison.png)
 
-**Now find the red "Q" among red "O"s and blue "Q"s**
+**Key Findings:**
+- **Left (Feature Search)**: Find the red circle
+  - Uses only ONE attribute (color)
+  - Found instantly (< 200ms)
+  - **Preattentive** - no conscious effort required
 
-This takes much longer! Why?
-- First task: Single feature (color) - **preattentive**
-- Second task: Conjunction of features (color + shape) - **requires attention**
+- **Right (Conjunction Search)**: Find the red square
+  - Requires TWO attributes (color AND shape)
+  - Takes much longer (requires scanning)
+  - **Attentive** - conscious effort required
 
-**Design Implication**: Don't force users to search for multiple attributes simultaneously.
-
-![Feature vs Conjunction Search](https://upload.wikimedia.org/wikipedia/commons/7/7b/Visual_search_feature_vs_conjunction.png)
+**Design Implication**: Don't force users to search for multiple attributes simultaneously. In dashboards, make critical information stand out using a single preattentive feature (color, size, or position).
 
 ---
 
