@@ -34,7 +34,7 @@
   
 - Poor visualization = Poor analytics outcomes
 
-![Data to Decision Pipeline](https://miro.medium.com/max/1400/1*8FJzFzxvXBpH5pPKOqKGLA.png)
+![Data to Decision Pipeline](images/data_decision_pipeline.png)
 
 ---
 
@@ -76,7 +76,7 @@
 
 **Design Principle**: Leverage preattentive processing for critical information.
 
-![Visual Processing Pathways](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Human_visual_pathway.svg/800px-Human_visual_pathway.svg.png)
+![Visual Processing Pathways](images/visual_processing_pathways.png)
 
 ---
 
