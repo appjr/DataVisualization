@@ -249,7 +249,7 @@ Similar:
 
 **Example**: All sales data in blue shades, all costs in red shades.
 
-![Gestalt Similarity](https://upload.wikimedia.org/wikipedia/commons/7/7a/Gestalt_principle_of_similarity.png)
+![Gestalt Similarity](images/gestalt_similarity.png)
 
 ---
 
@@ -275,7 +275,7 @@ Similar:
 - Use background shading for grouped sections
 - Be careful with nested enclosures (can create confusion)
 
-![Gestalt Common Region](https://upload.wikimedia.org/wikipedia/commons/4/4f/Gestalt_principle_of_common_region.png)
+![Gestalt Common Region](images/gestalt_enclosure.png)
 
 ---
 
