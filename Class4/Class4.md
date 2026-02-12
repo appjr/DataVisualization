@@ -115,6 +115,603 @@ Data Collection → Data Cleaning → EDA → Feature Engineering → Modeling �
 
 ---
 
+## Real-World Examples: When to Use Each Visualization
+
+**Understanding context helps you choose the right chart. Here are industry-specific examples:**
+
+### Histogram Use Cases
+
+**When to use**: Exploring distribution of continuous variables, identifying patterns and outliers
+
+**Example 1 - Retail**: Customer age distribution
+```python
+# Use case: Understanding customer demographics
+customer_ages.hist(bins=20)
+plt.title('Customer Age Distribution')
+# Insight: Bimodal distribution reveals two target segments (25-35 and 50-60)
+```
+
+**Example 2 - Finance**: Loan approval amounts
+```python
+# Use case: Understanding lending patterns
+loan_amounts.hist(bins=50)
+# Insight: Right-skewed distribution shows most loans are small, few large ones
+```
+
+**Example 3 - Healthcare**: Patient wait times
+```python
+# Use case: Identifying service bottlenecks
+wait_times.hist(bins=30)
+# Insight: Long tail indicates some patients wait excessively long
+```
+
+**Example 4 - Education**: Exam score distribution
+```python
+# Use case: Grading curve analysis
+exam_scores.hist(bins=20)
+# Insight: Normal distribution validates grading fairness
+```
+
+---
+
+### Box Plot Use Cases
+
+**When to use**: Comparing distributions across groups, identifying outliers, showing median and quartiles
+
+**Example 1 - E-commerce**: Revenue by product category
+```python
+# Use case: Comparing performance across categories
+sns.boxplot(x='category', y='revenue', data=df)
+# Insight: Electronics has higher median but more variability
+```
+
+**Example 2 - Human Resources**: Salary by department
+```python
+# Use case: Compensation equity analysis
+sns.boxplot(x='department', y='salary', data=employees)
+# Insight: Engineering salaries have wider range, HR more consistent
+```
+
+**Example 3 - Manufacturing**: Product quality by shift
+```python
+# Use case: Quality control across shifts
+sns.boxplot(x='shift', y='defect_rate', data=production)
+# Insight: Night shift has higher median defects - investigate staffing
+```
+
+**Example 4 - Real Estate**: Home prices by neighborhood
+```python
+# Use case: Market analysis for pricing strategy
+sns.boxplot(x='neighborhood', y='price', data=homes)
+# Insight: Downtown has highest median, but suburbs have luxury outliers
+```
+
+---
+
+### Scatter Plot Use Cases
+
+**When to use**: Exploring relationships between two continuous variables, identifying correlations, detecting clusters
+
+**Example 1 - Marketing**: Ad spend vs. Sales
+```python
+# Use case: ROI analysis for marketing budget allocation
+plt.scatter(df['ad_spend'], df['sales'])
+# Insight: Strong positive correlation up to $50K, then diminishing returns
+```
+
+**Example 2 - Healthcare**: BMI vs. Blood Pressure
+```python
+# Use case: Patient risk assessment
+plt.scatter(patients['bmi'], patients['blood_pressure'])
+# Insight: Clear positive correlation - BMI is risk factor
+```
+
+**Example 3 - Real Estate**: Square footage vs. Price
+```python
+# Use case: Property valuation model
+plt.scatter(homes['sqft'], homes['price'], c=homes['bedrooms'])
+# Insight: Linear relationship, but bedrooms add value beyond size
+```
+
+**Example 4 - Supply Chain**: Shipping distance vs. Delivery time
+```python
+# Use case: Optimizing logistics
+plt.scatter(orders['distance'], orders['delivery_days'])
+# Insight: Non-linear relationship - local deliveries very fast, then plateaus
+```
+
+---
+
+### Line Chart Use Cases
+
+**When to use**: Showing trends over time, tracking changes, comparing time series
+
+**Example 1 - Finance**: Stock price trends
+```python
+# Use case: Investment analysis
+df.set_index('date')['stock_price'].plot()
+# Insight: Upward trend with seasonal dips in January
+```
+
+**Example 2 - Web Analytics**: Daily website traffic
+```python
+# Use case: Monitoring site performance
+daily_visitors.plot(figsize=(12, 4))
+# Insight: Weekend dips, spike after marketing campaign
+```
+
+**Example 3 - Operations**: Inventory levels over time
+```python
+# Use case: Supply chain management
+inventory_df.plot(x='date', y='units')
+# Insight: Stockouts occurring quarterly - adjust reorder points
+```
+
+**Example 4 - Public Health**: COVID-19 case trends
+```python
+# Use case: Epidemic tracking
+cases_by_date.plot()
+# Insight: Multiple waves visible, interventions flatten curves
+```
+
+---
+
+### Bar Chart Use Cases
+
+**When to use**: Comparing categories, ranking items, showing composition
+
+**Example 1 - Sales**: Revenue by region
+```python
+# Use case: Regional performance comparison
+revenue_by_region.plot(kind='barh')
+# Insight: West region outperforms, South needs attention
+```
+
+**Example 2 - Customer Service**: Ticket volume by category
+```python
+# Use case: Resource allocation for support team
+ticket_counts.plot(kind='bar')
+# Insight: Password resets are #1 issue - implement self-service
+```
+
+**Example 3 - Education**: Student enrollment by major
+```python
+# Use case: Program planning and resource allocation
+enrollment.plot(kind='barh', color='steelblue')
+# Insight: Business programs growing, liberal arts declining
+```
+
+**Example 4 - Retail**: Top 10 selling products
+```python
+# Use case: Inventory optimization
+top_products.plot(kind='barh')
+# Insight: 80/20 rule - top 3 products drive 60% of revenue
+```
+
+---
+
+### Heatmap Use Cases
+
+**When to use**: Showing relationships in matrix form, displaying patterns across two dimensions, correlation analysis
+
+**Example 1 - Product Analytics**: Purchase patterns by hour and day
+```python
+# Use case: Staffing optimization for retail
+pivot = df.pivot_table(values='sales', index='hour', columns='day_of_week')
+sns.heatmap(pivot, annot=True, cmap='YlOrRd')
+# Insight: Lunch hours (12-1pm) and weekends busiest - schedule accordingly
+```
+
+**Example 2 - Finance**: Correlation matrix for stock portfolio
+```python
+# Use case: Diversification analysis
+corr_matrix = stocks.corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+# Insight: Tech stocks highly correlated - need diversification
+```
+
+**Example 3 - Operations**: Machine utilization by shift and day
+```python
+# Use case: Production planning
+sns.heatmap(utilization_pivot, cmap='Greens')
+# Insight: Morning shift underutilized - shift maintenance window
+```
+
+**Example 4 - Marketing**: Customer segment characteristics
+```python
+# Use case: Personalization strategy
+sns.heatmap(segment_features, cmap='Blues')
+# Insight: Young professionals prefer mobile, seniors prefer phone
+```
+
+---
+
+### Violin Plot Use Cases
+
+**When to use**: Comparing distributions with full shape visible, showing multimodal distributions
+
+**Example 1 - HR**: Salary distributions by job level
+```python
+# Use case: Compensation structure analysis
+sns.violinplot(x='level', y='salary', data=employees)
+# Insight: Senior level has bimodal distribution - two career tracks
+```
+
+**Example 2 - Education**: Test scores by teaching method
+```python
+# Use case: Educational intervention effectiveness
+sns.violinplot(x='method', y='score', data=students)
+# Insight: Method A shows wider distribution - inconsistent results
+```
+
+**Example 3 - Healthcare**: Patient recovery time by treatment
+```python
+# Use case: Treatment efficacy comparison
+sns.violinplot(x='treatment', y='recovery_days', data=patients)
+# Insight: New treatment shows faster median and tighter distribution
+```
+
+**Example 4 - E-commerce**: Order value by customer segment
+```python
+# Use case: Pricing strategy development
+sns.violinplot(x='segment', y='order_value', data=orders)
+# Insight: Premium segment shows fat upper tail - upselling opportunity
+```
+
+---
+
+### Pair Plot Use Cases
+
+**When to use**: Exploring all pairwise relationships, initial data exploration, feature selection
+
+**Example 1 - Real Estate**: Property valuation features
+```python
+# Use case: Feature engineering for pricing model
+sns.pairplot(homes[['price', 'sqft', 'bedrooms', 'age', 'distance_to_city']])
+# Insight: Sqft and bedrooms correlated - may cause multicollinearity
+```
+
+**Example 2 - Customer Analytics**: Customer behavior metrics
+```python
+# Use case: Segmentation analysis
+sns.pairplot(customers[['recency', 'frequency', 'monetary', 'tenure']])
+# Insight: Frequency and monetary highly correlated - RFM score makes sense
+```
+
+**Example 3 - Manufacturing**: Quality control parameters
+```python
+# Use case: Process optimization
+sns.pairplot(production[['temperature', 'pressure', 'humidity', 'defect_rate']])
+# Insight: Temperature and pressure interact - need combined controls
+```
+
+**Example 4 - Finance**: Credit risk factors
+```python
+# Use case: Credit scoring model development
+sns.pairplot(applicants[['income', 'debt_ratio', 'credit_score', 'default']], hue='default')
+# Insight: Income and debt_ratio separate defaulters well
+```
+
+---
+
+### Stacked Bar Chart Use Cases
+
+**When to use**: Showing composition over categories, comparing parts to whole, tracking category changes
+
+**Example 1 - Marketing**: Channel attribution over time
+```python
+# Use case: Marketing mix optimization
+channel_data.plot(kind='bar', stacked=True)
+# Insight: Paid search declining, organic growing - adjust budget
+```
+
+**Example 2 - Operations**: Defect types by product line
+```python
+# Use case: Quality improvement prioritization
+defects_pivot.plot(kind='bar', stacked=True)
+# Insight: Assembly defects dominate Product A - focus training there
+```
+
+**Example 3 - Finance**: Revenue composition by quarter
+```python
+# Use case: Business model evolution analysis
+revenue_mix.plot(kind='bar', stacked=True)
+# Insight: Subscription revenue growing faster than one-time sales
+```
+
+**Example 4 - HR**: Workforce composition by department
+```python
+# Use case: Diversity and inclusion tracking
+headcount.plot(kind='bar', stacked=True)
+# Insight: Engineering lacks diversity - recruitment initiative needed
+```
+
+---
+
+### Hexbin Plot Use Cases
+
+**When to use**: Large datasets with overplotting, density visualization, geographic data
+
+**Example 1 - Ride Sharing**: Pickup locations
+```python
+# Use case: Driver positioning strategy
+plt.hexbin(trips['pickup_lat'], trips['pickup_lon'], gridsize=30)
+# Insight: High density downtown and airport - surge pricing zones
+```
+
+**Example 2 - Retail**: Customer location analysis
+```python
+# Use case: New store location planning
+plt.hexbin(customers['latitude'], customers['longitude'], gridsize=20)
+# Insight: Underserved area in northwest suburbs - expansion opportunity
+```
+
+**Example 3 - Web Analytics**: Mouse movement patterns
+```python
+# Use case: UI/UX optimization
+plt.hexbin(clicks['x_position'], clicks['y_position'])
+# Insight: Users focus top-left - place CTAs there
+```
+
+**Example 4 - Telecommunications**: Cell tower coverage analysis
+```python
+# Use case: Network optimization
+plt.hexbin(signals['longitude'], signals['latitude'], C=signals['strength'])
+# Insight: Dead zones identified in rural areas
+```
+
+---
+
+### Area Chart Use Cases
+
+**When to use**: Showing cumulative totals over time, emphasizing magnitude of change
+
+**Example 1 - Finance**: Cumulative revenue by product
+```python
+# Use case: Product portfolio contribution analysis
+df.pivot_table(values='revenue', index='month', columns='product').cumsum().plot.area()
+# Insight: Product A drove early growth, Product B sustaining now
+```
+
+**Example 2 - Web Analytics**: Traffic sources over time
+```python
+# Use case: Channel performance tracking
+traffic_sources.plot.area(stacked=True)
+# Insight: Direct traffic stable, social media growing rapidly
+```
+
+**Example 3 - Operations**: Inventory composition
+```python
+# Use case: Warehouse space allocation
+inventory_by_category.plot.area()
+# Insight: Seasonal items taking increasing space - need dynamic allocation
+```
+
+**Example 4 - Project Management**: Resource allocation over project timeline
+```python
+# Use case: Resource planning
+resources_by_role.plot.area(stacked=True)
+# Insight: Developer hours peak mid-project - plan hiring accordingly
+```
+
+---
+
+### KDE Plot Use Cases
+
+**When to use**: Smooth distribution estimation, comparing overlapping distributions, continuous probability density
+
+**Example 1 - Pricing**: Product price distributions by brand
+```python
+# Use case: Competitive pricing analysis
+for brand in brands:
+    df[df['brand']==brand]['price'].plot(kind='kde', label=brand)
+# Insight: Brand A positioned premium, Brand B budget - clear segmentation
+```
+
+**Example 2 - Healthcare**: Patient age distributions by condition
+```python
+# Use case: Epidemiological analysis
+for condition in conditions:
+    patients[patients['condition']==condition]['age'].plot(kind='kde')
+# Insight: Condition X affects younger population - different treatment approach
+```
+
+**Example 3 - Finance**: Return distributions for investments
+```python
+# Use case: Risk-return profile comparison
+for asset in portfolio:
+    returns[asset].plot(kind='kde', label=asset)
+# Insight: Crypto shows fat tails - higher risk than traditional assets
+```
+
+**Example 4 - Education**: Study time distributions by grade
+```python
+# Use case: Success factor analysis
+for grade in ['A', 'B', 'C']:
+    students[students['grade']==grade]['study_hours'].plot(kind='kde')
+# Insight: A students show bimodal distribution - quality over quantity
+```
+
+---
+
+### Strip Plot / Swarm Plot Use Cases
+
+**When to use**: Small to medium datasets, showing individual observations, revealing overlapping patterns
+
+**Example 1 - Clinical Trials**: Patient response by treatment group
+```python
+# Use case: Treatment effect visualization
+sns.stripplot(x='treatment', y='response', data=trial_data, jitter=True)
+# Insight: Treatment group shows more high responders but also variability
+```
+
+**Example 2 - Education**: Individual student performance by school
+```python
+# Use case: School comparison for enrollment decisions
+sns.swarmplot(x='school', y='test_score', data=students)
+# Insight: School A has tighter distribution - more consistent quality
+```
+
+**Example 3 - Sports Analytics**: Player performance by position
+```python
+# Use case: Draft strategy development
+sns.stripplot(x='position', y='rating', data=players)
+# Insight: Wide variation in quarterback ratings - premium on elite talent
+```
+
+**Example 4 - Quality Control**: Measurement precision by instrument
+```python
+# Use case: Instrument calibration assessment
+sns.swarmplot(x='instrument', y='measurement', data=lab_data)
+# Insight: Instrument C shows systematic bias - needs recalibration
+```
+
+---
+
+### Facet Grid / Small Multiples Use Cases
+
+**When to use**: Comparing patterns across multiple categories, avoiding overplotted charts
+
+**Example 1 - Retail**: Sales trends by store location
+```python
+# Use case: Regional strategy development
+g = sns.FacetGrid(sales_df, col='region', row='store_type')
+g.map(plt.plot, 'date', 'sales')
+# Insight: Urban stores show different seasonality than suburban
+```
+
+**Example 2 - Social Media**: Engagement patterns by platform
+```python
+# Use case: Content strategy optimization
+g = sns.FacetGrid(engagement, col='platform', col_wrap=3)
+g.map(sns.histplot, 'engagement_rate')
+# Insight: LinkedIn content performs better on weekdays
+```
+
+**Example 3 - Manufacturing**: Machine performance by plant
+```python
+# Use case: Best practices identification
+g = sns.FacetGrid(production, col='plant', row='machine_type')
+g.map(sns.scatterplot, 'speed', 'quality')
+# Insight: Plant B achieves better speed-quality tradeoff
+```
+
+**Example 4 - Healthcare**: Patient outcomes by hospital and specialty
+```python
+# Use case: Quality benchmarking
+g = sns.FacetGrid(outcomes, col='hospital', row='specialty')
+g.map(sns.boxplot, 'treatment', 'recovery_time')
+# Insight: Hospital X excels in cardiology - learn from their protocols
+```
+
+---
+
+## Industry-Specific Visualization Patterns
+
+### Financial Services
+
+**Common analyses and their visualizations:**
+
+1. **Portfolio Performance**: Line charts for time series returns
+2. **Risk Analysis**: Scatter plots for risk-return profiles
+3. **Correlation Analysis**: Heatmaps for asset correlations
+4. **Trading Volume**: Bar charts with volume overlays
+5. **Customer Segmentation**: Pair plots for demographic analysis
+6. **Credit Risk**: Box plots comparing defaulters vs. non-defaulters
+7. **Fraud Detection**: Scatter plots with anomaly highlighting
+8. **Market Trends**: Area charts for market share evolution
+
+### Healthcare
+
+**Common analyses and their visualizations:**
+
+1. **Patient Demographics**: Histograms and box plots for age, vitals
+2. **Treatment Efficacy**: Violin plots comparing outcomes
+3. **Disease Progression**: Line charts over time
+4. **Resource Utilization**: Heatmaps for bed occupancy patterns
+5. **Survival Analysis**: KDE plots for time-to-event distributions
+6. **Clinical Trials**: Strip plots for individual patient responses
+7. **Epidemiology**: Geographic heatmaps for disease spread
+8. **Cost Analysis**: Stacked bars for expense categories
+
+### E-Commerce / Retail
+
+**Common analyses and their visualizations:**
+
+1. **Sales Trends**: Line charts with seasonality
+2. **Product Performance**: Horizontal bar charts for rankings
+3. **Customer Behavior**: Funnel charts for conversion analysis
+4. **Pricing Analysis**: Scatter plots for price-demand relationships
+5. **Inventory Management**: Area charts for stock levels
+6. **Geographic Analysis**: Hexbin plots for customer locations
+7. **A/B Testing**: Box plots comparing variants
+8. **Basket Analysis**: Heatmaps for product affinity
+
+### Manufacturing / Operations
+
+**Common analyses and their visualizations:**
+
+1. **Quality Control**: Control charts (line + control limits)
+2. **Process Optimization**: Scatter plots for parameter relationships
+3. **Defect Analysis**: Pareto charts (bar + cumulative line)
+4. **Machine Utilization**: Heatmaps by time and equipment
+5. **Yield Analysis**: Histograms with specification limits
+6. **Downtime Tracking**: Gantt charts or stacked bars
+7. **Supply Chain**: Network diagrams with flow volumes
+8. **Production Variance**: Box plots across shifts/lines
+
+### Marketing & Analytics
+
+**Common analyses and their visualizations:**
+
+1. **Campaign Performance**: Line charts with event annotations
+2. **Channel Attribution**: Stacked area charts
+3. **Customer Lifetime Value**: Scatter plots segmented by cohort
+4. **Conversion Funnels**: Funnel or stacked bar charts
+5. **Engagement Metrics**: Heatmaps by day/hour
+6. **Sentiment Analysis**: Diverging bar charts (positive/negative)
+7. **Geographic Targeting**: Choropleth maps
+8. **Cohort Analysis**: Heatmaps showing retention over time
+
+---
+
+## Choosing Visualizations: Decision Framework
+
+**Ask yourself these questions:**
+
+**1. What is my data type?**
+- Continuous numeric → Histogram, box plot, scatter plot
+- Categorical → Bar chart, pie chart (if <5 categories)
+- Time series → Line chart, area chart
+- Geographic → Maps, hexbin plots
+- Text → Word clouds, bar charts of frequencies
+
+**2. What is my question?**
+- "What's the distribution?" → Histogram, KDE, box plot
+- "How do groups compare?" → Box plot, violin plot, grouped bars
+- "What's the relationship?" → Scatter plot, correlation heatmap
+- "How has it changed?" → Line chart, area chart
+- "What are the top items?" → Horizontal bar chart
+- "What's the composition?" → Stacked bar, pie chart
+
+**3. How much data do I have?**
+- Small (n < 100) → Swarm plot, strip plot (show all points)
+- Medium (100 < n < 10K) → Standard scatter, box plots
+- Large (n > 10K) → Hexbin, 2D density, sampling
+
+**4. Who is my audience?**
+- Technical/Data team → More complex (pair plots, heatmaps)
+- Business stakeholders → Simple, clear (bars, lines, simple scatter)
+- General public → Very simple, annotated (bars, pies, basic lines)
+
+**5. What action do I want them to take?**
+- Show a problem → Highlight outliers or deviations
+- Compare options → Side-by-side comparisons
+- Show trends → Emphasize direction with trend lines
+- Show composition → Stack or segment clearly
+
+---
+
 ## Data Quality: The Hidden First Step
 
 **You can't explore data you don't understand or trust**
@@ -141,30 +738,61 @@ Data Collection → Data Cleaning → EDA → Feature Engineering → Modeling �
 **Quick visual diagnostics:**
 
 ```python
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+# Import required libraries for data manipulation and visualization
+import pandas as pd              # For data loading and manipulation
+import matplotlib.pyplot as plt  # For creating plots
+import seaborn as sns           # For advanced statistical visualizations
 
-# Load data
+# ==================== STEP 1: LOAD DATA ====================
+# Read CSV file into a pandas DataFrame
+# DataFrame is a 2D table with rows and columns (like Excel)
 df = pd.read_csv('data.csv')
 
-# 1. Overview: What do we have?
+# ==================== STEP 2: INITIAL OVERVIEW ====================
+# Get basic information about the dataset
+# info() shows: column names, data types, non-null counts, memory usage
 print(df.info())
+
+# Get statistical summary of numeric columns
+# describe() shows: count, mean, std, min, 25%, 50%, 75%, max
 print(df.describe())
 
-# 2. Missing data pattern
-plt.figure(figsize=(10, 6))
-sns.heatmap(df.isnull(), cbar=False, yticklabels=False)
-plt.title('Missing Data Pattern')
-plt.show()
+# ==================== STEP 3: VISUALIZE MISSING DATA ====================
+# Create a heatmap to see patterns in missing data
+# Missing values show up in one color, present values in another
+plt.figure(figsize=(10, 6))  # Set figure size (width=10, height=6 inches)
 
-# 3. Check for duplicates
-print(f"Duplicate rows: {df.duplicated().sum()}")
+# df.isnull() creates a boolean matrix: True where data is missing, False otherwise
+# Heatmap makes this visual - helps spot if certain columns/rows have missing patterns
+sns.heatmap(df.isnull(),           # Boolean DataFrame of missing values
+            cbar=False,             # Don't show color bar (not needed for binary True/False)
+            yticklabels=False)      # Hide row labels (too many rows to display)
+plt.title('Missing Data Pattern')   # Add descriptive title
+plt.show()                          # Display the plot
 
-# 4. Value distributions
-df.hist(figsize=(12, 10), bins=30)
-plt.tight_layout()
-plt.show()
+# ==================== STEP 4: CHECK FOR DUPLICATES ====================
+# Identify completely identical rows (all columns match)
+# duplicated() returns True for rows that are duplicates of earlier rows
+duplicate_count = df.duplicated().sum()  # Sum True values to count duplicates
+print(f"Duplicate rows: {duplicate_count}")
+
+# Why check? Duplicates can:
+# - Bias statistical analyses
+# - Inflate sample size artificially
+# - Indicate data collection errors
+
+# ==================== STEP 5: VISUALIZE DISTRIBUTIONS ====================
+# Create histograms for ALL numeric columns automatically
+# Helps quickly spot: skewness, outliers, unusual patterns
+df.hist(figsize=(12, 10),  # Overall figure size for all histograms
+        bins=30)            # Number of bins (bars) in each histogram
+plt.tight_layout()          # Adjust spacing so titles don't overlap
+plt.show()                  # Display all histograms
+
+# What to look for in histograms:
+# - Normal (bell curve) vs skewed distributions
+# - Unexpected spikes or gaps
+# - Impossible values (e.g., negative ages)
 ```
 
 **What to look for:**
@@ -275,52 +903,116 @@ plt.show()
 **Complete workflow for a numeric variable:**
 
 ```python
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
+# Import necessary libraries
+import pandas as pd              # Data manipulation
+import matplotlib.pyplot as plt  # Plotting
+import seaborn as sns           # Statistical visualizations
+import numpy as np              # Numerical operations
 
-# Load data
+# ==================== STEP 1: LOAD DATA ====================
+# Read housing data from CSV file
 df = pd.read_csv('housing.csv')
+
+# Extract the price column as a pandas Series for analysis
+# Series is a 1D array with index labels
 price = df['price']
 
-# 1. Basic statistics
+# ==================== STEP 2: CALCULATE BASIC STATISTICS ====================
+# These statistics give us a numerical summary before visualizing
+
+# count(): Number of non-null values
 print(f"Count: {price.count()}")
+
+# mean(): Average value (sum of all values / count)
+# :,.2f formats as number with commas and 2 decimal places
 print(f"Mean: ${price.mean():,.2f}")
+
+# median(): Middle value when sorted (50th percentile)
+# Less affected by outliers than mean
 print(f"Median: ${price.median():,.2f}")
+
+# std(): Standard deviation - measures spread around the mean
+# Larger values = more variability in data
 print(f"Std Dev: ${price.std():,.2f}")
+
+# min() and max(): Range of values
 print(f"Min: ${price.min():,.2f}")
 print(f"Max: ${price.max():,.2f}")
+
+# skew(): Measure of asymmetry in distribution
+# 0 = symmetric (normal distribution)
+# Positive = right-skewed (long tail to the right)
+# Negative = left-skewed (long tail to the left)
 print(f"Skewness: {price.skew():.2f}")
 
-# 2. Create comprehensive visualization
+# ==================== STEP 3: CREATE COMPREHENSIVE VISUALIZATION ====================
+# Create a 2x2 grid of subplots to show multiple views
+# figsize=(12, 10) sets the overall figure size in inches
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
-# Histogram
-axes[0, 0].hist(price, bins=50, edgecolor='black', alpha=0.7)
-axes[0, 0].axvline(price.mean(), color='red', linestyle='--', label='Mean')
-axes[0, 0].axvline(price.median(), color='green', linestyle='--', label='Median')
-axes[0, 0].set_title('Distribution: Histogram')
-axes[0, 0].set_xlabel('Price ($)')
-axes[0, 0].legend()
+# --------------- Plot 1: HISTOGRAM (Top Left) ---------------
+# Shows the frequency distribution - how many values fall in each range
+axes[0, 0].hist(price,              # Data to plot
+                bins=50,             # Number of bins (bars) to divide the data into
+                edgecolor='black',   # Black outline around bars for clarity
+                alpha=0.7)           # Transparency (0=invisible, 1=opaque)
 
-# Box plot
-axes[0, 1].boxplot(price, vert=True)
+# Add vertical lines to show mean and median for comparison
+# axvline = add vertical line across the plot
+axes[0, 0].axvline(price.mean(),           # x-position: mean value
+                    color='red',            # Red for mean
+                    linestyle='--',         # Dashed line style
+                    label='Mean')           # Label for legend
+axes[0, 0].axvline(price.median(),         # x-position: median value  
+                    color='green',          # Green for median
+                    linestyle='--',         # Dashed line style
+                    label='Median')         # Label for legend
+
+axes[0, 0].set_title('Distribution: Histogram')  # Title for this subplot
+axes[0, 0].set_xlabel('Price ($)')               # Label for x-axis
+axes[0, 0].legend()                              # Show legend with Mean/Median
+
+# --------------- Plot 2: BOX PLOT (Top Right) ---------------
+# Shows quartiles, median, and outliers in a compact format
+# Box shows middle 50% of data (IQR = Q3 - Q1)
+# Whiskers extend to 1.5*IQR, points beyond are outliers
+axes[0, 1].boxplot(price,      # Data to plot
+                   vert=True)  # Vertical orientation (True) vs horizontal (False)
 axes[0, 1].set_title('Distribution: Box Plot')
 axes[0, 1].set_ylabel('Price ($)')
 
-# KDE
-sns.kdeplot(price, ax=axes[1, 0], fill=True)
+# --------------- Plot 3: KDE - KERNEL DENSITY ESTIMATE (Bottom Left) ---------------
+# Smooth, continuous version of a histogram
+# Shows probability density - area under curve = 1
+# Good for seeing overall shape without worrying about bin width
+sns.kdeplot(price,              # Data to plot
+            ax=axes[1, 0],      # Which subplot to use
+            fill=True)          # Fill area under curve (more visually appealing)
 axes[1, 0].set_title('Distribution: KDE')
 axes[1, 0].set_xlabel('Price ($)')
 
-# QQ plot for normality
+# --------------- Plot 4: Q-Q PLOT - QUANTILE-QUANTILE PLOT (Bottom Right) ---------------
+# Tests if data follows a normal (Gaussian) distribution
+# If data is normal, points will fall on the diagonal reference line
+# Deviations from line indicate non-normality
 from scipy import stats
-stats.probplot(price, dist="norm", plot=axes[1, 1])
+stats.probplot(price,              # Data to test
+               dist="norm",        # Compare to normal distribution
+               plot=axes[1, 1])    # Which subplot to use
 axes[1, 1].set_title('Q-Q Plot (Normality Check)')
 
+# ==================== STEP 4: DISPLAY THE PLOTS ====================
+# tight_layout() automatically adjusts spacing to prevent overlap
 plt.tight_layout()
+
+# show() displays all the plots
 plt.show()
+
+# INTERPRETATION TIPS:
+# - If Mean > Median: Right-skewed (common for prices, incomes)
+# - If Mean < Median: Left-skewed
+# - Box plot outliers: Investigate these values
+# - Q-Q plot: Points on diagonal = data is approximately normal
 ```
 
 ![Univariate Numeric Example](images/univariate_numeric.png)
