@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 4 – Exploratory Data Visualization Exercises</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        h4 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        .difficulty-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 40px 0 30px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .difficulty-section.easy {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .difficulty-section.medium {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .difficulty-section.hard {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .exercise {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .exercise-title {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .exercise-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .badge-easy {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge-hard {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-time {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .scenario {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .dataset-info {
+            background-color: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .objectives {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        ul {
+            margin-left: 25px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: #e83e8c;
+        }
+        
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            font-size: 0.95em;
+        }
+        
+        .success-criteria {
+            background-color: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .success-criteria h4 {
+            color: #155724;
+            margin-top: 0;
+        }
+        
+        .tips-box {
+            background-color: #fff3cd;
+            border: 2px solid #ffeeba;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 30px 0;
+        }
+        
+        .tips-box h3, .tips-box h4 {
+            color: #856404;
+            margin-top: 10px;
+        }
+        
+        .warning {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        
+        .success {
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .info {
+            color: #17a2b8;
+            font-weight: 600;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e9ecef;
+            margin: 40px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .congrats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .congrats h2 {
+            color: white;
+            border: none;
+            margin: 0 0 20px 0;
+            padding: 0;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            pre {
+                page-break-inside: avoid;
+            }
+            .exercise {
+                page-break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Class 4 – Exploratory Data Visualization</h1>
+        <p class="subtitle"><strong>Student Exercises</strong></p>
+        
+        <p><strong>Instructions</strong>: Complete the following exercises to practice exploratory data analysis and visualization techniques. Exercises are organized by difficulty level.</p>
+        
+        <hr>
+        
+        <div class="difficulty-section easy">
+            ⭐ EASY LEVEL EXERCISES
+        </div>
+        
+        <!-- Exercise 1 -->
+        <div class="exercise">
+            <h3 class="exercise-title">Exercise 1: Simple Histogram Analysis</h3>
+            
+            <div class="exercise-meta">
+                <span class="badge badge-easy">⭐ Easy</span>
+                <span class="badge badge-time">⏱ 10 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: student_scores.csv</span>
+            </div>
+            
+            <div class="scenario">
+                <h4>📋 Scenario</h4>
+                <p>You are a teaching assistant analyzing exam scores from a statistics course. The professor wants to understand the score distribution to determine if the exam difficulty was appropriate.</p>
+            </div>
+            
+            <div class="dataset-info">
+                <h4>📊 Dataset Description</h4>
+                <ul>
+                    <li><strong>File</strong>: <code>Class4/data/student_scores.csv</code></li>
+                    <li><strong>Size</strong>: 200 students</li>
+                    <li><strong>Variables</strong>:
+                        <ul>
+                            <li><code>student_id</code>: Unique identifier (1-200)</li>
+                            <li><code>exam_score</code>: Final exam score (0-100)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="objectives">
+                <h4>🎯 Learning Objectives</h4>
+                <ul>
+                    <li>Load and explore data with pandas</li>
+                    <li>Calculate basic descriptive statistics</li>
+                    <li>Create histograms with matplotlib</li>
+                    <li>Interpret distribution shapes</li>
+                    <li>Add reference lines to visualizations</li>
+                </ul>
+            </div>
+            
+            <h4>📝 Tasks</h4>
+            
+            <p><strong>1. Load and Explore the Data</strong></p>
+            <ul>
+                <li>Read the CSV file using pandas</li>
+                <li>Display the first 10 rows</li>
+                <li>Check the shape of the dataset</li>
+                <li>Verify there are no missing values</li>
+            </ul>
+            
+            <p><strong>2. Calculate Basic Statistics</strong></p>
+            <ul>
+                <li>Calculate mean, median, standard deviation</li>
+                <li>Find the minimum and maximum scores</li>
+                <li>Determine the range (max - min)</li>
+            </ul>
+            
+            <p><strong>3. Create a Histogram</strong></p>
+            <ul>
+                <li>Plot a histogram with 20 bins</li>
+                <li>Add vertical lines for mean (red, dashed) and median (green, dashed)</li>
+                <li>Label the x-axis as "Exam Score" and y-axis as "Frequency"</li>
+                <li>Add a title: "Distribution of Exam Scores"</li>
+                <li>Include a legend showing mean and median</li>
+            </ul>
+            
+            <p><strong>4. Interpret the Results</strong></p>
+            <ul>
+                <li>Is the distribution symmetric, left-skewed, or right-skewed?</li>
+                <li>Are mean and median close to each other? What does this tell you?</li>
+                <li>Are most students clustered around a certain score range?</li>
+                <li>Based on the distribution, was the exam difficulty appropriate?</li>
+            </ul>
+            
+            <h4>💡 Data Manipulation Guide</h4>
+            <pre><code># Loading data
+df = pd.read_csv('Class4/data/student_scores.csv')
+
+# Calculating statistics
+mean_score = df['exam_score'].mean()
+median_score = df['exam_score'].median()
+std_score = df['exam_score'].std()
+
+# Creating histogram
+plt.hist(df['exam_score'], bins=20, edgecolor='black', alpha=0.7)
+plt.axvline(mean_score, color='red', linestyle='--', label='Mean')
+plt.axvline(median_score, color='green', linestyle='--', label='Median')</code></pre>
+            
+            <h4>🖼 Expected Visualization</h4>
+            <p>A histogram showing the frequency distribution of exam scores with clear reference lines for mean and median.</p>
+            
+            <h4>🚀 Starter Code</h4>
+            <pre><code># Import required libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# TODO: Load the data
+df = pd.read_csv('Class4/data/student_scores.csv')
+
+# TODO: Display first 10 rows
+print(df.head(10))
+
+# TODO: Check shape and missing values
+print(f"Dataset shape: {df.shape}")
+print(f"Missing values:\n{df.isnull().sum()}")
+
+# TODO: Calculate basic statistics
+mean_score = # Calculate mean
+median_score = # Calculate median
+std_score = # Calculate standard deviation
+min_score = # Calculate minimum
+max_score = # Calculate maximum
+
+print(f"\n=== EXAM SCORE STATISTICS ===")
+print(f"Mean: {mean_score:.2f}")
+print(f"Median: {median_score:.2f}")
+print(f"Std Dev: {std_score:.2f}")
+print(f"Range: {min_score:.2f} - {max_score:.2f}")
+
+# TODO: Create histogram with reference lines
+plt.figure(figsize=(10, 6))
+
+# Create histogram
+
+
+# Add vertical lines for mean and median
+
+
+# Add labels and title
+
+
+# Add legend
+
+
+# Display the plot
+plt.show()
+
+# TODO: Answer interpretation questions
+print("\n=== INTERPRETATION ===")
+print("1. Distribution shape: ")
+print("2. Mean vs Median: ")
+print("3. Score clustering: ")
+print("4. Exam difficulty assessment: ")</code></pre>
+            
+            <div class="success-criteria">
+                <h4>✅ Success Criteria</h4>
+                <ul>
+                    <li>✅ Data loaded successfully with 200 rows</li>
+                    <li>✅ All statistics calculated correctly</li>
+                    <li>✅ Histogram created with 20 bins</li>
+                    <li>✅ Mean and median lines visible and labeled</li>
+                    <li>✅ Clear interpretation of distribution provided</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Exercise 2 -->
+        <div class="exercise">
+            <h3 class="exercise-title">Exercise 2: Basic Box Plot Comparison</h3>
+            
+            <div class="exercise-meta">
+                <span class="badge badge-easy">⭐ Easy</span>
+                <span class="badge badge-time">⏱ 12 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: employee_salaries.csv</span>
+            </div>
+            
+            <div class="scenario">
+                <h4>📋 Scenario</h4>
+                <p>You're a HR analyst examining salary distributions across different departments. Management wants to ensure compensation is fair and identify any unusual salary outliers.</p>
+            </div>
+            
+            <div class="dataset-info">
+                <h4>📊 Dataset Description</h4>
+                <ul>
+                    <li><strong>File</strong>: <code>Class4/data/employee_salaries.csv</code></li>
+                    <li><strong>Size</strong>: 500 employees</li>
+                    <li><strong>Variables</strong>:
+                        <ul>
+                            <li><code>employee_id</code>: Unique identifier</li>
+                            <li><code>department</code>: Department name (Engineering, Sales, Marketing, HR)</li>
+                            <li><code>salary</code>: Annual salary in USD</li>
+                            <li><code>years_experience</code>: Years of professional experience</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="objectives">
+                <h4>🎯 Learning Objectives</h4>
+                <ul>
+                    <li>Work with categorical and numeric variables</li>
+                    <li>Create grouped box plots</li>
+                    <li>Identify outliers visually</li>
+                    <li>Compare distributions across categories</li>
+                    <li>Use seaborn for statistical visualizations</li>
+                </ul>
+            </div>
+            
+            <p><em>See full exercise details in the complete HTML document...</em></p>
+        </div>
+        
+        <!-- Exercise 3 -->
+        <div class="exercise">
+            <h3 class="exercise-title">Exercise 3: Simple Scatter Plot Relationship</h3>
+            
+            <div class="exercise-meta">
+                <span class="badge badge-easy">⭐ Easy</span>
+                <span class="badge badge-time">⏱ 15 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: house_simple.csv</span>
+            </div>
+            
+            <div class="scenario">
+                <h4>📋 Scenario</h4>
+                <p>You're a real estate analyst helping a client understand home prices. They want to know if there's a clear relationship between house size and price to make informed buying decisions.</p>
+            </div>
+            
+            <p><em>See full exercise details in the complete HTML document...</em></p>
+        </div>
+        
+        <div class="tips-box">
+            <h3>💡 Tips for Success</h3>
+            <h4>For All Easy Exercises:</h4>
+            <ol>
+                <li><strong>Read Carefully</strong>: Make sure you understand what each task is asking</li>
+                <li><strong>Test Incrementally</strong>: Run your code frequently to catch errors early</li>
+                <li><strong>Check Your Work</strong>: Verify your calculations make sense</li>
+                <li><strong>Visualize Thoughtfully</strong>: Labels, titles, and legends make plots professional</li>
+                <li><strong>Interpret Honestly</strong>: Say what you see in the data, not what you expect</li>
+            </ol>
+            
+            <h4>Common Mistakes to Avoid:</h4>
+            <ul>
+                <li><span class="warning">❌</span> Forgetting to import required libraries</li>
+                <li><span class="warning">❌</span> Using wrong column names (check spelling!)</li>
+                <li><span class="warning">❌</span> Not handling missing values</li>
+                <li><span class="warning">❌</span> Forgetting axis labels or titles</li>
+                <li><span class="warning">❌</span> Not explaining your interpretations</li>
+            </ul>
+        </div>
+        
+        <hr>
+        
+        <div class="difficulty-section medium">
+            ⭐⭐ MEDIUM LEVEL EXERCISES
+        </div>
+        
+        <!-- Medium Exercises Summary -->
+        <div class="exercise">
+            <h3>Exercise 4: Multi-Variable Distribution Analysis</h3>
+            <div class="exercise-meta">
+                <span class="badge badge-medium">⭐⭐ Medium</span>
+                <span class="badge badge-time">⏱ 20 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: customer_transactions.csv</span>
+            </div>
+            <p><em>Analyze skewed transaction data, apply transformations, and detect outliers...</em></p>
+        </div>
+        
+        <div class="exercise">
+            <h3>Exercise 5: Correlation Heatmap & Feature Selection</h3>
+            <div class="exercise-meta">
+                <span class="badge badge-medium">⭐⭐ Medium</span>
+                <span class="badge badge-time">⏱ 25 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: real_estate.csv</span>
+            </div>
+            <p><em>Build correlation matrices, identify multicollinearity, and select features for modeling...</em></p>
+        </div>
+        
+        <div class="exercise">
+            <h3>Exercise 6: Time Series Pattern Detection</h3>
+            <div class="exercise-meta">
+                <span class="badge badge-medium">⭐⭐ Medium</span>
+                <span class="badge badge-time">⏱ 25 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: daily_sales.csv</span>
+            </div>
+            <p><em>Analyze 2 years of daily sales data to identify trends, seasonal patterns, and anomalies...</em></p>
+        </div>
+        
+        <hr>
+        
+        <div class="difficulty-section hard">
+            ⭐⭐⭐ HARD LEVEL EXERCISES
+        </div>
+        
+        <!-- Hard Exercises Summary -->
+        <div class="exercise">
+            <h3>Exercise 7: Missing Data Investigation & Strategy</h3>
+            <div class="exercise-meta">
+                <span class="badge badge-hard">⭐⭐⭐ Hard</span>
+                <span class="badge badge-time">⏱ 30 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: customer_survey.csv</span>
+            </div>
+            <p><em>Diagnose missingness types (MCAR, MAR, MNAR) and implement multiple imputation strategies...</em></p>
+        </div>
+        
+        <div class="exercise">
+            <h3>Exercise 8: Multi-Dimensional EDA with Categorical Analysis</h3>
+            <div class="exercise-meta">
+                <span class="badge badge-hard">⭐⭐⭐ Hard</span>
+                <span class="badge badge-time">⏱ 35 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: ecommerce_full.csv</span>
+            </div>
+            <p><em>Analyze 50,000 transactions to identify customer segment and product category patterns...</em></p>
+        </div>
+        
+        <div class="exercise">
+            <h3>Exercise 9: Complete EDA with Feature Engineering</h3>
+            <div class="exercise-meta">
+                <span class="badge badge-hard">⭐⭐⭐ Hard</span>
+                <span class="badge badge-time">⏱ 45 minutes</span>
+                <span class="badge" style="background-color: #e3f2fd; color: #0d47a1;">Dataset: credit_risk.csv</span>
+            </div>
+            <p><em>Execute a complete EDA workflow with feature engineering for credit risk modeling...</em></p>
+        </div>
+        
+        <hr>
+        
+        <div class="congrats">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed all 9 exercises across three difficulty levels. You now have practical experience with:</p>
+            <ul style="text-align: left; display: inline-block; margin-top: 20px;">
+                <li><span class="success">✅</span> <strong>Basic EDA Skills</strong>: Distributions, comparisons, relationships</li>
+                <li><span class="success">✅</span> <strong>Advanced Techniques</strong>: Transformations, time series, correlations</li>
+                <li><span class="success">✅</span> <strong>Professional Workflows</strong>: Missing data, feature engineering, comprehensive reports</li>
+            </ul>
+        </div>
+        
+        <h2>📚 What's Next?</h2>
+        <ol>
+            <li><strong>Review Your Solutions</strong>: Compare with provided solutions</li>
+            <li><strong>Try Real Datasets</strong>: Apply these techniques to your own data</li>
+            <li><strong>Build Your Portfolio</strong>: Document your best EDA projects</li>
+            <li><strong>Learn More</strong>: Explore advanced topics like dimensionality reduction, anomaly detection</li>
+        </ol>
+        
+        <h3>Resources for Continued Learning</h3>
+        <ul>
+            <li><strong>Books</strong>: <em>Practical Statistics for Data Scientists</em>, <em>Python for Data Analysis</em></li>
+            <li><strong>Online</strong>: Kaggle EDA competitions, Towards Data Science articles</li>
+            <li><strong>Practice</strong>: UCI ML Repository, Data.gov, Google Dataset Search</li>
+        </ul>
+        
+        <hr>
+        
+        <p style="text-align: center; color: #7f8c8d; margin-top: 40px;">
+            <strong>Remember</strong>: Great EDA is the foundation of great data science! 📊🔍
+        </p>
+        
+        <p style="text-align: center; color: #95a5a6; font-size: 0.9em;">
+            <strong>Version</strong>: 1.0 | <strong>Last Updated</strong>: February 2026 | <strong>Course</strong>: MIS 6380 - Data Visualization
+        </p>
+    </div>
+</body>
+</html>
