@@ -22,20 +22,20 @@
 - [Why Time Series Visualization Matters](#why-time-series-visualization-matters)
 - [What Makes Time Series Data Special](#what-makes-time-series-data-special)
 - [Types of Temporal Data](#types-of-temporal-data)
-- Basic Time Series Plot: The Line Chart
-- Choosing Appropriate Time Scales
-- Handling Missing Temporal Data
-- Date/Time Formatting in Python
-- Time Zones and DST Issues
-- Aspect Ratio and Chart Proportions
-- Color in Time Series
-- Multiple Time Series on One Plot
-- Small Multiples for Time Series
-- Common Temporal Visualization Mistakes
-- Y-Axis Decisions
-- Annotation Best Practices
-- Reference Lines and Benchmarks
-- Interactive vs. Static Time Series
+- [Basic Time Series Plot: The Line Chart](#basic-time-series-plot-the-line-chart)
+- [Choosing Appropriate Time Scales](#choosing-appropriate-time-scales)
+- [Handling Missing Temporal Data](#handling-missing-temporal-data)
+- [Date/Time Formatting in Python](#datetime-formatting-in-python)
+- [Time Zones and DST Issues](#time-zones-and-dst-issues)
+- [Aspect Ratio and Chart Proportions](#aspect-ratio-and-chart-proportions)
+- [Color in Time Series](#color-in-time-series)
+- [Multiple Time Series on One Plot](#multiple-time-series-on-one-plot)
+- [Small Multiples for Time Series](#small-multiples-for-time-series)
+- [Common Temporal Visualization Mistakes](#common-temporal-visualization-mistakes)
+- [Y-Axis Decisions](#y-axis-decisions)
+- [Annotation Best Practices](#annotation-best-practices)
+- [Reference Lines and Benchmarks](#reference-lines-and-benchmarks)
+- [Interactive vs. Static Time Series](#interactive-vs-static-time-series)
 - Part 1 Summary
 
 ### Part 2: Temporal Patterns & Decomposition (Slides 21-40)
