@@ -39,70 +39,70 @@
 - Part 1 Summary
 
 ### Part 2: Temporal Patterns & Decomposition (Slides 21-40)
-- Introduction to Temporal Patterns
-- Identifying Trends
-- Linear vs. Non-Linear Trends
-- Seasonal Patterns
-- Types of Seasonality
-- Cyclic Patterns
-- Time Series Decomposition
-- Classical Decomposition Method
-- STL Decomposition
-- Visualizing Decomposition Results
-- Moving Averages
-- Exponential Smoothing
-- Rolling Statistics
-- Seasonal Adjustment
-- Detrending
-- Detecting Anomalies
-- Change Point Detection
-- Regime Changes
-- Seasonality Tests
-- Part 2 Summary
+- [Introduction to Temporal Patterns](#introduction-to-temporal-patterns)
+- [Identifying Trends](#identifying-trends)
+- [Linear vs. Non-Linear Trends](#linear-vs-non-linear-trends)
+- [Seasonal Patterns](#seasonal-patterns)
+- [Types of Seasonality](#types-of-seasonality)
+- [Cyclic Patterns](#cyclic-patterns)
+- [Time Series Decomposition](#time-series-decomposition)
+- [Classical Decomposition Method](#classical-decomposition-method)
+- [STL Decomposition](#stl-decomposition)
+- [Visualizing Decomposition Results](#visualizing-decomposition-results)
+- [Moving Averages](#moving-averages)
+- [Exponential Smoothing](#exponential-smoothing)
+- [Rolling Statistics](#rolling-statistics)
+- [Seasonal Adjustment](#seasonal-adjustment)
+- [Detrending](#detrending)
+- [Detecting Anomalies](#detecting-anomalies)
+- [Change Point Detection](#change-point-detection)
+- [Regime Changes](#regime-changes)
+- [Seasonality Tests](#seasonality-tests)
+- [Part 2 Summary](#part-2-summary)
 
 ### Part 3: Advanced Techniques (Slides 41-60)
-- Comparing Multiple Time Series
-- Index-Based Comparisons
-- Percent Change Visualization
-- Lag Plots
-- Autocorrelation Function (ACF)
-- Partial Autocorrelation (PACF)
-- Cross-Correlation
-- Lead-Lag Relationships
-- Forecasting Visualization Principles
-- Point Forecasts vs. Intervals
-- Confidence Intervals
-- Fan Charts
-- Backtesting Visualizations
-- Forecast Error Analysis
-- Calendar Heatmaps
-- Horizon Charts
-- Stream Graphs
-- Cycle Plots
-- Interactive Time Series with Plotly
-- Part 3 Summary
+- [Comparing Multiple Time Series](#comparing-multiple-time-series)
+- [Index-Based Comparisons](#index-based-comparisons)
+- [Percent Change Visualization](#percent-change-visualization)
+- [Lag Plots](#lag-plots)
+- [Autocorrelation Function (ACF)](#autocorrelation-function-acf)
+- [Partial Autocorrelation (PACF)](#partial-autocorrelation-pacf)
+- [Cross-Correlation](#cross-correlation)
+- [Lead-Lag Relationships](#lead-lag-relationships)
+- [Forecasting Visualization Principles](#forecasting-visualization-principles)
+- [Point Forecasts vs. Intervals](#point-forecasts-vs-intervals)
+- [Confidence Intervals](#confidence-intervals)
+- [Fan Charts](#fan-charts)
+- [Backtesting Visualizations](#backtesting-visualizations)
+- [Forecast Error Analysis](#forecast-error-analysis)
+- [Calendar Heatmaps](#calendar-heatmaps)
+- [Horizon Charts](#horizon-charts)
+- [Stream Graphs](#stream-graphs)
+- [Cycle Plots](#cycle-plots)
+- [Interactive Time Series with Plotly](#interactive-time-series-with-plotly)
+- [Part 3 Summary](#part-3-summary)
 
 ### Part 4: Implementation & Applications (Slides 61-80)
-- Python Tools for Time Series
-- pandas DateTime Operations
-- Matplotlib Time Series
-- Seaborn for Temporal Data
-- Plotly Interactive Time Series
-- Facebook Prophet
-- statsmodels Decomposition
-- Real-World Case Study 1
-- Real-World Case Study 2
-- Real-World Case Study 3
-- Dashboard Design for Temporal Data
-- Multi-Scale Dashboards
-- Best Practices Checklist
-- Exercise 1: Identify Temporal Patterns
-- Exercise 2: Choose the Right Time Scale
-- Exercise 3: Time Series Decomposition
-- Exercise 4: Forecasting Visualization
-- Exercise 5: Interactive Dashboard
-- Assignment & Resources
-- Summary & Next Class Preview
+- [Python Tools for Time Series](#python-tools-for-time-series)
+- [pandas DateTime Operations](#pandas-datetime-operations)
+- [Matplotlib Time Series](#matplotlib-time-series)
+- [Seaborn for Temporal Data](#seaborn-for-temporal-data)
+- [Plotly Interactive Time Series](#plotly-interactive-time-series)
+- [Facebook Prophet](#facebook-prophet)
+- [statsmodels Decomposition](#statsmodels-decomposition)
+- [Real-World Case Study 1](#real-world-case-study-1)
+- [Real-World Case Study 2](#real-world-case-study-2)
+- [Real-World Case Study 3](#real-world-case-study-3)
+- [Dashboard Design for Temporal Data](#dashboard-design-for-temporal-data)
+- [Multi-Scale Dashboards](#multi-scale-dashboards)
+- [Best Practices Checklist](#best-practices-checklist)
+- [Exercise 1: Identify Temporal Patterns](#exercise-1-identify-temporal-patterns)
+- [Exercise 2: Choose the Right Time Scale](#exercise-2-choose-the-right-time-scale)
+- [Exercise 3: Time Series Decomposition](#exercise-3-time-series-decomposition)
+- [Exercise 4: Forecasting Visualization](#exercise-4-forecasting-visualization)
+- [Exercise 5: Interactive Dashboard](#exercise-5-interactive-dashboard)
+- [Assignment & Resources](#assignment--resources)
+- [Summary & Next Class Preview](#summary--next-class-preview)
 
 ---
 
