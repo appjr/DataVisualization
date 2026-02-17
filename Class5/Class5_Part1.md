@@ -1383,9 +1383,26 @@ df = df[~df.index.isnull()]
 ### Example
 
 ```python
-fig, ax = plt.subplots(figsize=(10, 4))  # 2.5:1 ratio
-ax.plot(df.index, df['Sales'])
-ax.set_title('Balanced aspect ratio')
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate sample data
+np.random.seed(42)
+dates = pd.date_range('2024-01-01', periods=90, freq='D')
+sales = 1000 + np.cumsum(np.random.randn(90) * 50)
+
+df = pd.DataFrame({'Sales': sales}, index=dates)
+
+# Balanced aspect ratio (2.5:1)
+fig, ax = plt.subplots(figsize=(10, 4))
+ax.plot(df.index, df['Sales'], linewidth=2, color='steelblue')
+ax.set_title('Balanced Aspect Ratio (2.5:1)', fontsize=14, fontweight='bold')
+ax.set_xlabel('Date', fontsize=11)
+ax.set_ylabel('Sales', fontsize=11)
+ax.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
 ```
 
 **Rule of thumb:**
@@ -1408,10 +1425,35 @@ ax.set_title('Balanced aspect ratio')
 ### Example: Highlighting a Segment
 
 ```python
-ax.plot(df.index, df['Sales'], color='gray')
-ax.plot(df.index['2025-06':'2025-08'], df['Sales']['2025-06':'2025-08'],
-        color='red', linewidth=2, label='Summer spike')
-ax.legend()
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate sample data
+np.random.seed(42)
+dates = pd.date_range('2025-01-01', periods=365, freq='D')
+sales = 1000 + np.cumsum(np.random.randn(365) * 30)
+
+df_color = pd.DataFrame({'Sales': sales}, index=dates)
+
+# Plot with segment highlighting
+fig, ax = plt.subplots(figsize=(14, 6))
+
+# Main series in gray
+ax.plot(df_color.index, df_color['Sales'], color='gray', linewidth=1.5, label='All Data')
+
+# Highlight summer months (June-August)
+summer_data = df_color['2025-06':'2025-08']
+ax.plot(summer_data.index, summer_data['Sales'], 
+        color='red', linewidth=3, label='Summer Period')
+
+ax.set_xlabel('Date', fontsize=12)
+ax.set_ylabel('Sales', fontsize=12)
+ax.set_title('Highlighting a Specific Time Period', fontsize=14, fontweight='bold')
+ax.legend(fontsize=11)
+ax.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
 ```
 
 ---
@@ -1430,12 +1472,37 @@ ax.legend()
 ### Example: Multiple Products
 
 ```python
-fig, ax = plt.subplots(figsize=(12, 5))
-ax.plot(df.index, df['ProductA'], label='Product A')
-ax.plot(df.index, df['ProductB'], label='Product B')
-ax.plot(df.index, df['ProductC'], label='Product C')
-ax.legend()
-ax.set_title('Sales by Product')
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate sample data for 3 products
+np.random.seed(42)
+dates = pd.date_range('2024-01-01', periods=180, freq='D')
+
+product_a = 1000 + np.cumsum(np.random.randn(180) * 30)
+product_b = 1200 + np.cumsum(np.random.randn(180) * 35)
+product_c = 800 + np.cumsum(np.random.randn(180) * 25)
+
+df_products = pd.DataFrame({
+    'ProductA': product_a,
+    'ProductB': product_b,
+    'ProductC': product_c
+}, index=dates)
+
+# Plot multiple series
+fig, ax = plt.subplots(figsize=(14, 6))
+ax.plot(df_products.index, df_products['ProductA'], linewidth=2, label='Product A')
+ax.plot(df_products.index, df_products['ProductB'], linewidth=2, label='Product B')
+ax.plot(df_products.index, df_products['ProductC'], linewidth=2, label='Product C')
+
+ax.set_xlabel('Date', fontsize=12)
+ax.set_ylabel('Sales', fontsize=12)
+ax.set_title('Sales by Product', fontsize=14, fontweight='bold')
+ax.legend(fontsize=11)
+ax.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
 ```
 
 **Alternative:** Use small multiples if too many series.
