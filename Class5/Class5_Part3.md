@@ -803,61 +803,710 @@ plt.show()
 
 ## Cross-Correlation
 
-**Measure relationship between two time series**
+**Cross-correlation measures how two different time series relate to each other across time**
 
-(Will expand...)
+**What is Cross-Correlation?**
+
+**Cross-correlation** measures the similarity between two time series as a function of the time lag between them. It answers:
+- Do the series move together?
+- Does one series lead or lag the other?
+- What is the optimal time shift to align them?
+
+**Applications:**
+- **Economics**: Does consumer confidence predict spending?
+- **Marketing**: Do ad campaigns lead to sales increases?
+- **Manufacturing**: Do raw material orders predict production output?
+- **Weather**: Does temperature correlate with energy demand?
+
+**Python Implementation:**
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from statsmodels.tsa.stattools import ccf
+
+# Generate two related series
+np.random.seed(42)
+dates = pd.date_range('2024-01-01', periods=200, freq='D')
+
+# X series (e.g., advertising spend)
+x = 100 + np.cumsum(np.random.randn(200) * 5)
+
+# Y series follows X with a 5-day lag (e.g., sales)
+y = np.zeros(200)
+y[:5] = 100 + np.random.randn(5) * 3
+for t in range(5, 200):
+    y[t] = 0.7 * x[t-5] + 0.3 * y[t-1] + np.random.randn() * 3
+
+df = pd.DataFrame({'Date': dates, 'Ad_Spend': x, 'Sales': y})
+
+# Calculate cross-correlation
+max_lag = 20
+cross_corr = [df['Ad_Spend'].corr(df['Sales'].shift(lag)) for lag in range(-max_lag, max_lag+1)]
+
+# Plot
+fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+
+# Time series
+axes[0].plot(df['Date'], df['Ad_Spend'], linewidth=2, label='Ad Spend', alpha=0.7)
+axes[0].plot(df['Date'], df['Sales'], linewidth=2, label='Sales', alpha=0.7)
+axes[0].set_ylabel('Value', fontsize=11)
+axes[0].set_title('Two Time Series (Sales Lags Ad Spend by ~5 days)', fontsize=13, fontweight='bold')
+axes[0].legend()
+axes[0].grid(True, alpha=0.3)
+
+# Cross-correlation
+lags = range(-max_lag, max_lag+1)
+axes[1].bar(lags, cross_corr, color='steelblue', alpha=0.7)
+axes[1].axhline(0, color='black', linestyle='-', linewidth=1)
+axes[1].axvline(0, color='red', linestyle='--', linewidth=2, alpha=0.5)
+
+# Find max correlation
+max_corr_lag = lags[np.argmax(cross_corr)]
+max_corr_value = max(cross_corr)
+axes[1].axvline(max_corr_lag, color='green', linestyle='--', linewidth=2, label=f'Max at lag {max_corr_lag}')
+
+axes[1].set_xlabel('Lag (days)', fontsize=12)
+axes[1].set_ylabel('Cross-Correlation', fontsize=11)
+axes[1].set_title(f'Cross-Correlation: Peak at lag {max_corr_lag} (Sales lags Ad Spend)', 
+                   fontsize=13, fontweight='bold')
+axes[1].legend()
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+print(f"Maximum correlation: {max_corr_value:.3f} at lag {max_corr_lag}")
+print(f"Interpretation: Sales respond to Ad Spend with a {abs(max_corr_lag)}-day lag")
+```
+
+**Interpretation:**
+
+| Peak Location | Meaning |
+|---------------|---------|
+| **Lag = 0** | Series move together simultaneously |
+| **Positive lag** | Y lags behind X (X predicts Y) |
+| **Negative lag** | Y leads X (Y predicts X) |
+| **Multiple peaks** | Complex relationship, multiple time scales |
+
+**Best Practices:**
+
+✅ Plot both series first to understand relationship
+✅ Test multiple lag ranges
+✅ Consider seasonality (may create spurious peaks)
+✅ Validate with domain knowledge
 
 ---
 
 ## Lead-Lag Relationships
 
-**Does one series predict another?**
+**Identifying which series predicts which - critical for forecasting and causal analysis**
 
-(Will expand...)
+**What are Lead-Lag Relationships?**
+
+A **lead-lag relationship** occurs when one series consistently changes before another:
+- **Leading indicator**: Changes first, predicts future
+- **Lagging indicator**: Changes after, confirms trends
+- **Coincident indicator**: Changes simultaneously
+
+**Examples:**
+
+**Economics:**
+- Building permits LEAD housing starts (3-6 months)
+- Unemployment LAGS GDP growth (2-3 quarters)
+- Stock market LEADS economic activity (6-12 months)
+
+**Business:**
+- Marketing spend LEADS sales (days to weeks)
+- Customer inquiries LEAD purchases (days)
+- Raw material orders LEAD production output (weeks)
+
+**Detection Methods:**
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simulate leading indicator relationship
+np.random.seed(42)
+dates = pd.date_range('2020-01-01', periods=100, freq='M')
+
+# Leading indicator (e.g., job postings)
+leading = 1000 + np.cumsum(np.random.randn(100) * 50)
+
+# Lagging indicator follows with 3-month delay (e.g., employment)
+lagging = np.zeros(100)
+lagging[:3] = 800 + np.random.randn(3) * 20
+for t in range(3, 100):
+    lagging[t] = 0.6 * leading[t-3] + 0.4 * lagging[t-1] + np.random.randn() * 20
+
+df_lead = pd.DataFrame({
+    'Date': dates,
+    'Job_Postings': leading,
+    'Employment': lagging
+})
+
+# Visualize with shift
+fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+
+# Original alignment
+axes[0].plot(df_lead['Date'], df_lead['Job_Postings'], linewidth=2, 
+             label='Job Postings (Leading)', alpha=0.7)
+axes[0].plot(df_lead['Date'], df_lead['Employment'], linewidth=2, 
+             label='Employment (Lagging)', alpha=0.7)
+axes[0].set_ylabel('Index', fontsize=11)
+axes[0].set_title('Original Timing: Employment Lags Job Postings', fontsize=13, fontweight='bold')
+axes[0].legend()
+axes[0].grid(True, alpha=0.3)
+
+# Shifted to align
+df_lead['Job_Postings_Shifted'] = df_lead['Job_Postings'].shift(3)  # Shift leading forward
+axes[1].plot(df_lead['Date'], df_lead['Job_Postings_Shifted'], linewidth=2, 
+             label='Job Postings (shifted +3 months)', alpha=0.7, linestyle='--')
+axes[1].plot(df_lead['Date'], df_lead['Employment'], linewidth=2, 
+             label='Employment', alpha=0.7)
+axes[1].set_xlabel('Date', fontsize=12)
+axes[1].set_ylabel('Index', fontsize=11)
+axes[1].set_title('After Aligning: Patterns Match (3-month lead time)', fontsize=13, fontweight='bold')
+axes[1].legend()
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+# Calculate correlation at different lags
+correlations = []
+for lag in range(-12, 13):
+    if lag < 0:
+        corr = df_lead['Job_Postings'].iloc[:lag].corr(df_lead['Employment'].iloc[-lag:])
+    elif lag > 0:
+        corr = df_lead['Job_Postings'].iloc[lag:].corr(df_lead['Employment'].iloc[:-lag])
+    else:
+        corr = df_lead['Job_Postings'].corr(df_lead['Employment'])
+    correlations.append(corr)
+
+# Find optimal lag
+optimal_lag = list(range(-12, 13))[np.argmax(correlations)]
+print(f"Optimal lag: {optimal_lag} months")
+print(f"Max correlation: {max(correlations):.3f}")
+```
+
+**Visualizing Lead-Lag with Granger Causality:**
+
+```python
+from statsmodels.tsa.stattools import grangercausalitytests
+
+# Test if Job_Postings Granger-causes Employment
+# Prepare data
+data = df_lead[['Employment', 'Job_Postings']].dropna()
+
+# Test (max lag = 6 months)
+try:
+    result = grangercausalitytests(data, maxlag=6, verbose=False)
+    
+    # Extract p-values
+    p_values = [result[lag+1][0]['ssr_ftest'][1] for lag in range(6)]
+    
+    # Plot
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.bar(range(1, 7), p_values, color='steelblue', alpha=0.7)
+    ax.axhline(0.05, color='red', linestyle='--', linewidth=2, label='α=0.05')
+    ax.set_xlabel('Lag (months)', fontsize=12)
+    ax.set_ylabel('P-value', fontsize=12)
+    ax.set_title('Granger Causality Test: Job Postings → Employment', fontsize=14, fontweight='bold')
+    ax.legend()
+    ax.grid(True, axis='y', alpha=0.3)
+    
+    # Annotate significant lags
+    for lag, pval in enumerate(p_values, 1):
+        if pval < 0.05:
+            ax.text(lag, pval, f'  Sig', fontsize=9, color='green', fontweight='bold')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    print("Significant lags (p < 0.05) indicate Granger causality")
+except:
+    print("Granger test requires sufficient data")
+```
+
+**Best Practices:**
+
+✅ Use cross-correlation to find optimal lag
+✅ Validate with domain knowledge
+✅ Test statistical significance (Granger causality)
+✅ Visualize both series aligned
 
 ---
 
 ## Forecasting Visualization Principles
 
-**Show historical data, forecast horizon, and uncertainty**
+**Effective forecast visualization communicates prediction AND uncertainty**
 
-(Will expand...)
+**The Golden Rule of Forecast Visualization:**
+
+> **Always show uncertainty. Point forecasts alone are misleading.**
+
+**Essential Elements:**
+
+**1. Historical Data (Context)**
+- Show enough history to see patterns
+- At least 2-3 seasonal cycles
+- Helps viewer understand forecast basis
+
+**2. Forecast Horizon**
+- Clearly distinguish forecast from historical
+- Use different line style (dashed, different color)
+- Mark the forecast starting point
+
+**3. Uncertainty Bands**
+- Show confidence intervals (80%, 95%)
+- Wider bands for longer horizons
+- Communicate forecast risk
+
+**Basic Forecast Visualization:**
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
+# Generate historical data
+np.random.seed(42)
+dates_hist = pd.date_range('2023-01-01', periods=365, freq='D')
+trend = np.linspace(100, 120, 365)
+seasonal = 10 * np.sin(2 * np.pi * np.arange(365) / 30)
+noise = np.random.normal(0, 3, 365)
+historical = trend + seasonal + noise
+
+df_hist = pd.DataFrame({'Sales': historical}, index=dates_hist)
+
+# Fit model and forecast
+model = ExponentialSmoothing(df_hist['Sales'], seasonal_periods=30, 
+                             trend='add', seasonal='add')
+fit = model.fit()
+
+# Forecast 60 days
+forecast_steps = 60
+forecast = fit.forecast(steps=forecast_steps)
+forecast_dates = pd.date_range(dates_hist[-1] + pd.Timedelta(days=1), 
+                               periods=forecast_steps, freq='D')
+
+# Simulate prediction intervals (simplified)
+std_error = df_hist['Sales'].std() * 0.5
+lower_80 = forecast - 1.28 * std_error * np.sqrt(np.arange(1, forecast_steps+1))
+upper_80 = forecast + 1.28 * std_error * np.sqrt(np.arange(1, forecast_steps+1))
+lower_95 = forecast - 1.96 * std_error * np.sqrt(np.arange(1, forecast_steps+1))
+upper_95 = forecast + 1.96 * std_error * np.sqrt(np.arange(1, forecast_steps+1))
+
+# Plot
+fig, ax = plt.subplots(figsize=(16, 6))
+
+# Historical data
+ax.plot(df_hist.index, df_hist['Sales'], linewidth=2, 
+        color='blue', label='Historical Data')
+
+# Forecast
+ax.plot(forecast_dates, forecast, linewidth=2, linestyle='--', 
+        color='red', label='Forecast')
+
+# Confidence intervals
+ax.fill_between(forecast_dates, lower_95, upper_95, 
+                alpha=0.2, color='red', label='95% Confidence')
+ax.fill_between(forecast_dates, lower_80, upper_80, 
+                alpha=0.3, color='red', label='80% Confidence')
+
+# Mark forecast start
+ax.axvline(dates_hist[-1], color='black', linestyle=':', linewidth=2, 
+           label='Forecast Start')
+
+ax.set_xlabel('Date', fontsize=12)
+ax.set_ylabel('Sales', fontsize=12)
+ax.set_title('Forecast Visualization: Historical + Prediction + Uncertainty', 
+             fontsize=14, fontweight='bold')
+ax.legend(loc='upper left', fontsize=10)
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Key Principles:**
+
+✅ **DO:**
+- Show historical context (at least recent trend)
+- Use different styling for forecast vs historical
+- Include confidence/prediction intervals
+- Mark the forecast boundary clearly
+- Widen intervals for longer horizons
+- Add annotations for key assumptions
+
+❌ **DON'T:**
+- Show point forecast without uncertainty
+- Use same styling for forecast and historical
+- Extrapolate too far beyond data
+- Ignore seasonality in forecast intervals
+- Present single forecast as certain
 
 ---
 
 ## Point Forecasts vs. Intervals
 
-Always include intervals for uncertainty.
+**Point forecasts are incomplete - always show uncertainty**
+
+**The Problem with Point Forecasts:**
+
+A **point forecast** gives a single predicted value:
+```
+"Sales will be $100,000 next month"
+```
+
+**Why this is inadequate:**
+- ❌ Implies false precision
+- ❌ No sense of risk
+- ❌ Can't make probability statements
+- ❌ Ignores forecast errors
+
+**Better: Interval Forecasts**
+
+**Interval forecasts** provide a range:
+```
+"Sales will be between $90,000 and $110,000 next month (95% confidence)"
+```
+
+**Benefits:**
+- ✅ Communicates uncertainty
+- ✅ Enables risk assessment
+- ✅ More honest about forecast limitations
+- ✅ Supports decision making under uncertainty
+
+**Visualization Comparison:**
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Historical data
+np.random.seed(42)
+dates = pd.date_range('2024-01-01', periods=100, freq='D')
+data = 100 + np.cumsum(np.random.randn(100) * 2)
+df = pd.DataFrame({'Sales': data}, index=dates)
+
+# Simple forecast (mean + trend)
+from sklearn.linear_model import LinearRegression
+X = np.arange(len(df)).reshape(-1, 1)
+model = LinearRegression().fit(X, df['Sales'])
+
+# Forecast next 30 days
+forecast_steps = 30
+forecast_dates = pd.date_range(dates[-1] + pd.Timedelta(days=1), 
+                               periods=forecast_steps, freq='D')
+X_future = np.arange(len(df), len(df)+forecast_steps).reshape(-1, 1)
+point_forecast = model.predict(X_future)
+
+# Calculate prediction intervals
+residuals = df['Sales'] - model.predict(X)
+std_error = np.std(residuals)
+margin_95 = 1.96 * std_error * np.sqrt(1 + 1/len(df))
+
+# Compare visualizations
+fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+# BAD: Point forecast only
+axes[0].plot(df.index, df['Sales'], linewidth=2, label='Historical')
+axes[0].plot(forecast_dates, point_forecast, linewidth=2, linestyle='--', 
+             color='red', label='Forecast')
+axes[0].set_title('❌ Point Forecast Only (Misleading!)', fontsize=13, 
+                   fontweight='bold', color='red')
+axes[0].set_ylabel('Sales', fontsize=11)
+axes[0].legend()
+axes[0].grid(True, alpha=0.3)
+
+# GOOD: With confidence intervals
+axes[1].plot(df.index, df['Sales'], linewidth=2, label='Historical')
+axes[1].plot(forecast_dates, point_forecast, linewidth=2, linestyle='--', 
+             color='red', label='Point Forecast')
+axes[1].fill_between(forecast_dates, 
+                     point_forecast - margin_95,
+                     point_forecast + margin_95,
+                     alpha=0.3, color='red', label='95% Prediction Interval')
+axes[1].set_title('✅ With Uncertainty (Honest!)', fontsize=13, 
+                   fontweight='bold', color='green')
+axes[1].set_xlabel('Date', fontsize=12)
+axes[1].set_ylabel('Sales', fontsize=11)
+axes[1].legend()
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Types of Intervals:**
+
+| Interval Type | What It Shows | Use When |
+|---------------|---------------|----------|
+| **Confidence Interval** | Uncertainty about the MEAN forecast | Parameter estimation |
+| **Prediction Interval** | Uncertainty about INDIVIDUAL values | Forecasting (wider) |
+
+**Best Practices:**
+
+✅ Always include intervals (at minimum 95%)
+✅ Show multiple levels (80%, 95%) for risk tiers
+✅ Explain what the intervals mean
+✅ Use prediction intervals for forecasts
 
 ---
 
 ## Confidence Intervals
 
+**Visualizing forecast uncertainty with bands**
+
+**Implementation:**
+
 ```python
 plt.fill_between(dates, lower, upper, alpha=0.2)
 ```
+
+(Full expansion continues...)
 
 ---
 
 ## Fan Charts
 
-Multiple interval bands for forecast risk.
+**Fan charts show multiple uncertainty bands for graduated risk communication**
+
+**What is a Fan Chart?**
+
+A **fan chart** displays forecast uncertainty using multiple confidence intervals:
+- Darkest band: Highest confidence (e.g., 50%)
+- Medium bands: Moderate confidence (e.g., 70%, 80%)
+- Lightest band: Low confidence (e.g., 90%, 95%)
+
+Creates a "fan" shape that widens over time.
+
+**Why Use Fan Charts?**
+
+- ✅ Show multiple levels of uncertainty
+- ✅ Communicate probability tiers
+- ✅ Intuitive visual (darker = more likely)
+- ✅ Used by central banks, government agencies
+
+**Implementation:**
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simple forecast with expanding uncertainty
+np.random.seed(42)
+dates_hist = pd.date_range('2024-01-01', periods=100, freq='D')
+data = 100 + np.cumsum(np.random.randn(100) * 2)
+
+# Forecast
+forecast_steps = 30
+point_forecast = np.linspace(data[-1], data[-1] + 10, forecast_steps)
+forecast_dates = pd.date_range(dates_hist[-1] + pd.Timedelta(days=1), periods=forecast_steps, freq='D')
+
+# Multiple confidence levels
+std_base = 3
+intervals = [
+    (0.5, 0.674),  # 50% - darkest
+    (0.7, 1.04),   # 70%
+    (0.8, 1.28),   # 80%
+    (0.9, 1.645),  # 90%
+    (0.95, 1.96),  # 95% - lightest
+]
+
+# Plot
+fig, ax = plt.subplots(figsize=(16, 6))
+
+# Historical
+ax.plot(dates_hist, data, linewidth=2, color='blue', label='Historical')
+
+# Forecast line
+ax.plot(forecast_dates, point_forecast, linewidth=2, linestyle='--', color='red', label='Forecast')
+
+# Fan (multiple intervals)
+colors = ['#8B0000', '#CD5C5C', '#FFA07A', '#FFB6C1', '#FFE4E1']  # Dark to light red
+
+for i, (conf_level, z_score) in enumerate(reversed(intervals)):
+    margin = z_score * std_base * np.sqrt(np.arange(1, forecast_steps+1))
+    upper = point_forecast + margin
+    lower = point_forecast - margin
+    
+    ax.fill_between(forecast_dates, lower, upper, 
+                   alpha=0.4, color=colors[i],
+                   label=f'{int(conf_level*100)}% Interval')
+
+ax.axvline(dates_hist[-1], color='black', linestyle=':', linewidth=2)
+ax.set_xlabel('Date', fontsize=12)
+ax.set_ylabel('Value', fontsize=12)
+ax.set_title('Fan Chart: Multiple Confidence Intervals (Darker = More Likely)', 
+             fontsize=14, fontweight='bold')
+ax.legend(loc='upper left', fontsize=10)
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+✅ Use 3-5 confidence levels
+✅ Darkest for most likely outcomes  
+✅ Label each band clearly
+✅ Used widely in economic forecasting
 
 ---
 
 ## Backtesting Visualizations
 
-Plot predicted vs. actual values.
+**Backtesting validates forecast accuracy by comparing predictions to actual outcomes**
+
+**What is Backtesting?**
+
+**Backtesting** tests forecasting methods on historical data:
+1. Split data into train/test
+2. Generate forecasts using only train data
+3. Compare forecasts to actual test data
+4. Measure forecast accuracy
+
+**Visualization:**
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+
+# Generate data
+np.random.seed(42)
+dates = pd.date_range('2024-01-01', periods=150, freq='D')
+data = 100 + np.cumsum(np.random.randn(150) * 2)
+df = pd.DataFrame({'Sales': data}, index=dates)
+
+# Split: train on first 100, test on last 50
+train = df.iloc[:100]
+test = df.iloc[100:]
+
+# Simple forecast (last value + small trend)
+from sklearn.linear_model import LinearRegression
+X_train = np.arange(len(train)).reshape(-1, 1)
+model = LinearRegression().fit(X_train, train['Sales'])
+
+X_test = np.arange(len(train), len(df)).reshape(-1, 1)
+predictions = model.predict(X_test)
+
+# Plot
+fig, ax = plt.subplots(figsize=(16, 6))
+
+# Training data
+ax.plot(train.index, train['Sales'], linewidth=2, color='blue', label='Training Data')
+
+# Test data (actual)
+ax.plot(test.index, test['Sales'], linewidth=2, color='green', label='Actual (Test)')
+
+# Predictions
+ax.plot(test.index, predictions, linewidth=2, linestyle='--', color='red', label='Forecast')
+
+# Highlight forecast period
+ax.axvspan(test.index[0], test.index[-1], alpha=0.1, color='yellow', label='Forecast Period')
+ax.axvline(train.index[-1], color='black', linestyle=':', linewidth=2)
+
+ax.set_xlabel('Date', fontsize=12)
+ax.set_ylabel('Sales', fontsize=12)
+ax.set_title('Backtesting: Forecast vs Actual on Hold-Out Data', fontsize=14, fontweight='bold')
+ax.legend()
+ax.grid(True, alpha=0.3)
+
+# Add error metrics
+mae = mean_absolute_error(test['Sales'], predictions)
+rmse = np.sqrt(mean_squared_error(test['Sales'], predictions))
+ax.text(0.02, 0.98, f'MAE: {mae:.2f}\nRMSE: {rmse:.2f}', 
+       transform=ax.transAxes, fontsize=11, verticalalignment='top',
+       bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8))
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+✅ Show train/test split clearly
+✅ Plot both actual and predicted
+✅ Report error metrics
+✅ Use multiple train/test splits (rolling window)
 
 ---
 
 ## Forecast Error Analysis
 
-Residual plots to inspect bias.
+**Analyzing forecast errors reveals model bias and areas for improvement**
+
+**Key Error Metrics:**
+
+```python
+# Calculate errors
+errors = test['Sales'] - predictions
+
+# Metrics
+MAE = np.mean(np.abs(errors))
+RMSE = np.sqrt(np.mean(errors**2))
+MAPE = np.mean(np.abs(errors / test['Sales'])) * 100
+
+print(f"MAE: {MAE:.2f}")
+print(f"RMSE: {RMSE:.2f}")
+print(f"MAPE: {MAPE:.2f}%")
+```
+
+**Residual Plot:**
+
+```python
+fig, axes = plt.subplots(2, 2, figsize=(16, 10))
+
+# Time plot
+axes[0,0].plot(test.index, errors, linewidth=1.5, marker='o', markersize=4)
+axes[0,0].axhline(0, color='red', linestyle='--', linewidth=2)
+axes[0,0].set_title('Forecast Errors Over Time', fontweight='bold')
+axes[0,0].set_ylabel('Error')
+axes[0,0].grid(True, alpha=0.3)
+
+# Histogram
+axes[0,1].hist(errors, bins=20, edgecolor='black', alpha=0.7)
+axes[0,1].axvline(0, color='red', linestyle='--', linewidth=2)
+axes[0,1].set_title('Error Distribution (Should be Centered at 0)', fontweight='bold')
+axes[0,1].set_xlabel('Error')
+
+# Actual vs Predicted
+axes[1,0].scatter(test['Sales'], predictions, alpha=0.6, s=50)
+axes[1,0].plot([test['Sales'].min(), test['Sales'].max()], 
+              [test['Sales'].min(), test['Sales'].max()], 
+              'r--', linewidth=2, label='Perfect Forecast')
+axes[1,0].set_title('Actual vs Predicted', fontweight='bold')
+axes[1,0].set_xlabel('Actual')
+axes[1,0].set_ylabel('Predicted')
+axes[1,0].legend()
+axes[1,0].grid(True, alpha=0.3)
+
+# ACF of residuals
+from statsmodels.graphics.tsaplots import plot_acf
+plot_acf(errors, lags=20, ax=axes[1,1])
+axes[1,1].set_title('Residual ACF (Should be Random)', fontweight='bold')
+
+plt.tight_layout()
+plt.show()
+```
 
 ---
 
 ## Calendar Heatmaps
+
+**Heatmaps show daily patterns in calendar format**
 
 Great for daily/weekly patterns.
 
@@ -865,11 +1514,15 @@ Great for daily/weekly patterns.
 
 ## Horizon Charts
 
+**Compact visualization for multiple time series**
+
 Compact time series visualization.
 
 ---
 
 ## Stream Graphs
+
+**Stacked area charts showing composition over time**
 
 Use stacked flowing areas for composition.
 
@@ -877,11 +1530,15 @@ Use stacked flowing areas for composition.
 
 ## Cycle Plots
 
+**Compare same periods across different cycles**
+
 Compare seasons across years.
 
 ---
 
 ## Interactive Time Series with Plotly
+
+**Interactive plots enable exploration and drill-down**
 
 ```python
 import plotly.express as px
@@ -892,9 +1549,44 @@ px.line(df, x='Date', y='Sales')
 
 ## Part 3 Summary
 
-✅ Advanced visualization techniques  
-✅ Forecast evaluation  
-✅ Autocorrelation insights
+**You've mastered advanced time series techniques!**
+
+**What You Can Now Do:**
+
+✅ **Compare multiple time series effectively**
+- Index-based normalization
+- Percent change visualization
+- Dual axes (when appropriate)
+- Small multiples
+
+✅ **Analyze autocorrelation patterns**
+- ACF and PACF plots
+- Lag plots
+- Model selection (ARIMA)
+
+✅ **Identify relationships between series**
+- Cross-correlation
+- Lead-lag detection
+- Granger causality
+
+✅ **Visualize forecasts properly**
+- Include uncertainty bands
+- Point vs interval forecasts
+- Fan charts for multiple confidence levels
+
+✅ **Validate forecast quality**
+- Backtesting visualizations
+- Error analysis
+- Residual diagnostics
+
+**Key Insights:**
+
+1. **Never show point forecasts alone** - Always include uncertainty
+2. **ACF/PACF together** - Essential for time series modeling
+3. **Multiple comparison methods** - Choose based on goal (absolute vs relative)
+4. **Forecast errors reveal model quality** - Check for bias and patterns
+
+**Next: Part 4 - Implementation & Applications**
 
 ---
 
