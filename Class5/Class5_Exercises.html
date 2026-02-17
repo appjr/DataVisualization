@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class 5 - Exercises</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; max-width: 1200px; margin: 20px auto; padding: 20px; line-height: 1.6; }
+        h1 { color: #2c3e50; border-bottom: 4px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-left: 5px solid #3498db; padding-left: 15px; }
+        h3 { color: #555; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; color: #e83e8c; }
+        pre { background: #282c34; color: #abb2bf; padding: 20px; border-radius: 5px; overflow-x: auto; }
+        pre code { background: transparent; color: inherit; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #f8f9fa; font-weight: 600; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        ul { margin-left: 20px; }
+        li { margin: 8px 0; }
+        .nav { background: #ecf0f1; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="Class5_Part1.html">Part 1</a> |
+        <a href="Class5_Part2.html">Part 2</a> |
+        <a href="Class5_Part3.html">Part 3</a> |
+        <a href="Class5_Part4.html">Part 4</a> |
+        <strong>Exercises</strong>
+    </div>
+<h1>Class 5 - Exercises</h1>
+<h2>Time Series &amp; Temporal Visualization</h2>
+<p><strong>MIS 6380 - Data Visualization</strong><br />
+<strong>Spring 2026</strong></p>
+<hr />
+<h2>📋 Overview</h2>
+<p>This exercise set provides hands-on practice with time series visualization techniques covered in Class 5. Complete all 5 exercises to master temporal data analysis and visualization.</p>
+<p><strong>Learning Objectives:</strong>
+- Apply time series visualization best practices
+- Perform decomposition and pattern analysis
+- Create forecasts with uncertainty
+- Build interactive temporal dashboards
+- Communicate temporal insights effectively</p>
+<p><strong>Prerequisites:</strong> Parts 1-3 content, Python (pandas, matplotlib, statsmodels, plotly)</p>
+<hr />
+<h2>🎯 Exercise 1: Identify Temporal Patterns</h2>
+<p><strong>Objective:</strong> Analyze a time series dataset to identify and visualize its component patterns.</p>
+<p><strong>Dataset:</strong> Daily website traffic data (2 years)</p>
+<p><strong>Tasks:</strong></p>
+<ol>
+<li><strong>Load and visualize the data</strong></li>
+<li>Create a line plot of daily visits</li>
+<li>Add a 30-day moving average to reveal the trend</li>
+<li>
+<p>Annotate any obvious anomalies or events</p>
+</li>
+<li>
+<p><strong>Perform STL decomposition</strong></p>
+</li>
+<li>Use <code>statsmodels.tsa.seasonal.STL</code></li>
+<li>Extract trend, seasonal, and residual components</li>
+<li>
+<p>Create a 4-panel plot showing all components</p>
+</li>
+<li>
+<p><strong>Analyze each component</strong></p>
+</li>
+<li>Trend: Calculate the overall growth rate</li>
+<li>Seasonal: Identify the period (weekly, monthly, or both)</li>
+<li>
+<p>Residual: Check if residuals are random (use ACF plot)</p>
+</li>
+<li>
+<p><strong>Calculate component strengths</strong></p>
+</li>
+<li>Trend strength: <code>1 - var(resid) / var(trend + resid)</code></li>
+<li>Seasonal strength: <code>1 - var(resid) / var(seasonal + resid)</code></li>
+<li>Report which component dominates</li>
+</ol>
+<p><strong>Deliverables:</strong>
+- [ ] Time series plot with trend line
+- [ ] 4-panel decomposition visualization
+- [ ] Component strength metrics (trend, seasonal)
+- [ ] 1-paragraph interpretation</p>
+<p><strong>Sample Data Generation:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">730</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Trend: Growing website traffic</span>
+<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">730</span><span class="p">)</span>
+
+<span class="c1"># Weekly seasonality: Higher on weekdays</span>
+<span class="n">weekly</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">730</span><span class="p">)</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Annual seasonality: Higher in Q4</span>
+<span class="n">annual</span> <span class="o">=</span> <span class="mi">150</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">730</span><span class="p">)</span> <span class="o">/</span> <span class="mi">365</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Noise</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">730</span><span class="p">)</span>
+
+<span class="c1"># Combine</span>
+<span class="n">visits</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">weekly</span> <span class="o">+</span> <span class="n">annual</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span> <span class="s1">&#39;Visits&#39;</span><span class="p">:</span> <span class="n">visits</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;website_traffic.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Grading (25 points):</strong>
+- Data visualization (5 pts)
+- Decomposition plot (10 pts)
+- Component analysis (7 pts)
+- Interpretation (3 pts)</p>
+<hr />
+<h2>🎯 Exercise 2: Choose the Right Time Scale</h2>
+<p><strong>Objective:</strong> Practice selecting appropriate time aggregation for different business questions.</p>
+<p><strong>Dataset:</strong> Hourly sales data for an e-commerce site (3 months)</p>
+<p><strong>Scenario:</strong> Your stakeholders have different questions about sales performance. Create appropriate visualizations for each.</p>
+<p><strong>Questions &amp; Required Visualizations:</strong></p>
+<p><strong>Question 1:</strong> "How did we perform this month compared to last month?"
+- <strong>Suggested scale:</strong> Daily aggregated to weeks or whole month
+- <strong>Visualization:</strong> Bar chart or line chart comparing two months
+- <strong>Requirement:</strong> Clear comparison, seasonally adjusted if needed</p>
+<p><strong>Question 2:</strong> "Are there patterns in when customers shop during the day?"
+- <strong>Suggested scale:</strong> Hourly, averaged across all days
+- <strong>Visualization:</strong> Line chart of average hourly traffic
+- <strong>Requirement:</strong> Show 24-hour cycle, highlight peak hours</p>
+<p><strong>Question 3:</strong> "What's our growth trend over the quarter?"
+- <strong>Suggested scale:</strong> Weekly aggregation
+- <strong>Visualization:</strong> Line chart with trend line
+- <strong>Requirement:</strong> Smooth enough to see trend, detailed enough to show variation</p>
+<p><strong>Question 4:</strong> "Do we see weekly patterns (weekday vs weekend)?"
+- <strong>Suggested scale:</strong> Daily data, grouped by day of week
+- <strong>Visualization:</strong> Box plot or bar chart by day of week
+- <strong>Requirement:</strong> Show all 7 days, highlight differences</p>
+<p><strong>Tasks:</strong></p>
+<ol>
+<li>Generate appropriate time scale for each question</li>
+<li>Create clear, well-labeled visualization</li>
+<li>Add appropriate annotations (mean lines, peaks, etc.)</li>
+<li>Write 1-sentence insight for each</li>
+</ol>
+<p><strong>Deliverables:</strong>
+- [ ] 4 visualizations (one per question)
+- [ ] Each with appropriate time scale
+- [ ] Clear titles and labels
+- [ ] Brief insights for each</p>
+<p><strong>Sample Data Generation:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">90</span><span class="o">*</span><span class="mi">24</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+
+<span class="c1"># Base level</span>
+<span class="n">base</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Hourly pattern (peaks at lunch and evening)</span>
+<span class="n">hour_of_day</span> <span class="o">=</span> <span class="n">dates</span><span class="o">.</span><span class="n">hour</span>
+<span class="n">hourly_pattern</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">hour_of_day</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Day of week pattern (lower on weekends)</span>
+<span class="n">day_of_week</span> <span class="o">=</span> <span class="n">dates</span><span class="o">.</span><span class="n">dayofweek</span>
+<span class="n">weekly_pattern</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">day_of_week</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Growth trend</span>
+<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">))</span>
+
+<span class="c1"># Noise</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">))</span>
+
+<span class="c1"># Combine</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">hourly_pattern</span> <span class="o">+</span> <span class="n">weekly_pattern</span> <span class="o">+</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">sales</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># No negative sales</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;DateTime&#39;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span> <span class="s1">&#39;Sales&#39;</span><span class="p">:</span> <span class="n">sales</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;hourly_sales.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Grading (25 points):</strong>
+- Appropriate scale selection (12 pts - 3 per question)
+- Visualization quality (8 pts - 2 per question)
+- Insights (5 pts)</p>
+<hr />
+<h2>🎯 Exercise 3: Time Series Decomposition</h2>
+<p><strong>Objective:</strong> Perform and interpret time series decomposition using both Classical and STL methods.</p>
+<p><strong>Dataset:</strong> Monthly retail sales (5 years, with strong seasonality and trend)</p>
+<p><strong>Tasks:</strong></p>
+<p><strong>Part A: Classical Decomposition</strong></p>
+<ol>
+<li>Load the monthly sales data</li>
+<li>Apply <code>seasonal_decompose</code> with:</li>
+<li><code>model='additive'</code></li>
+<li><code>period=12</code> (monthly data, yearly seasonality)</li>
+<li>Create the standard 4-panel decomposition plot</li>
+<li>Identify the seasonal pattern (which months are high/low)</li>
+</ol>
+<p><strong>Part B: STL Decomposition</strong></p>
+<ol>
+<li>Apply STL with <code>robust=True</code></li>
+<li>Compare STL trend to Classical trend</li>
+<li>Which method handles outliers better?</li>
+<li>Calculate trend and seasonal strengths</li>
+</ol>
+<p><strong>Part C: Seasonal Adjustment</strong></p>
+<ol>
+<li>Create seasonally adjusted series (observed - seasonal)</li>
+<li>Plot original vs seasonally adjusted</li>
+<li>Interpret: Is growth real or just seasonal?</li>
+</ol>
+<p><strong>Part D: Residual Analysis</strong></p>
+<ol>
+<li>Plot residuals from both methods</li>
+<li>Check if residuals are random:</li>
+<li>ACF plot of residuals</li>
+<li>Histogram of residuals</li>
+<li>Identify any remaining patterns</li>
+</ol>
+<p><strong>Deliverables:</strong>
+- [ ] Classical decomposition plot (4 panels)
+- [ ] STL decomposition plot (4 panels)
+- [ ] Comparison: Classical vs STL trends
+- [ ] Seasonally adjusted series plot
+- [ ] Residual diagnostic plots
+- [ ] 2-paragraph interpretation</p>
+<p><strong>Sample Data:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
+
+<span class="c1"># Growing trend</span>
+<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">15000</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Strong seasonality (holiday spike in Dec)</span>
+<span class="n">month</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span> <span class="o">%</span> <span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">seasonal</span> <span class="o">=</span> <span class="mi">2000</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">month</span> <span class="o">/</span> <span class="mi">12</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Add outliers (simulate promotions)</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">outlier_months</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">47</span><span class="p">]</span>  <span class="c1"># 3 promotional months</span>
+<span class="n">outliers</span><span class="p">[</span><span class="n">outlier_months</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3000</span>
+
+<span class="c1"># Noise</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="c1"># Combine</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">seasonal</span> <span class="o">+</span> <span class="n">outliers</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Month&#39;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span>
+    <span class="s1">&#39;Sales&#39;</span><span class="p">:</span> <span class="n">sales</span>
+<span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;monthly_retail_sales.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Grading (25 points):</strong>
+- Decomposition plots (10 pts)
+- Seasonal adjustment (5 pts)
+- Residual analysis (5 pts)
+- Interpretation (5 pts)</p>
+<hr />
+<h2>🎯 Exercise 4: Forecasting Visualization</h2>
+<p><strong>Objective:</strong> Create professional forecast visualizations with proper uncertainty quantification.</p>
+<p><strong>Dataset:</strong> Daily sales data (1 year historical, forecast next quarter)</p>
+<p><strong>Tasks:</strong></p>
+<p><strong>Part A: Prepare Data</strong></p>
+<ol>
+<li>Load daily sales data</li>
+<li>Visualize to understand patterns</li>
+<li>Check for missing values</li>
+<li>Split into train (first 9 months) and validation (last 3 months)</li>
+</ol>
+<p><strong>Part B: Create Forecast</strong></p>
+<ol>
+<li>Choose a forecasting method:</li>
+<li>Option 1: Holt-Winters Exponential Smoothing</li>
+<li>Option 2: Facebook Prophet</li>
+<li>Option 3: SARIMA</li>
+<li>Fit on training data</li>
+<li>Generate 90-day forecast</li>
+</ol>
+<p><strong>Part C: Calculate Uncertainty</strong></p>
+<ol>
+<li>Compute prediction intervals (80% and 95%)</li>
+<li>Methods:</li>
+<li>Use model's built-in intervals, OR</li>
+<li>Bootstrap residuals, OR</li>
+<li>Simulate from residual distribution</li>
+</ol>
+<p><strong>Part D: Visualize</strong></p>
+<p>Create a publication-quality forecast plot with:
+- Historical data (all)
+- Forecast (next 90 days)
+- 80% confidence band (darker)
+- 95% confidence band (lighter)
+- Vertical line marking forecast start
+- Clear legend
+- Proper axis labels and title</p>
+<p><strong>Part E: Validate</strong></p>
+<ol>
+<li>Compare forecast to validation set (last 3 months)</li>
+<li>Calculate forecast errors:</li>
+<li>MAE, RMSE, MAPE</li>
+<li>Plot actual vs predicted</li>
+<li>Create residual diagnostic plots</li>
+</ol>
+<p><strong>Deliverables:</strong>
+- [ ] Forecast visualization with uncertainty bands
+- [ ] Validation plot (forecast vs actual)
+- [ ] Error metrics table
+- [ ] 1-paragraph discussion of forecast quality</p>
+<p><strong>Sample Data:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">365</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Trend</span>
+<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">6500</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span>
+
+<span class="c1"># Weekly seasonality (weekend dip)</span>
+<span class="n">weekly</span> <span class="o">=</span> <span class="mi">500</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">365</span><span class="p">)</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Annual seasonality (Q4 spike)</span>
+<span class="n">annual</span> <span class="o">=</span> <span class="mi">800</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">365</span><span class="p">)</span> <span class="o">/</span> <span class="mi">365</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Noise</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span>
+
+<span class="n">sales</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">weekly</span> <span class="o">+</span> <span class="n">annual</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span>
+    <span class="s1">&#39;Sales&#39;</span><span class="p">:</span> <span class="n">sales</span>
+<span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;daily_sales_forecast.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Grading (25 points):</strong>
+- Forecast visualization (10 pts)
+- Uncertainty quantification (5 pts)
+- Validation analysis (7 pts)
+- Discussion (3 pts)</p>
+<hr />
+<h2>🎯 Exercise 5: Interactive Dashboard</h2>
+<p><strong>Objective:</strong> Build an interactive time series dashboard using Plotly.</p>
+<p><strong>Dataset:</strong> Multiple time series (sales across 5 products over 2 years)</p>
+<p><strong>Required Features:</strong></p>
+<p><strong>1. Main Time Series Plot</strong>
+- Multiple product lines on one chart
+- Range slider for date selection
+- Hover tooltips showing exact values
+- Toggle visibility (show/hide individual series)</p>
+<p><strong>2. Comparison View</strong>
+- Index-based comparison (all start at 100)
+- Percent change view
+- Selectable base period</p>
+<p><strong>3. Seasonal Analysis</strong>
+- Month-over-month comparison
+- Box plots by season
+- Year-over-year overlay</p>
+<p><strong>4. Summary Statistics Panel</strong>
+- Current values for each product
+- Growth rates (%, absolute)
+- Volatility metrics
+- Correlation matrix</p>
+<p><strong>5. Controls</strong>
+- Dropdown: Select aggregation (daily, weekly, monthly)
+- Radio buttons: Raw vs seasonally adjusted
+- Date range picker: Custom time windows
+- Export button: Download current view</p>
+<p><strong>Technical Requirements:</strong></p>
+<ul>
+<li>Use Plotly Dash or Plotly Express</li>
+<li>Responsive design (works on desktop/tablet)</li>
+<li>Professional styling</li>
+<li>Fast updates (&lt; 1 second)</li>
+<li>Export to HTML (standalone)</li>
+</ul>
+<p><strong>Deliverables:</strong>
+- [ ] Python script creating the dashboard
+- [ ] HTML export of the dashboard
+- [ ] Screenshots of key views
+- [ ] README with usage instructions</p>
+<p><strong>Sample Data:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2022-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">730</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="n">products</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Product_A&#39;</span><span class="p">,</span> <span class="s1">&#39;Product_B&#39;</span><span class="p">,</span> <span class="s1">&#39;Product_C&#39;</span><span class="p">,</span> <span class="s1">&#39;Product_D&#39;</span><span class="p">,</span> <span class="s1">&#39;Product_E&#39;</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="n">dates</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">product</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">products</span><span class="p">):</span>
+    <span class="c1"># Each product has different baseline and growth</span>
+    <span class="n">baseline</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+    <span class="n">growth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">730</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">seasonal</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">730</span><span class="p">)</span> <span class="o">/</span> <span class="mi">365</span><span class="p">)</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">730</span><span class="p">)</span>
+
+    <span class="n">data</span><span class="p">[</span><span class="n">product</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span> <span class="o">+</span> <span class="n">growth</span> <span class="o">+</span> <span class="n">seasonal</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;multi_product_sales.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Grading (25 points):</strong>
+- Interactive plots (10 pts)
+- Features/controls (8 pts)
+- Design/usability (4 pts)
+- Documentation (3 pts)</p>
+<hr />
+<h2>📊 Bonus Challenge: Complete Time Series Report</h2>
+<p><strong>Objective:</strong> Create a comprehensive time series analysis report combining all techniques.</p>
+<p><strong>Scenario:</strong> </p>
+<p>You are a data analyst for a retail company. Management wants to understand their sales patterns and forecast demand for the next quarter to optimize inventory.</p>
+<p><strong>Dataset:</strong> Daily sales data (3 years) with:
+- Strong annual seasonality (holiday shopping)
+- Weekly patterns (weekend effects)
+- Growing trend
+- Several promotional events (anomalies)
+- Some missing data (system outages)</p>
+<p><strong>Required Sections:</strong></p>
+<p><strong>1. Executive Summary</strong> (1 page)
+- Key findings
+- Forecast summary
+- Recommendations</p>
+<p><strong>2. Exploratory Analysis</strong>
+- Time series plot with annotations
+- Missing data analysis and handling approach
+- Trend identification and quantification
+- Seasonal pattern visualization</p>
+<p><strong>3. Decomposition Analysis</strong>
+- STL decomposition plots
+- Component strengths
+- Seasonally adjusted series
+- Anomaly detection</p>
+<p><strong>4. Forecast</strong>
+- 90-day forecast with uncertainty
+- Method justification
+- Validation on hold-out data
+- Error analysis</p>
+<p><strong>5. Interactive Dashboard</strong>
+- Multiple views (trend, seasonal, comparison)
+- Drill-down capability
+- Export functionality</p>
+<p><strong>6. Recommendations</strong>
+- Inventory planning based on forecast
+- Risk assessment (worst/best case)
+- When to revise forecast</p>
+<p><strong>Deliverables:</strong>
+- [ ] PDF report (max 10 pages)
+- [ ] Jupyter notebook with all code
+- [ ] Interactive dashboard (HTML)
+- [ ] Presentation slides (5-7 slides)</p>
+<p><strong>Grading (100 points):</strong>
+- Executive summary (15 pts)
+- Exploratory analysis (20 pts)
+- Decomposition (20 pts)
+- Forecasting (25 pts)
+- Dashboard (15 pts)
+- Recommendations (5 pts)</p>
+<hr />
+<h2>📝 Submission Guidelines</h2>
+<p><strong>Format:</strong>
+- Submit via Canvas/LMS
+- Include all code (Python scripts or notebooks)
+- Visualizations as PNG (300 DPI minimum)
+- Write-ups in PDF</p>
+<p><strong>File Naming:</strong>
+- <code>LastName_FirstName_Ex1.pdf</code>
+- <code>LastName_FirstName_Ex1_code.ipynb</code>
+- Etc.</p>
+<p><strong>Due Dates:</strong>
+- Exercises 1-3: Due 1 week after class
+- Exercise 4: Due 2 weeks after class
+- Exercise 5: Due 3 weeks after class
+- Bonus: Optional, due end of semester</p>
+<p><strong>Code Requirements:</strong>
+- Well-commented
+- Follows PEP 8 style
+- Reproducible (include random seeds)
+- Clear output/visualizations</p>
+<hr />
+<h2>💡 Tips for Success</h2>
+<p><strong>1. Start Early</strong>
+- Don't wait until the due date
+- Time series analysis takes time to do well
+- Iterate on visualizations</p>
+<p><strong>2. Use Class Examples</strong>
+- All code from Parts 1-3 is available
+- Adapt examples to your datasets
+- Reference the notebooks</p>
+<p><strong>3. Validate Your Work</strong>
+- Check residuals are random
+- Verify forecast makes sense
+- Test interactive features</p>
+<p><strong>4. Document Assumptions</strong>
+- Why did you choose that method?
+- What aggregation level and why?
+- How did you handle missing data?</p>
+<p><strong>5. Make it Visual</strong>
+- Visualization quality matters
+- Use color purposefully
+- Add annotations and context
+- Professional appearance</p>
+<hr />
+<h2>📚 Resources</h2>
+<p><strong>Documentation:</strong>
+- <a href="https://pandas.pydata.org/docs/user_guide/timeseries.html">pandas time series</a>
+- <a href="https://www.statsmodels.org/stable/tsa.html">statsmodels</a>
+- <a href="https://plotly.com/python/time-series/">Plotly time series</a>
+- <a href="https://facebook.github.io/prophet/">Prophet</a></p>
+<p><strong>Sample Datasets:</strong>
+- Federal Reserve Economic Data (FRED)
+- Yahoo Finance (stock data)
+- Kaggle time series datasets
+- Class-provided CSV files</p>
+<p><strong>Getting Help:</strong>
+- Office hours
+- Discussion forum
+- Study groups
+- Class 5 Part notebooks</p>
+<hr />
+<h2>✅ Exercise Checklist</h2>
+<p>Before submitting, ensure:</p>
+<ul>
+<li>[ ] All required visualizations included</li>
+<li>[ ] Code runs without errors</li>
+<li>[ ] Proper time scale selected and justified</li>
+<li>[ ] Missing data handled (if any)</li>
+<li>[ ] Axes labeled with units</li>
+<li>[ ] Titles describe what's shown</li>
+<li>[ ] Uncertainty included in forecasts</li>
+<li>[ ] Interpretation/insights provided</li>
+<li>[ ] Professional appearance</li>
+<li>[ ] Files named correctly</li>
+</ul>
+<hr />
+<p><strong>Good luck! These exercises will give you practical experience with time series visualization - a critical skill for data science careers.</strong> 🎓</p>
+</body>
+</html>
