@@ -86,34 +86,6 @@ Overview + drill-down views.
 
 ---
 
-## Exercise 1: Identify Temporal Patterns
-
-Given a time series, identify trend, seasonality, and noise.
-
----
-
-## Exercise 2: Choose the Right Time Scale
-
-Match granularity to a given business question.
-
----
-
-## Exercise 3: Time Series Decomposition
-
-Use STL decomposition in Python.
-
----
-
-## Exercise 4: Forecasting Visualization
-
-Create forecasts with confidence bands.
-
----
-
-## Exercise 5: Interactive Dashboard
-
-Build an interactive plotly dashboard.
-
 ---
 
 ## Assignment & Resources
