@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 5 – Part 1: Fundamentals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: #e83e8c;
+        }
+        
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            font-size: 0.95em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-links {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .nav-links a {
+            margin: 0 10px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .nav-links a:hover {
+            background-color: #2980b9;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-links">
+            <a href="Class5_Part1.html">Part 1</a>
+            <a href="Class5_Part2.html">Part 2</a>
+            <a href="Class5_Part3.html">Part 3</a>
+            <a href="Class5_Part4.html">Part 4</a>
+            <a href="Class5_Part1_Notebook.ipynb">📓 Notebooks</a>
+        </div>
+<h1 id="class-5-fundamentals">Class 5 – Fundamentals</h1>
+<p><a href="Class5.md">← Main</a> | <a href="Class5_Part1.md">Part 1</a> | <a href="Class5_Part2.md">Part 2</a> | <a href="Class5_Part3.md">Part 3</a> | <a href="Class5_Part4.md">Part 4</a></p>
+<hr />
+<h1 id="part-1-fundamentals-of-time-series-visualization">PART 1: FUNDAMENTALS OF TIME SERIES VISUALIZATION</h1>
+<h1 id="slides-1-20">Slides 1-20</h1>
+<h1 id="_1">═══════════════════════════════════════════════════════════════</h1>
+<h1 id="class-5-data-visualization">Class 5 – Data Visualization</h1>
+<h2 id="time-series-temporal-visualization">Time Series &amp; Temporal Visualization</h2>
+<h2 id="patterns-trends-and-forecasting">Patterns, Trends, and Forecasting</h2>
+<p><strong>MIS 6380 - Data Visualization</strong><br />
+<strong>Spring 2026</strong></p>
+<hr />
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p><strong>By the end of this class, you will be able to:</strong></p>
+<p><strong>Foundational Knowledge:</strong>
+- ✅ Understand unique characteristics of temporal data
+- ✅ Recognize different types of time series patterns
+- ✅ Choose appropriate visualizations for temporal analysis</p>
+<p><strong>Technical Skills:</strong>
+- ✅ Create effective time series visualizations in Python
+- ✅ Perform time series decomposition
+- ✅ Visualize forecasts with confidence intervals
+- ✅ Build interactive temporal dashboards</p>
+<p><strong>Analytical Abilities:</strong>
+- ✅ Identify trends, seasonality, and cycles
+- ✅ Detect anomalies and change points
+- ✅ Compare multiple time series effectively
+- ✅ Communicate temporal insights clearly</p>
+<p><strong>Practical Applications:</strong>
+- ✅ Apply best practices for temporal dashboards
+- ✅ Handle missing and irregular temporal data
+- ✅ Visualize uncertainty in predictions
+- ✅ Make data-driven temporal decisions</p>
+<p><strong>Prerequisites</strong>: Classes 3-4 (Visual perception, EDA, Python visualization basics)</p>
+<hr />
+<h2 id="why-time-series-visualization-matters">Why Time Series Visualization Matters</h2>
+<p><strong>Time is everywhere in business analytics:</strong></p>
+<p><strong>Financial Services:</strong>
+- 📈 Stock prices and trading volumes
+- 💰 Portfolio performance tracking
+- 📊 Market volatility analysis
+- 💵 Revenue and profit trends
+- 🏦 Transaction patterns</p>
+<p><strong>Retail &amp; E-commerce:</strong>
+- 🛒 Daily/hourly sales patterns
+- 📦 Inventory levels over time
+- 👥 Customer traffic patterns
+- 🎯 Conversion rate trends
+- 🎁 Seasonal demand forecasting</p>
+<p><strong>Manufacturing &amp; Operations:</strong>
+- 🏭 Production output trends
+- ⚙️ Equipment performance metrics
+- 📉 Quality control over time
+- 🔧 Maintenance schedules
+- ⏱️ Downtime analysis</p>
+<p><strong>Digital &amp; Technology:</strong>
+- 🌐 Website traffic patterns
+- 📱 App usage metrics
+- 🔍 Search trends over time
+- ⚡ System performance monitoring
+- 🚨 Incident detection</p>
+<p><strong>Healthcare &amp; Science:</strong>
+- 🏥 Patient vital signs monitoring
+- 💊 Treatment effectiveness over time
+- 🦠 Disease spread patterns
+- 🧪 Experimental measurements
+- 📋 Clinical trial results</p>
+<p><strong>Economics &amp; Government:</strong>
+- 📊 GDP and economic indicators
+- 👔 Employment statistics
+- 💰 Inflation rates
+- 🏘️ Housing market trends
+- 📈 Policy impact analysis</p>
+<p><strong>IoT &amp; Sensors:</strong>
+- 🌡️ Temperature and climate data
+- 📡 Network traffic patterns
+- ⚡ Energy consumption
+- 🚗 Vehicle telemetry
+- 🏢 Building automation</p>
+<p><strong>Why temporal visualization is critical:</strong></p>
+<ol>
+<li><strong>Pattern Discovery</strong> - Trends and cycles invisible in static data become obvious over time</li>
+<li><strong>Forecasting</strong> - Historical patterns enable prediction of future values</li>
+<li><strong>Anomaly Detection</strong> - Unusual events stand out in temporal context</li>
+<li><strong>Causality</strong> - Temporal relationships suggest cause-and-effect</li>
+<li><strong>Decision Making</strong> - Timing of actions depends on temporal insights</li>
+</ol>
+<p><strong>Key Insight</strong>: 70-80% of business data has a temporal component. Mastering temporal visualization is essential for data-driven decision making.</p>
+<blockquote>
+<p>"Time series analysis is not just about predicting the future—it's about understanding how we got here and what patterns govern change." — Rob Hyndman</p>
+</blockquote>
+<hr />
+<h2 id="what-makes-time-series-data-special">What Makes Time Series Data Special?</h2>
+<p><strong>Time series data has unique properties that standard data analysis doesn't handle:</strong></p>
+<p><strong>1. Temporal Ordering Matters</strong></p>
+<div class="codehilite"><pre><span></span><code>Standard data:     [A, B, C, D, E] can be shuffled
+Time series data:  [t₁, t₂, t₃, t₄, t₅] CANNOT be shuffled
+</code></pre></div>
+
+<ul>
+<li>Order contains critical information</li>
+<li>Shuffling destroys temporal dependencies</li>
+<li>Chronological sequence must be preserved</li>
+</ul>
+<p><strong>2. Temporal Dependencies</strong></p>
+<div class="codehilite"><pre><span></span><code>Today&#39;s value depends on yesterday&#39;s value
+Y(t) = f(Y(t-1), Y(t-2), ..., Y(t-n))
+</code></pre></div>
+
+<ul>
+<li><strong>Autocorrelation</strong> - correlation with past values</li>
+<li><strong>Lag effects</strong> - impacts from previous time periods</li>
+<li><strong>Momentum</strong> - trends tend to continue</li>
+<li><strong>Mean reversion</strong> - tendency to return to average</li>
+</ul>
+<p><strong>3. Non-IID (Not Independent and Identically Distributed)</strong></p>
+<p>Standard statistical assumptions <strong>VIOLATED:</strong>
+- ❌ Observations are NOT independent
+- ❌ Distributions may NOT be identical across time
+- ❌ Standard hypothesis tests may be invalid
+- ❌ Regression assumptions may fail</p>
+<p><strong>Implications:</strong>
+- ✅ Must use time-specific analysis methods
+- ✅ Cannot treat as cross-sectional data
+- ✅ Need specialized visualization techniques</p>
+<p><strong>4. Multiple Time Scales Simultaneously</strong></p>
+<p>Time series often contain patterns at different scales:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Hourly</span><span class="w"> </span><span class="n">patterns</span><span class="p">:</span><span class="w">  </span><span class="n">Peak</span><span class="w"> </span><span class="n">usage</span><span class="w"> </span><span class="n">during</span><span class="w"> </span><span class="n">work</span><span class="w"> </span><span class="n">hours</span>
+<span class="n">Daily</span><span class="w"> </span><span class="n">patterns</span><span class="p">:</span><span class="w">   </span><span class="n">Weekday</span><span class="w"> </span><span class="n">vs</span><span class="w"> </span><span class="n">weekend</span><span class="w"> </span><span class="n">differences</span><span class="w">  </span>
+<span class="n">Weekly</span><span class="w"> </span><span class="n">patterns</span><span class="p">:</span><span class="w">  </span><span class="n">Consistent</span><span class="w"> </span><span class="mi">7</span><span class="o">-</span><span class="n">day</span><span class="w"> </span><span class="n">cycles</span>
+<span class="n">Monthly</span><span class="w"> </span><span class="n">patterns</span><span class="p">:</span><span class="w"> </span><span class="n">End</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">month</span><span class="w"> </span><span class="n">effects</span>
+<span class="n">Seasonal</span><span class="w"> </span><span class="n">patterns</span><span class="p">:</span><span class="w"> </span><span class="n">Summer</span><span class="w"> </span><span class="n">vs</span><span class="w"> </span><span class="n">winter</span><span class="w"> </span><span class="n">variations</span>
+<span class="n">Annual</span><span class="w"> </span><span class="n">patterns</span><span class="p">:</span><span class="w">  </span><span class="n">Year</span><span class="o">-</span><span class="n">over</span><span class="o">-</span><span class="n">year</span><span class="w"> </span><span class="n">growth</span>
+</code></pre></div>
+
+<p><strong>5. Non-Stationarity</strong></p>
+<p><strong>Stationary process</strong>: Statistical properties (mean, variance) constant over time<br />
+<strong>Non-stationary process</strong>: Properties change over time</p>
+<p>Most real-world time series are <strong>non-stationary:</strong>
+- Trends (mean changes)
+- Seasonality (variance changes)
+- Structural breaks (sudden shifts)
+- Regime changes (different behaviors in different periods)</p>
+<p><strong>6. Irregular Intervals &amp; Missing Data</strong></p>
+<p>Unlike designed experiments:
+- ❌ May have gaps (weekends, holidays, sensor failures)
+- ❌ Irregular sampling intervals
+- ❌ Missing values have temporal meaning
+- ✅ Must handle carefully in visualization</p>
+<p><strong>7. Context-Dependent Interpretation</strong></p>
+<p>Same value means different things at different times:
+- $100 daily revenue in January vs December (holiday effects)
+- 75°F in March vs September (seasonal context)
+- 1000 website visitors on Monday vs Sunday (day-of-week effects)</p>
+<p><strong>Why this matters for visualization:</strong></p>
+<p><strong>Standard Approach:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># WRONG for time series!</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Ignores temporal order</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>  <span class="c1"># Loses time information</span>
+</code></pre></div>
+
+<p><strong>Time Series Approach:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># CORRECT for time series!</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>  <span class="c1"># Preserves temporal order</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>  <span class="c1"># Shows continuity + points</span>
+</code></pre></div>
+
+<p><strong>Key Principles:</strong>
+1. <strong>Always show time explicitly</strong> (usually on x-axis)
+2. <strong>Preserve chronological order</strong> (never shuffle)
+3. <strong>Show continuity</strong> (use lines, not just points)
+4. <strong>Provide temporal context</strong> (reference periods, benchmarks)
+5. <strong>Handle multiple scales</strong> (zoom, aggregation, decomposition)
+6. <strong>Visualize uncertainty</strong> (especially in forecasts)</p>
+<p><strong>Bottom line</strong>: Time series require specialized visualization approaches because temporal structure contains critical information that standard methods destroy.</p>
+<hr />
+<h2 id="types-of-temporal-data">Types of Temporal Data</h2>
+<p><strong>Understanding your temporal data type guides visualization choice:</strong></p>
+<p><strong>1. Time Points (Discrete Events)</strong></p>
+<p><strong>Definition</strong>: Events occurring at specific moments in time</p>
+<p><strong>Characteristics:</strong>
+- Precise timestamps
+- No duration
+- Count-based analysis</p>
+<p><strong>Examples:</strong>
+- 🛒 Customer purchases (2024-01-15 14:32:18)
+- 🌍 Earthquakes (magnitude 5.2 at 2024-02-10 03:15:42)
+- 🐦 Social media posts (tweet at 2024-03-05 09:22:15)
+- 📧 Email arrivals
+- 🔔 System alerts
+- 🏃 Race finish times</p>
+<p><strong>Visualization Approaches:</strong></p>
+<p><strong>Event Plot (Rug Plot)</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Generate random event times</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">eventplot</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">lineoffsets</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linelengths</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Customer Purchase Events&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Timeline (Scatter)</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Count events per day</span>
+<span class="n">daily_counts</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">daily_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">daily_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> 
+         <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Events&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Daily Event Frequency&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>When to use</strong>: Transaction data, log files, event streams</p>
+<hr />
+<p><strong>2. Time Intervals (Spans/Durations)</strong></p>
+<p><strong>Definition</strong>: Events with start and end times (duration matters)</p>
+<p><strong>Characteristics:</strong>
+- Start time + end time
+- Duration is meaningful
+- May overlap</p>
+<p><strong>Examples:</strong>
+- 🏥 Hospital patient stays (admitted 2024-01-10, discharged 2024-01-15)
+- 🏭 Manufacturing batch production (started 08:00, finished 14:30)
+- ✈️ Flight durations (departure to arrival)
+- 🔧 System maintenance windows
+- 📞 Phone call durations
+- 🎬 Video viewing sessions</p>
+<p><strong>Visualization Approaches:</strong></p>
+<p><strong>Gantt Chart</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Sample data: project tasks</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Task&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Design&#39;</span><span class="p">,</span> <span class="s1">&#39;Development&#39;</span><span class="p">,</span> <span class="s1">&#39;Testing&#39;</span><span class="p">,</span> <span class="s1">&#39;Deployment&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Start&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-02-15&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-03-01&#39;</span><span class="p">]),</span>
+    <span class="s1">&#39;End&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2024-01-20&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-02-20&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-03-05&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-03-10&#39;</span><span class="p">])</span>
+<span class="p">})</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tasks</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;End&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Start&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">days</span><span class="p">,</span> 
+            <span class="n">left</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Start&#39;</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Start&#39;</span><span class="p">],</span> <span class="n">idx</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Task&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+            <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Project Timeline (Gantt Chart)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Timeline with Bars</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Hospital bed occupancy</span>
+<span class="n">occupancy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Patient&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Admitted&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-05&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-06&#39;</span><span class="p">]),</span>
+    <span class="s1">&#39;Discharged&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2024-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-14&#39;</span><span class="p">])</span>
+<span class="p">})</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">,</span> <span class="s1">&#39;#ff7f0e&#39;</span><span class="p">,</span> <span class="s1">&#39;#2ca02c&#39;</span><span class="p">,</span> <span class="s1">&#39;#d62728&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">occupancy</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Discharged&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Admitted&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">days</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Admitted&#39;</span><span class="p">],</span> 
+            <span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Patient </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Patient&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">occupancy</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;Patient </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">occupancy</span><span class="p">[</span><span class="s1">&#39;Patient&#39;</span><span class="p">]])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Hospital Bed Occupancy&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>When to use</strong>: Project management, resource scheduling, session analysis</p>
+<hr />
+<p><strong>3. Regular Time Series (Fixed Intervals)</strong></p>
+<p><strong>Definition</strong>: Measurements at consistent, regular intervals</p>
+<p><strong>Characteristics:</strong>
+- Fixed frequency (hourly, daily, monthly)
+- Continuous monitoring
+- Most common type</p>
+<p><strong>Examples:</strong>
+- 📊 Daily stock closing prices
+- 🌡️ Hourly temperature readings
+- 💰 Monthly sales figures
+- 📈 Quarterly GDP
+- ⚡ Minute-by-minute power consumption
+- 🌐 Weekly website visitors</p>
+<p><strong>Visualization Approaches:</strong></p>
+<p><strong>Line Chart (Most Common)</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Generate sample daily sales data with trend and seasonality</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">365</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">50000</span><span class="p">,</span> <span class="mi">65000</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span>
+<span class="n">seasonal</span> <span class="o">=</span> <span class="mi">5000</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">365</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">365</span><span class="p">)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">seasonal</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">sales</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Daily Sales&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sales ($)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Daily Sales - 2023 (Regular Time Series)&#39;</span><span class="p">,</span> 
+          <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Area Chart (Emphasizes Volume)</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">sales</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Daily Sales&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">sales</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sales ($)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Daily Sales with Area Fill&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>When to use</strong>: Continuous monitoring data, business metrics, sensor data</p>
+<hr />
+<p><strong>4. Irregular Time Series (Variable Intervals)</strong></p>
+<p><strong>Definition</strong>: Measurements at non-uniform, irregular intervals</p>
+<p><strong>Characteristics:</strong>
+- Variable time gaps
+- Event-driven sampling
+- Requires interpolation decisions</p>
+<p><strong>Examples:</strong>
+- 🏥 Medical checkups (as needed, not scheduled)
+- 🔧 Equipment maintenance logs (when problems occur)
+- 🎯 Survey responses (voluntary participation)
+- 📝 Customer feedback (sporadic)
+- 🌊 Tide measurements (varies with conditions)
+- 💡 System performance snapshots (triggered by thresholds)</p>
+<p><strong>Visualization Approaches:</strong></p>
+<p><strong>Step Plot (No Interpolation)</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Irregular maintenance logs</span>
+<span class="n">maintenance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2024-01-05&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-28&#39;</span><span class="p">,</span> 
+                            <span class="s1">&#39;2024-02-15&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-02-18&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-03-10&#39;</span><span class="p">]),</span>
+    <span class="s1">&#39;Hours&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">maintenance</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">maintenance</span><span class="p">[</span><span class="s1">&#39;Hours&#39;</span><span class="p">],</span> 
+         <span class="n">where</span><span class="o">=</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Maintenance Hours&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">maintenance</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">maintenance</span><span class="p">[</span><span class="s1">&#39;Hours&#39;</span><span class="p">],</span> 
+            <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Maintenance Hours&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Irregular Maintenance Schedule (Step Plot)&#39;</span><span class="p">,</span> 
+          <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Markers with Lines (Show Data Points)</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">maintenance</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">maintenance</span><span class="p">[</span><span class="s1">&#39;Hours&#39;</span><span class="p">],</span> 
+         <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Maintenance Hours&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Irregular Maintenance Schedule (Interpolated)&#39;</span><span class="p">,</span> 
+          <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>When to use</strong>: Medical records, maintenance logs, survey data</p>
+<hr />
+<p><strong>Choosing the Right Visualization Based on Data Type:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Best Visualizations</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Time Points</strong></td>
+<td>Event plot, scatter, histogram</td>
+<td>Transaction logs, events, incidents</td>
+</tr>
+<tr>
+<td><strong>Time Intervals</strong></td>
+<td>Gantt chart, timeline bars</td>
+<td>Project management, resource allocation</td>
+</tr>
+<tr>
+<td><strong>Regular Time Series</strong></td>
+<td>Line chart, area chart</td>
+<td>Business metrics, continuous monitoring</td>
+</tr>
+<tr>
+<td><strong>Irregular Time Series</strong></td>
+<td>Step plot, markers + lines</td>
+<td>Medical data, sporadic measurements</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Decision Factors:</strong></p>
+<ol>
+<li><strong>Frequency of Data</strong>:</li>
+<li>High frequency (seconds, minutes) → Line chart, aggregation</li>
+<li>
+<p>Low frequency (yearly) → Bar chart, markers</p>
+</li>
+<li>
+<p><strong>Purpose of Analysis</strong>:</p>
+</li>
+<li>Trends → Line chart</li>
+<li>Events → Event plot, timeline</li>
+<li>Comparisons → Multiple lines, small multiples</li>
+<li>
+<p>Composition → Stacked area, stream graph</p>
+</li>
+<li>
+<p><strong>Audience</strong>:</p>
+</li>
+<li>Technical → Can handle complexity, irregular data</li>
+<li>
+<p>Executive → Need simple, clean trends</p>
+</li>
+<li>
+<p><strong>Duration vs. Magnitude</strong>:</p>
+</li>
+<li>Duration matters → Gantt, timeline bars</li>
+<li>Magnitude matters → Line, area charts</li>
+</ol>
+<p><strong>Pro Tip</strong>: When in doubt, start with a simple line chart for regular time series. It's the most versatile and widely understood temporal visualization.</p>
+<hr />
+<h2 id="basic-time-series-plot-the-line-chart">Basic Time Series Plot: The Line Chart</h2>
+<p><strong>The line chart is the foundation of temporal visualization</strong></p>
+<p><strong>Why line charts work for time series:</strong></p>
+<ol>
+<li><strong>Shows Continuity</strong> - Lines connect data points, showing flow over time</li>
+<li><strong>Preserves Order</strong> - Left-to-right reading matches temporal progression</li>
+<li><strong>Natural Mental Model</strong> - We intuitively understand time flowing horizontally</li>
+<li><strong>Scales Well</strong> - Works from minutes to decades</li>
+<li><strong>Easy Comparison</strong> - Multiple lines enable series comparison</li>
+</ol>
+<p><strong>Core Design Principles:</strong></p>
+<p><strong>1. Time on X-Axis (Horizontal)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Generate sample data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">revenue</span> <span class="o">=</span> <span class="mi">100000</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5000</span><span class="p">)</span>
+
+<span class="c1"># Correct orientation</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Revenue ($)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Daily Revenue - First Half 2024&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Why horizontal?</strong>
+- ✅ Matches reading direction (left to right in most cultures)
+- ✅ More screen/page width available than height
+- ✅ Multiple series stack vertically for comparison
+- ❌ Vertical time axis is confusing and non-standard</p>
+<p><strong>2. Choose Appropriate Line Style</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Solid line (most common)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Solid Line - Standard Choice&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Line with markers (when you want to emphasize data points)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">[::</span><span class="mi">7</span><span class="p">],</span> <span class="n">revenue</span><span class="p">[::</span><span class="mi">7</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+               <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Line + Markers - Weekly Data&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Dashed line (for forecasts or secondary data)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">forecast_dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2024-06-29&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">forecast_values</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">forecast_dates</span><span class="p">,</span> <span class="n">forecast_values</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+               <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Forecast&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Dashed Line - Forecast&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Multiple series</span>
+<span class="n">product_a</span> <span class="o">=</span> <span class="n">revenue</span>
+<span class="n">product_b</span> <span class="o">=</span> <span class="n">revenue</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3000</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">product_a</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Product A&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">product_b</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Product B&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Multiple Series Comparison&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Line Style Guidelines:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Use Case</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Solid</strong></td>
+<td>Actual data</td>
+<td>Default choice, historical data</td>
+</tr>
+<tr>
+<td><strong>Dashed</strong></td>
+<td>Projected/forecast</td>
+<td>Future predictions, estimates</td>
+</tr>
+<tr>
+<td><strong>Dotted</strong></td>
+<td>Reference/benchmark</td>
+<td>Targets, averages, goals</td>
+</tr>
+<tr>
+<td><strong>Markers only</strong></td>
+<td>Sparse data</td>
+<td>Quarterly, annual data</td>
+</tr>
+<tr>
+<td><strong>Line + markers</strong></td>
+<td>Emphasis on points</td>
+<td>Weekly, monthly with data points</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. Line Width Matters</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Too thin (hard to see)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Too thin (0.5)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Good (clear and visible)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Good (2.0)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Too thick (cluttered)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span> <span class="o">*</span> <span class="mf">1.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> 
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Too thick (6.0)&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Revenue ($)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Line Width Comparison&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Recommended line widths:</strong>
+- <strong>1.5-2.5</strong>: Standard for most plots
+- <strong>1.0-1.5</strong>: Multiple series (4+) to reduce clutter
+- <strong>3.0+</strong>: Emphasis on single important series
+- <strong>0.5-1.0</strong>: Background/reference lines</p>
+<p><strong>4. Consistent Time Intervals</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># WRONG: Gaps create misleading visual</span>
+<span class="n">dates_with_gaps</span> <span class="o">=</span> <span class="n">dates</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># Every 5th day</span>
+<span class="n">values_with_gaps</span> <span class="o">=</span> <span class="n">revenue</span><span class="p">[::</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Misleading (line interpolates over gaps)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates_with_gaps</span><span class="p">,</span> <span class="n">values_with_gaps</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;❌ WRONG: Gaps Not Shown&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Revenue ($)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Correct (fill gaps or use markers)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates_with_gaps</span><span class="p">,</span> <span class="n">values_with_gaps</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+             <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;✅ CORRECT: Gaps Visible&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Revenue ($)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Rule</strong>: If data has irregular intervals, either:
+- Use markers only (no line)
+- Use step plot
+- Explicitly fill gaps and mark interpolated regions</p>
+<p><strong>5. Aspect Ratio: "Banking to 45 Degrees"</strong></p>
+<p><strong>Cleveland's Banking Principle</strong>: Choose aspect ratio so average line slope is ~45°</p>
+<p><strong>Why?</strong> Human perception best detects changes at 45° angles.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Same data, different aspect ratios</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Too wide (slopes look flat)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Too Wide - Slopes Look Flat&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Revenue ($)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Good (45° banking)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;✅ Good Aspect Ratio&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Revenue ($)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+
+<span class="c1"># Too tall (slopes look steep)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">revenue</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Too Tall - Slopes Look Steep&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Revenue ($)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Adjust individual subplot sizes</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>General guidelines:</strong>
+- <strong>Width:Height ratio</strong> of 2:1 to 3:1 works for most time series
+- Adjust based on data range and trend magnitude
+- More data points → wider chart
+- Steeper trends → taller chart</p>
+<p><strong>Summary: Line Chart Best Practices</strong></p>
+<p>✅ <strong>DO:</strong>
+- Put time on x-axis (horizontal)
+- Use appropriate line width (1.5-2.5)
+- Choose aspect ratio to show patterns clearly
+- Use consistent time intervals
+- Add grid for easier reading
+- Label axes clearly with units</p>
+<p>❌ <strong>DON'T:</strong>
+- Put time on y-axis (vertical)
+- Use 3D effects
+- Connect non-adjacent time points over gaps
+- Use rainbow colors for single series
+- Clutter with too many decorations
+- Forget to show time units</p>
+<hr />
+<h2 id="choosing-appropriate-time-scales">Choosing Appropriate Time Scales</h2>
+<p><strong>Time granularity dramatically affects what patterns you see</strong></p>
+<p><strong>The Problem: Resolution vs. Noise</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">Too</span><span class="w"> </span><span class="n">granular</span><span class="w">    </span><span class="err">→</span><span class="w"> </span><span class="n">See</span><span class="w"> </span><span class="n">noise</span><span class="p">,</span><span class="w"> </span><span class="n">miss</span><span class="w"> </span><span class="n">patterns</span>
+<span class="n">Too</span><span class="w"> </span><span class="n">coarse</span><span class="w">      </span><span class="err">→</span><span class="w"> </span><span class="n">Miss</span><span class="w"> </span><span class="n">important</span><span class="w"> </span><span class="n">variations</span>
+<span class="n">Just</span><span class="w"> </span><span class="n">right</span><span class="w">      </span><span class="err">→</span><span class="w"> </span><span class="n">Patterns</span><span class="w"> </span><span class="n">clear</span><span class="p">,</span><span class="w"> </span><span class="n">noise</span><span class="w"> </span><span class="n">manageable</span>
+</code></pre></div>
+
+<p><strong>Example: Daily Sales Data</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Generate 2 years of daily sales with weekly and seasonal patterns</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">730</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">50000</span><span class="p">,</span> <span class="mi">70000</span><span class="p">,</span> <span class="mi">730</span><span class="p">)</span>
+<span class="n">weekly</span> <span class="o">=</span> <span class="mi">3000</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">730</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span>  <span class="c1"># Weekly pattern</span>
+<span class="n">seasonal</span> <span class="o">=</span> <span class="mi">8000</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">730</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">365</span><span class="p">)</span>  <span class="c1"># Yearly pattern</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">730</span><span class="p">)</span>
+<span class="n">daily_sales</span> <span class="o">=</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">weekly</span> <span class="o">+</span> <span class="n">seasonal</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span> <span class="s1">&#39;Sales&#39;</span><span class="p">:</span> <span class="n">daily_sales</span><span class="p">})</span>
+
+<span class="c1"># Create different aggregations</span>
+<span class="n">weekly_sales</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">monthly_sales</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">quarterly_sales</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Visualize at different scales</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Daily (too granular - noisy)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Daily Sales - TOO GRANULAR (Noisy)&#39;</span><span class="p">,</span> 
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sales ($)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Weekly (good for short-term patterns)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">weekly_sales</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">weekly_sales</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">],</span> 
+             <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Weekly Sales - GOOD for Short-Term Trends&#39;</span><span class="p">,</span> 
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sales ($)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Monthly (good for seasonal patterns)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">monthly_sales</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">monthly_sales</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">],</span> 
+             <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Monthly Sales - GOOD for Seasonal Patterns&#39;</span><span class="p">,</span> 
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sales ($)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Quarterly (too coarse - misses monthly variations)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">quarterly_sales</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">quarterly_sales</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">],</span> 
+             <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Quarterly Sales - TOO COARSE (Misses Detail)&#39;</span><span class="p">,</span> 
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sales ($)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Choosing the Right Time Scale:</strong></p>
+<p><strong>1. Match to Business Question</strong></p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Appropriate Scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"What's our monthly revenue trend?"</td>
+<td>Monthly aggregation</td>
+</tr>
+<tr>
+<td>"Are there weekly patterns in traffic?"</td>
+<td>Daily data, weekly comparison</td>
+</tr>
+<tr>
+<td>"How did we perform this quarter?"</td>
+<td>Quarterly or monthly</td>
+</tr>
+<tr>
+<td>"When did the server crash?"</td>
+<td>Minute or second-level data</td>
+</tr>
+<tr>
+<td>"What's our annual growth rate?"</td>
+<td>Yearly data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. Match to Data Frequency</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Rule of thumb: Show enough points to see pattern, not so many that it&#39;s cluttered</span>
+
+<span class="c1"># High-frequency data (seconds, minutes)</span>
+<span class="c1"># → Aggregate to hours or days for visualization</span>
+
+<span class="c1"># Medium-frequency (daily)</span>
+<span class="c1"># → Show as-is, or aggregate to weekly/monthly</span>
+
+<span class="c1"># Low-frequency (monthly, quarterly)</span>
+<span class="c1"># → Show as-is, use markers to emphasize points</span>
+</code></pre></div>
+
+<p><strong>3. Consider the Pattern Timeframe</strong></p>
+<div class="codehilite"><pre><span></span><code>Pattern Type          | Minimum Data Needed | Recommended Scale
+---------------------|---------------------|-------------------
+Daily patterns       | 1-2 weeks           | Hourly or daily
+Weekly cycles        | 4-8 weeks           | Daily
+Monthly seasonality  | 12-24 months        | Daily or weekly  
+Quarterly patterns   | 2-4 years           | Monthly
+Annual trends        | 3-10 years          | Monthly or quarterly
+</code></pre></div>
+
+<p><strong>4. Audience Considerations</strong></p>
+<p><strong>Executive dashboards:</strong>
+- Prefer monthly/quarterly views
+- Want clear trends, not daily noise
+- Need simple, clean visualizations</p>
+<p><strong>Analyst dashboards:</strong>
+- Want daily/weekly granularity
+- Need to drill down to details
+- Can handle more complex visuals</p>
+<p><strong>Operational dashboards:</strong>
+- Need hourly/daily real-time data
+- Focus on recent periods
+- Require quick anomaly detection</p>
+<p><strong>Multi-Scale Approach: The Solution</strong></p>
+<p><strong>Best practice</strong>: Provide multiple views at different scales</p>
+<div class="codehilite"><pre><span></span><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_gridspec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Overview: Full 2 years (monthly)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">monthly_sales</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">monthly_sales</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">],</span> 
+         <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Overview: 2-Year Monthly Sales Trend&#39;</span><span class="p">,</span> 
+              <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly Sales ($)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Zoom 1: Last 6 months (weekly)</span>
+<span class="n">recent_weeks</span> <span class="o">=</span> <span class="n">weekly_sales</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2024-07-01&#39;</span><span class="p">:]</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">recent_weeks</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">recent_weeks</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">],</span> 
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Last 6 Months: Weekly Detail&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Weekly Sales ($)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Zoom 2: Last month (daily)</span>
+<span class="n">recent_days</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="s1">&#39;2024-12-01&#39;</span><span class="p">]</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">recent_days</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">recent_days</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">],</span> 
+         <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Last Month: Daily Detail&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Daily Sales ($)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Comparison: Year-over-year (monthly)</span>
+<span class="n">monthly_2023</span> <span class="o">=</span> <span class="n">monthly_sales</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2023&#39;</span><span class="p">]</span>
+<span class="n">monthly_2024</span> <span class="o">=</span> <span class="n">monthly_sales</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2024&#39;</span><span class="p">]</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">monthly_2023</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2023&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="n">monthly_2024</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+         <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2024&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s1">&#39;Jan&#39;</span><span class="p">,</span> <span class="s1">&#39;Feb&#39;</span><span class="p">,</span> <span class="s1">&#39;Mar&#39;</span><span class="p">,</span> <span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;Jun&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;Jul&#39;</span><span class="p">,</span> <span class="s1">&#39;Aug&#39;</span><span class="p">,</span> <span class="s1">&#39;Sep&#39;</span><span class="p">,</span> <span class="s1">&#39;Oct&#39;</span><span class="p">,</span> <span class="s1">&#39;Nov&#39;</span><span class="p">,</span> <span class="s1">&#39;Dec&#39;</span><span class="p">])</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Year-over-Year Comparison&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly Sales ($)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Interactive Solution: Zoom + Filter</strong></p>
+<p>For interactive dashboards, provide:
+- <strong>Range slider</strong> - Select time window
+- <strong>Aggregation selector</strong> - Switch between daily/weekly/monthly
+- <strong>Zoom controls</strong> - Focus on specific periods
+- <strong>Drill-down</strong> - Click to see finer granularity</p>
+<p><strong>Pro Tips:</strong></p>
+<ol>
+<li><strong>Start broad, drill down</strong></li>
+<li>Show yearly/quarterly overview first</li>
+<li>
+<p>Provide ability to zoom into months/weeks/days</p>
+</li>
+<li>
+<p><strong>Use rolling averages</strong> to smooth noise
+   <code>python
+   df['Sales_7d_avg'] = df['Sales'].rolling(window=7).mean()</code></p>
+</li>
+<li>
+<p><strong>Show both raw and aggregated</strong> side-by-side
+   <code>python
+   ax.plot(dates, daily_values, alpha=0.3, label='Daily')
+   ax.plot(dates, weekly_avg, linewidth=2, label='7-day average')</code></p>
+</li>
+<li>
+<p><strong>Annotate what scale is shown</strong>
+   <code>python
+   ax.set_title('Weekly Average Sales (7-day rolling mean)', fontsize=13)</code></p>
+</li>
+</ol>
+<p><strong>Common Mistakes:</strong></p>
+<p>❌ Showing 5 years of daily data (too cluttered)<br />
+❌ Showing 1 month of annual data (not enough context)<br />
+❌ Mixing scales without labels (confusing)<br />
+❌ Using same scale for all audiences (one-size-fits-all doesn't work)</p>
+<p>✅ Match scale to question and audience<br />
+✅ Provide multiple scales when possible<br />
+✅ Use aggregation to reduce noise<br />
+✅ Label time units clearly</p>
+<hr />
+<h2 id="handling-missing-temporal-data">Handling Missing Temporal Data</h2>
+<p><strong>Missing data in time series requires special attention</strong></p>
+<p><strong>Why temporal missing data is different:</strong></p>
+<p>In regular data:
+- Missing values are independent
+- Can use simple imputation
+- Order doesn't matter</p>
+<p>In time series:
+- ❌ Gaps break continuity
+- ❌ Missing values have temporal context
+- ❌ Imputation affects subsequent values
+- ❌ Visualization can mislead</p>
+<p><strong>Types of Missing Temporal Data:</strong></p>
+<p><strong>1. Random Gaps (Sensor Failures)</strong></p>
+<div class="codehilite"><pre><span></span><code>Jan 1  ✓
+Jan 2  ✓
+Jan 3  ✗ (sensor failed)
+Jan 4  ✓
+Jan 5  ✓
+</code></pre></div>
+
+<p><strong>2. Systematic Gaps (Weekends, Holidays)</strong></p>
+<div class="codehilite"><pre><span></span><code>Mon    ✓
+Tue    ✓
+Wed    ✓
+Thu    ✓
+Fri    ✓
+Sat    ✗ (business closed)
+Sun    ✗ (business closed)
+</code></pre></div>
+
+<p><strong>3. Extended Outages</strong></p>
+<div class="codehilite"><pre><span></span><code>Jan 1-10   ✓✓✓✓✓✓✓✓✓✓
+Jan 11-20  ✗✗✗✗✗✗✗✗✗✗ (system down)
+Jan 21-30  ✓✓✓✓✓✓✓✓✓✓
+</code></pre></div>
+
+<p><strong>Visualization Strategies:</strong></p>
+<p><strong>Strategy 1: Show Gaps Explicitly</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Create time series with gaps</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">values</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Create DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span> <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">})</span>
+
+<span class="c1"># Introduce random gaps</span>
+<span class="n">missing_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">missing_indices</span><span class="p">,</span> <span class="s1">&#39;Value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># Visualize</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># WRONG: Line connects over gaps (misleading)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;❌ WRONG: Line Connects Over Missing Data (Misleading)&#39;</span><span class="p">,</span> 
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># CORRECT: Gaps shown explicitly</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+             <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual Data&#39;</span><span class="p">)</span>
+<span class="c1"># Mark missing data regions</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">missing_indices</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> 
+                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Missing&#39;</span> <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="n">missing_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;✅ CORRECT: Gaps Visible (Markers Only)&#39;</span><span class="p">,</span> 
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>When to use</strong>: Small number of missing values, need to preserve data integrity</p>
+<hr />
+<p><strong>Strategy 2: Interpolate and Distinguish</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Interpolate missing values</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value_interpolated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+
+<span class="c1"># Identify interpolated regions</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_interpolated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Plot actual data (solid)</span>
+<span class="n">actual_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_interpolated&#39;</span><span class="p">]]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">actual_data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">actual_data</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">],</span> 
+        <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> 
+        <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual Data&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Plot interpolated data (dashed, different color)</span>
+<span class="n">interpolated_segments</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_interpolated&#39;</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">interpolated_segments</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="c1"># Find segment start and end</span>
+    <span class="n">start_idx</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">idx</span>
+    <span class="n">end_idx</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">idx</span>
+
+    <span class="k">if</span> <span class="n">start_idx</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">end_idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+        <span class="n">segment_dates</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_idx</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">end_idx</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">]]</span>
+        <span class="n">segment_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_idx</span><span class="p">,</span> <span class="s1">&#39;Value_interpolated&#39;</span><span class="p">],</span> 
+                         <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;Value_interpolated&#39;</span><span class="p">],</span> 
+                         <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">end_idx</span><span class="p">,</span> <span class="s1">&#39;Value_interpolated&#39;</span><span class="p">]]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">segment_dates</span><span class="p">,</span> <span class="n">segment_values</span><span class="p">,</span> 
+                <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Add legend</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
+<span class="n">legend_elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> 
+                          <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual Data&#39;</span><span class="p">),</span>
+                   <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                          <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated&#39;</span><span class="p">)]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">legend_elements</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Interpolated Values Shown Differently&#39;</span><span class="p">,</span> 
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>When to use</strong>: Need continuous line, but must show where data is estimated</p>
+<hr />
+<p><strong>Strategy 3: Remove Missing Periods (for Systematic Gaps)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Example: Remove weekends from business data</span>
+<span class="n">df_business_days</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofweek</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">]</span>  <span class="c1"># Monday=0, Friday=4</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># With weekends (creates confusing gaps)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;With Weekends (Systematic Gaps)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Business days only (clean continuity)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_business_days</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df_business_days</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(),</span> 
+             <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Business Days Only (Continuous)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>When to use</strong>: Systematic, expected gaps (weekends, holidays, maintenance windows)</p>
+<hr />
+<p><strong>Strategy 4: Shading + Annotation</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Plot data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value_interpolated&#39;</span><span class="p">],</span> 
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Values (interpolated where missing)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Shade missing data regions</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">missing_indices</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> 
+               <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Add annotation for first missing point</span>
+<span class="n">first_missing</span> <span class="o">=</span> <span class="n">missing_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Missing Data Points&#39;</span><span class="p">,</span> 
+            <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">first_missing</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">first_missing</span><span class="p">,</span> <span class="s1">&#39;Value_interpolated&#39;</span><span class="p">]),</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">first_missing</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value_interpolated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Missing Data Indicated with Vertical Lines&#39;</span><span class="p">,</span> 
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>When to use</strong>: Few missing points, need to call attention to gaps</p>
+<hr />
+<p><strong>Best Practices for Missing Temporal Data:</strong></p>
+<p><strong>1. Always disclose missing data</strong>
+- ✅ Show gaps explicitly in visualization
+- ✅ Add note in caption or legend
+- ✅ Use different styling for interpolated values
+- ❌ Never hide missing data without disclosure</p>
+<p><strong>2. Choose interpolation method carefully</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Linear interpolation (simple, assumes linear change)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+
+<span class="c1"># Time-weighted (accounts for uneven intervals)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+<span class="c1"># Polynomial (smooth curve)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;poly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Forward fill (use last known value)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;ffill&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+
+<span class="c1"># Mean of surrounding values</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>3. Consider the context</strong></p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommended Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Financial data</td>
+<td>Show gaps (never interpolate stock prices!)</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>Interpolate (continuous physical process)</td>
+</tr>
+<tr>
+<td>Sales transactions</td>
+<td>Show gaps or use zero (no sale = zero)</td>
+</tr>
+<tr>
+<td>Sensor readings</td>
+<td>Interpolate, mark as estimated</td>
+</tr>
+<tr>
+<td>Survey responses</td>
+<td>Cannot interpolate (discrete events)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. Report missing data statistics</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Add text box with missing data info</span>
+<span class="n">missing_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">total_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">missing_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">missing_count</span> <span class="o">/</span> <span class="n">total_count</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">textstr</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Missing: </span><span class="si">{</span><span class="n">missing_count</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">total_count</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">missing_pct</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="n">textstr</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> 
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;wheat&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Summary:</strong></p>
+<p>✅ <strong>DO:</strong>
+- Show gaps explicitly when possible
+- Use different styling for interpolated vs. actual data
+- Document missing data in captions
+- Choose interpolation method based on data type
+- Consider removing systematic gaps (weekends, etc.)</p>
+<p>❌ <strong>DON'T:</strong>
+- Connect lines over large gaps without notation
+- Interpolate financial or discrete event data
+- Hide missing data from viewers
+- Use complex interpolation without justification
+- Ignore the temporal context of missing values</p>
+<p><strong>Remember</strong>: In time series, how you handle missing data affects interpretation. Transparency is critical!</p>
+<hr />
+<h2 id="datetime-formatting-in-python">Date/Time Formatting in Python</h2>
+<p><strong>Working with dates is essential for time series visualization</strong></p>
+<p><strong>Why it matters:</strong>
+- Date formats drive axis labels and tick density
+- Parsing correctly avoids missing/incorrect points
+- Formatting improves readability and interpretation</p>
+<hr />
+<h3 id="1-parsing-dates-with-pandas">1. Parsing Dates with Pandas</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># From CSV with date column</span>
+<span class="c1"># df = pd.read_csv(&#39;sales.csv&#39;)</span>
+<span class="c1"># df[&#39;Date&#39;] = pd.to_datetime(df[&#39;Date&#39;])</span>
+
+<span class="c1"># Common formats</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2025-02-16&#39;</span><span class="p">)</span>        <span class="c1"># YYYY-MM-DD</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;02/16/2025&#39;</span><span class="p">)</span>        <span class="c1"># MM/DD/YYYY</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;16-Feb-2025&#39;</span><span class="p">)</span>       <span class="c1"># DD-Mon-YYYY</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2025-02-16 14:30&#39;</span><span class="p">)</span>  <span class="c1"># With time</span>
+</code></pre></div>
+
+<p><strong>Tip:</strong> Always parse date columns immediately after loading data.</p>
+<hr />
+<h3 id="2-setting-date-as-index">2. Setting Date as Index</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Set date as index for time series operations</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This enables:
+- Resampling (<code>.resample()</code>)
+- Rolling windows (<code>.rolling()</code>)
+- Time slicing (<code>df['2025-01':'2025-06']</code>)</p>
+<hr />
+<h3 id="3-date-formatting-for-plots">3. Date Formatting for Plots</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">])</span>
+
+<span class="c1"># Format x-axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">MonthLocator</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Readable formats:</strong>
+- <code>%b %Y</code> → “Feb 2025”
+- <code>%d-%b</code> → “16-Feb”
+- <code>%Y-%m-%d</code> → “2025-02-16”</p>
+<hr />
+<h2 id="time-zones-and-dst-issues">Time Zones and DST Issues</h2>
+<p><strong>Time zones can quietly break your analysis</strong></p>
+<h3 id="common-problems">Common Problems:</h3>
+<ul>
+<li>Data recorded in UTC but plotted in local time</li>
+<li>Daylight Savings Time (DST) creates duplicate or missing hours</li>
+<li>Mixed time zones in a dataset</li>
+</ul>
+<hr />
+<h3 id="example-converting-time-zones">Example: Converting Time Zones</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Parse as UTC then convert</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp_local&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s1">&#39;America/Chicago&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="handling-dst">Handling DST</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Remove ambiguous times</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+</code></pre></div>
+
+<p><strong>Best Practice:</strong> Always store timestamps in UTC and convert for visualization.</p>
+<hr />
+<h2 id="aspect-ratio-and-chart-proportions">Aspect Ratio and Chart Proportions</h2>
+<p><strong>Aspect ratio changes how trends are perceived</strong></p>
+<h3 id="problem">Problem:</h3>
+<ul>
+<li>Too wide → trends look flat</li>
+<li>Too tall → trends look extreme</li>
+</ul>
+<h3 id="guideline">Guideline:</h3>
+<p><strong>Use "banking to 45°"</strong> (Cleveland, 1984)
+- Average slopes should be near 45° for best perception</p>
+<hr />
+<h3 id="example">Example</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># 2.5:1 ratio</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Balanced aspect ratio&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Rule of thumb:</strong>
+- 2:1 or 3:1 width:height for most time series</p>
+<hr />
+<h2 id="color-in-time-series">Color in Time Series</h2>
+<p><strong>Color can encode additional dimensions, but use carefully</strong></p>
+<h3 id="best-practices">Best Practices:</h3>
+<p>✅ Use distinct colors for multiple series<br />
+✅ Use muted colors for reference lines<br />
+✅ Highlight key events with a single accent color<br />
+❌ Avoid rainbow scales for time series lines  </p>
+<hr />
+<h3 id="example-highlighting-a-segment">Example: Highlighting a Segment</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="s1">&#39;2025-06&#39;</span><span class="p">:</span><span class="s1">&#39;2025-08&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">][</span><span class="s1">&#39;2025-06&#39;</span><span class="p">:</span><span class="s1">&#39;2025-08&#39;</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Summer spike&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</code></pre></div>
+
+<hr />
+<h2 id="multiple-time-series-on-one-plot">Multiple Time Series on One Plot</h2>
+<p><strong>Good for comparison, but can quickly become cluttered</strong></p>
+<h3 id="guidelines">Guidelines:</h3>
+<ul>
+<li>Limit to 3–5 series per chart</li>
+<li>Use consistent scales</li>
+<li>Label lines directly if possible</li>
+</ul>
+<hr />
+<h3 id="example-multiple-products">Example: Multiple Products</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ProductA&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Product A&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ProductB&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Product B&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ProductC&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Product C&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Sales by Product&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Alternative:</strong> Use small multiples if too many series.</p>
+<hr />
+<h2 id="small-multiples-for-time-series">Small Multiples for Time Series</h2>
+<p><strong>Small multiples reduce clutter and improve comparison</strong></p>
+<p>Instead of stacking many lines on one plot, separate into panels:</p>
+<p>✅ Easier to compare patterns<br />
+✅ Same scale = fair comparison<br />
+✅ Reduces visual overload  </p>
+<hr />
+<h3 id="example-faceted-time-series">Example: Faceted Time Series</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Sales&#39;</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span> <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="common-temporal-visualization-mistakes">Common Temporal Visualization Mistakes</h2>
+<p><strong>Avoid these frequent errors:</strong></p>
+<p>❌ Misaligned time scales across charts<br />
+❌ Truncated axes that exaggerate trends<br />
+❌ Too many series on one plot<br />
+❌ Irregular gaps hidden by lines<br />
+❌ Over-annotating every data point  </p>
+<hr />
+<h2 id="y-axis-decisions">Y-Axis Decisions</h2>
+<p><strong>Should time series start at zero?</strong></p>
+<ul>
+<li><strong>Yes</strong> for absolute magnitude (e.g., revenue)</li>
+<li><strong>No</strong> when showing percent change or deviation</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>   <span class="c1"># force zero baseline</span>
+</code></pre></div>
+
+<hr />
+<h2 id="annotation-best-practices">Annotation Best Practices</h2>
+<p>Use annotations sparingly to emphasize:
+- Key events
+- Outliers
+- Structural breaks</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Policy Change&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">value</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">value</span><span class="o">+</span><span class="mi">10</span><span class="p">),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+<hr />
+<h2 id="reference-lines-and-benchmarks">Reference Lines and Benchmarks</h2>
+<p>Add context with:
+- Average line
+- Target threshold
+- Historical benchmark</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sales&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Average&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="interactive-vs-static-time-series">Interactive vs. Static Time Series</h2>
+<p><strong>Static plots</strong> are good for reports.<br />
+<strong>Interactive plots</strong> are better for exploration.</p>
+<p>Interactive features:
+- Zoom/pan
+- Hover tooltips
+- Range sliders</p>
+<hr />
+<h1 id="_2">═══════════════════════════════════════════════════════════════</h1>
+    </div>
+</body>
+</html>
