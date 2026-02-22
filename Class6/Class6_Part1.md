@@ -600,3 +600,73 @@ gdf.plot(column='value', scheme='quantiles', k=5, cmap='YlOrRd', legend=True)
 ```
 
 ---
+
+## Geocoding & Reverse Geocoding
+
+**Converting between addresses and coordinates**
+
+**Geocoding:** Address → Lat/Lon
+**Reverse Geocoding:** Lat/Lon → Address
+
+```python
+from geopy.geocoders import Nominatim
+
+geocoder = Nominatim(user_agent="myapp")
+
+# Geocode
+location = geocoder.geocode("1600 Pennsylvania Ave, Washington DC")
+print(f"Lat: {location.latitude}, Lon: {location.longitude}")
+
+# Reverse geocode
+location = geocoder.reverse("38.8977, -77.0365")
+print(location.address)
+```
+
+---
+
+## Basemaps and Context
+
+**Add geographic context to your maps**
+
+```python
+import contextily as ctx
+
+# Add basemap
+gdf_web = gdf.to_crs('EPSG:3857')  # Web Mercator for tiles
+ax = gdf_web.plot(figsize=(10, 10), alpha=0.5, edgecolor='k')
+ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)
+plt.axis('off')
+plt.show()
+```
+
+---
+
+## Scale and Extent
+
+**Choose map boundaries wisely**
+
+```python
+# Set bounds
+ax.set_xlim([-130, -60])  # Longitude range
+ax.set_ylim([20, 55])     # Latitude range
+
+# Or auto from data
+gdf.total_bounds  # Get bounds
+```
+
+---
+
+## Part 1 Summary
+
+**You've learned:**
+✅ Geographic data types
+✅ Map projections
+✅ Choropleth, symbol, heat maps
+✅ CRS and transformations
+✅ Spatial joins
+✅ Color and classification
+✅ Basemaps and context
+
+**Next:** Part 2 - Mapping Tools & Techniques
+
+---
