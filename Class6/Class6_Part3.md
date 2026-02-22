@@ -1465,23 +1465,1602 @@ plt.show()
 
 ---
 
-## Small Multiples for Maps
+## 3D Geographic Visualization
 
-**Compare regions or time periods**
+**When (and when not) to use 3D maps**
+
+**What is 3D Mapping?**
+
+**3D maps** add a vertical dimension to geographic visualizations, typically representing elevation, building heights, or data values.
+
+**When to Use (Rarely!):**
+- ✅ Terrain/elevation visualization
+- ✅ Urban planning (building heights)
+- ✅ Dramatic presentations
+- ✅ Immersive experiences
+
+**When NOT to Use:**
+- ❌ Data values (use color instead)
+- ❌ Precise comparisons
+- ❌ Print media
+- ❌ Accessibility concerns
+
+**3D Surface Plot:**
 
 ```python
-fig, axes = plt.subplots(2, 3, figsize=(18, 12))
-for i, year in enumerate(years):
-    data[data['year']==year].plot(ax=axes.flat[i], column='value')
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+
+# Create elevation data
+x = np.linspace(-5, 5, 50)
+y = np.linspace(-5, 5, 50)
+X, Y = np.meshgrid(x, y)
+Z = np.sin(np.sqrt(X**2 + Y**2))
+
+# Create 3D plot
+fig = plt.figure(figsize=(14, 10))
+ax = fig.add_subplot(111, projection='3d')
+
+surf = ax.plot_surface(X, Y, Z, cmap='terrain', alpha=0.8,
+                      linewidth=0, antialiased=True)
+
+ax.set_xlabel('X', fontsize=12)
+ax.set_ylabel('Y', fontsize=12)
+ax.set_zlabel('Elevation', fontsize=12)
+ax.set_title('3D Terrain Surface', fontsize=16, fontweight='bold')
+
+fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
+
+plt.tight_layout()
+plt.show()
 ```
+
+**3D Bar Map with plotly:**
+
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+# Create sample data (sales by region)
+regions = ['North', 'South', 'East', 'West', 'Central']
+x_pos = [1, 1, 2, 0, 1]
+y_pos = [2, 0, 1, 1, 1]
+sales = [100, 80, 120, 90, 110]
+
+fig = go.Figure(data=[go.Mesh3d(
+    x=[0, 0, 1, 1, 0, 0, 1, 1],
+    y=[0, 1, 1, 0, 0, 1, 1, 0],
+    z=[0, 0, 0, 0, 1, 1, 1, 1],
+    colorbar_title='z',
+    colorscale=[[0, 'gold'],
+                [0.5, 'mediumturquoise'],
+                [1, 'magenta']],
+    intensity=[0, 0.33, 0.66, 1, 0, 0.33, 0.66, 1],
+    i=[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
+    j=[3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
+    k=[0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
+)])
+
+fig.update_layout(
+    title='3D Visualization (Use Sparingly!)',
+    scene=dict(
+        xaxis_title='X',
+        yaxis_title='Y',
+        zaxis_title='Value'
+    ),
+    height=600
+)
+
+fig.show()
+```
+
+**Best Practices:**
+
+⚠️ **Avoid 3D for data values** - Use 2D with color instead
+✅ **Use for actual 3D data** (terrain, buildings)
+✅ **Provide rotation/interaction** for better understanding
+✅ **Include 2D alternative** for comparison
+❌ **Never use 3D pie charts** or 3D bar charts for non-spatial data
+
+**Alternative: 2.5D (Extruded Polygons):**
+
+```python
+import plotly.express as px
+
+# Better alternative: choropleth with hover
+# Shows data clearly without 3D confusion
+```
+
+**Key Insight:** "3D is often a solution looking for a problem. Use 2D with effective visual encoding instead."
+
+---
+
+## Cartograms
+
+**Distorting geography to emphasize data**
+
+**What are Cartograms?**
+
+**Cartograms** distort the size/shape of geographic regions to make area proportional to a data variable rather than actual geographic area.
+
+**Types:**
+- **Contiguous**: Regions stay connected (topology preserved)
+- **Non-contiguous**: Regions can separate
+- **Dorling**: Regions become circles
+
+**When to Use:**
+- Population-weighted views
+- Emphasizing data over geography
+- Showing relative importance
+- Alternative to choropleth
+
+**Non-Contiguous Cartogram (Simple Scale):**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load data
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Scale geometries by population
+def scale_geometry(geom, scale_factor):
+    centroid = geom.centroid
+    scaled = geom.scale(xfact=scale_factor, yfact=scale_factor, origin=centroid)
+    return scaled
+
+# Normalize population for scaling
+world['scale'] = np.sqrt(world['pop_est'] / world['pop_est'].max())
+
+# Create cartogram
+world['cartogram_geom'] = world.apply(
+    lambda row: scale_geometry(row['geometry'], row['scale']), 
+    axis=1
+)
+
+# Plot comparison
+fig, axes = plt.subplots(1, 2, figsize=(20, 8))
+
+# Original
+world.plot(ax=axes[0], color='lightblue', edgecolor='black', linewidth=0.5)
+axes[0].set_title('Original Geographic Map', fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+# Cartogram
+world.set_geometry('cartogram_geom').plot(
+    ax=axes[1], color='lightcoral', edgecolor='black', linewidth=0.5
+)
+axes[1].set_title('Population Cartogram', fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Geography vs Population-Weighted View', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Dorling Cartogram (Circle-based):**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from shapely.geometry import Point
+
+# Load US states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Get centroids
+us_states['centroid'] = us_states.geometry.centroid
+
+# Create circles proportional to population
+us_states['circle_radius'] = np.sqrt(us_states['pop_est'] / np.pi) / 100000
+
+# Create circle geometries
+us_states['circles'] = us_states.apply(
+    lambda row: row['centroid'].buffer(row['circle_radius']), 
+    axis=1
+)
+
+# Plot
+fig, axes = plt.subplots(1, 2, figsize=(20, 8))
+
+# Original
+us_states.plot(column='pop_est', cmap='YlOrRd', legend=True,
+              ax=axes[0], edgecolor='black', linewidth=0.5)
+axes[0].set_title('Traditional Choropleth', fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+# Dorling Cartogram
+us_states.set_geometry('circles').plot(
+    column='pop_est', cmap='YlOrRd', legend=True,
+    ax=axes[1], edgecolor='black', linewidth=1
+)
+axes[1].set_title('Dorling Cartogram (Circle Size = Population)', 
+                 fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Choropleth vs Dorling Cartogram', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Hexagonal Cartogram:**
+
+```python
+# Conceptual - create hexagonal grid
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Simple hex grid representation
+fig, ax = plt.subplots(figsize=(12, 10))
+
+# Each state becomes a hexagon
+# Position based on actual geography (approximated)
+states_hex = {
+    'CA': (0, 2), 'OR': (0, 3), 'WA': (0, 4),
+    'TX': (3, 1), 'NY': (8, 4), 'FL': (7, 0),
+    # ... etc
+}
+
+# Draw hexagons
+for state, (x, y) in states_hex.items():
+    hexagon = plt.Circle((x, y), 0.4, color='lightblue', 
+                        edgecolor='black', linewidth=2)
+    ax.add_patch(hexagon)
+    ax.text(x, y, state, ha='center', va='center', 
+           fontweight='bold', fontsize=10)
+
+ax.set_xlim([-1, 10])
+ax.set_ylim([-1, 6])
+ax.set_aspect('equal')
+ax.set_title('Hexagonal Tile Cartogram (Conceptual)', 
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Pros and Cons:**
+
+**Pros:**
+✅ Equal visual weight per unit of data
+✅ Reduces geographic bias
+✅ Makes small regions visible
+
+**Cons:**
+❌ Unfamiliar to readers
+❌ Hard to identify regions
+❌ Can be misleading if not explained
+
+**Best Practice:** Always show both traditional map AND cartogram for comparison
+
+---
+
+## Dot Density Maps
+
+**One dot = N units**
+
+**What are Dot Density Maps?**
+
+**Dot density maps** place individual dots to represent quantities, where each dot represents a fixed number of units (e.g., 1 dot = 100 people).
+
+**When to Use:**
+- Show distribution within regions
+- Reveal patterns invisible in choropleth
+- Raw counts (not rates)
+- Multiple categories
+
+**Basic Dot Density:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from shapely.geometry import Point
+
+# Load states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate random points within polygons
+def generate_points_in_polygon(polygon, n_points):
+    """Generate random points inside polygon"""
+    min_x, min_y, max_x, max_y = polygon.bounds
+    points = []
+    
+    while len(points) < n_points:
+        random_point = Point(np.random.uniform(min_x, max_x),
+                            np.random.uniform(min_y, max_y))
+        if polygon.contains(random_point):
+            points.append(random_point)
+    
+    return points
+
+# Create dots (1 dot = 1 million people)
+dots_per_million = 1
+all_dots = []
+
+for idx, state in us_states.iterrows():
+    n_dots = int(state['pop_est'] / 1_000_000)
+    if n_dots > 0:
+        dots = generate_points_in_polygon(state.geometry, n_dots)
+        all_dots.extend(dots)
+
+# Create GeoDataFrame of dots
+dots_gdf = gpd.GeoDataFrame({'geometry': all_dots}, crs='EPSG:4326')
+
+# Plot
+fig, axes = plt.subplots(1, 2, figsize=(20, 8))
+
+# Choropleth
+us_states.plot(column='pop_est', cmap='YlOrRd', legend=True,
+              ax=axes[0], edgecolor='black', linewidth=0.5)
+axes[0].set_title('Choropleth: Population by State', 
+                 fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+# Dot density
+us_states.plot(ax=axes[1], color='white', edgecolor='black', linewidth=0.5)
+dots_gdf.plot(ax=axes[1], color='red', markersize=5, alpha=0.6)
+axes[1].set_title('Dot Density: 1 dot = 1M people', 
+                 fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Choropleth vs Dot Density', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Multi-Category Dot Density:**
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Simulate multi-category data (population by ethnicity)
+np.random.seed(42)
+
+# Generate dots for different categories
+categories = {
+    'Category A': {'color': 'red', 'n_dots': 500},
+    'Category B': {'color': 'blue', 'n_dots': 300},
+    'Category C': {'color': 'green', 'n_dots': 200}
+}
+
+fig, ax = plt.subplots(figsize=(12, 10))
+
+for category, props in categories.items():
+    # Random points within a region
+    x = np.random.rand(props['n_dots']) * 10
+    y = np.random.rand(props['n_dots']) * 10
+    ax.scatter(x, y, c=props['color'], s=10, alpha=0.6, label=category)
+
+ax.set_title('Multi-Category Dot Density Map', fontsize=16, fontweight='bold')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.legend(title='Categories', fontsize=11)
+ax.set_xlim([0, 10])
+ax.set_ylim([0, 10])
+
+plt.tight_layout()
+plt.show()
+```
+
+**Dasymetric Mapping (Intelligent Dot Placement):**
+
+```python
+# Conceptual: Place dots only in habitable areas
+# In practice, use land cover data to avoid water, mountains, etc.
+
+# Example: Avoid placing dots in water bodies
+# dots_gdf = dots_gdf[~dots_gdf.intersects(water_bodies)]
+```
+
+**Best Practices:**
+
+✅ **Specify dot value** clearly (1 dot = X units)
+✅ **Use for raw counts**, not rates
+✅ **Random placement** within regions
+✅ **Semi-transparent dots** for overlap
+✅ **Consider dasymetric** for accuracy
+
+**Advantages over Choropleth:**
+- Shows distribution within regions
+- Doesn't hide variation in large regions
+- Visually intuitive (more dots = more units)
+
+---
+
+## Proportional Symbol Maps
+
+**Size encodes magnitude**
+
+**What are Proportional Symbol Maps?**
+
+**Proportional symbol maps** use symbols (usually circles) sized proportionally to represent data values at specific locations.
+
+**When to Use:**
+- Point data with associated values
+- Absolute quantities (not rates)
+- Multiple locations to compare
+- Want to show both location AND magnitude
+
+**Basic Proportional Symbols:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Sample data: Cities with populations
+cities = gpd.GeoDataFrame({
+    'city': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
+             'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose'],
+    'population': [8336000, 3979000, 2693000, 2320000, 1680000,
+                   1584000, 1547000, 1423000, 1343000, 1021000],
+    'geometry': gpd.points_from_xy(
+        [-74.0, -118.2, -87.6, -95.4, -112.1, -75.2, -98.5, -117.2, -96.8, -121.9],
+        [40.7, 34.0, 41.9, 29.8, 33.4, 39.9, 29.4, 32.7, 32.8, 37.3]
+    )
+}, crs='EPSG:4326')
+
+# Load US states for context
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA']
+
+# Plot
+fig, ax = plt.subplots(figsize=(16, 10))
+
+# Base map
+us_states.plot(ax=ax, color='lightgray', edgecolor='white', linewidth=0.5)
+
+# Proportional symbols
+cities.plot(ax=ax,
+           markersize=cities['population']/10000,  # Scale for visibility
+           color='red',
+           alpha=0.6,
+           edgecolor='darkred',
+           linewidth=1.5)
+
+# Add city labels
+for idx, row in cities.iterrows():
+    ax.annotate(row['city'], 
+               xy=(row.geometry.x, row.geometry.y),
+               xytext=(5, 5),
+               textcoords='offset points',
+               fontsize=9,
+               fontweight='bold')
+
+# Add manual legend
+from matplotlib.lines import Line2D
+legend_sizes = [1000000, 5000000, 8000000]
+legend_elements = [
+    Line2D([0], [0], marker='o', color='w', 
+          markerfacecolor='red', markersize=np.sqrt(s/10000), 
+          alpha=0.6, label=f'{s/1000000:.0f}M')
+    for s in legend_sizes
+]
+ax.legend(handles=legend_elements, title='Population', 
+         loc='lower left', fontsize=11, frameon=True)
+
+ax.set_title('US Cities: Proportional Symbol Map', 
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Scaled vs Unscaled:**
+
+```python
+fig, axes = plt.subplots(1, 2, figsize=(18, 8))
+
+# Linearly scaled (WRONG - hard to compare)
+us_states.plot(ax=axes[0], color='lightgray', edgecolor='white')
+cities.plot(ax=axes[0],
+           markersize=cities['population']/50000,
+           color='blue', alpha=0.6)
+axes[0].set_title('❌ Linear Scaling (Misleading)', 
+                 fontsize=13, fontweight='bold', color='red')
+axes[0].axis('off')
+
+# Square root scaled (CORRECT - area proportional)
+us_states.plot(ax=axes[1], color='lightgray', edgecolor='white')
+cities.plot(ax=axes[1],
+           markersize=np.sqrt(cities['population'])*2,
+           color='green', alpha=0.6)
+axes[1].set_title('✅ Square Root Scaling (Correct)', 
+                 fontsize=13, fontweight='bold', color='green')
+axes[1].axis('off')
+
+plt.suptitle('Importance of Proper Scaling', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Graduated Symbols (Binned):**
+
+```python
+# Bin into size classes
+cities['size_class'] = pd.cut(cities['population'], 
+                              bins=[0, 2000000, 5000000, 10000000],
+                              labels=['Small', 'Medium', 'Large'])
+
+size_map = {'Small': 50, 'Medium': 150, 'Large': 300}
+cities['marker_size'] = cities['size_class'].map(size_map)
+
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(ax=ax, color='lightgray', edgecolor='white')
+
+for size_class in ['Small', 'Medium', 'Large']:
+    subset = cities[cities['size_class'] == size_class]
+    subset.plot(ax=ax,
+               markersize=size_map[size_class],
+               color='purple',
+               alpha=0.6,
+               edgecolor='black',
+               linewidth=1,
+               label=size_class)
+
+ax.legend(title='City Size', fontsize=11)
+ax.set_title('Graduated Symbol Map', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Multivariate Symbols (Size + Color):**
+
+```python
+# Add GDP per capita data
+cities['gdp_per_capita'] = np.random.uniform(40000, 80000, len(cities))
+
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(ax=ax, color='lightgray', edgecolor='white')
+
+# Size = population, Color = GDP per capita
+scatter = ax.scatter(
+    cities.geometry.x,
+    cities.geometry.y,
+    s=cities['population']/10000,
+    c=cities['gdp_per_capita'],
+    cmap='RdYlGn',
+    alpha=0.7,
+    edgecolors='black',
+    linewidth=1.5
+)
+
+# Colorbars
+cbar = plt.colorbar(scatter, ax=ax, shrink=0.6)
+cbar.set_label('GDP per Capita ($)', fontsize=11)
+
+ax.set_title('Multivariate Map: Size = Population, Color = GDP per Capita',
+            fontsize=15, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+✅ **Scale by radius**, not area (use markersize in matplotlib)
+✅ **Limit symbol count** (< 50 for clarity)
+✅ **Use transparency** for overlapping symbols
+✅ **Include legend** with example sizes
+✅ **Consider binning** for many similar values
+
+**Common Mistakes:**
+
+❌ Scaling by diameter or area instead of radius
+❌ Too many overlapping symbols
+❌ No legend showing scale
+❌ Using for rates/ratios (use choropleth instead)
+
+---
+
+## Bivariate Choropleth
+
+**Visualizing two variables simultaneously**
+
+**What are Bivariate Choropleths?**
+
+**Bivariate choropleths** encode TWO variables using a 2D color scheme, allowing comparison of relationships across space.
+
+**When to Use:**
+- Explore correlation between two variables
+- Show multi-dimensional patterns
+- Reveal spatial relationships
+- Advanced analysis
+
+**Challenges:**
+- Complex legend
+- Harder to interpret
+- Requires training
+
+**Creating Bivariate Color Scheme:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.colors import ListedColormap
+import pandas as pd
+
+# Load data
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate two variables
+np.random.seed(42)
+us_states['var1'] = np.random.uniform(0, 100, len(us_states))  # e.g., Income
+us_states['var2'] = np.random.uniform(0, 100, len(us_states))  # e.g., Education
+
+# Classify into 3x3 bins
+us_states['var1_class'] = pd.qcut(us_states['var1'], q=3, labels=[0, 1, 2])
+us_states['var2_class'] = pd.qcut(us_states['var2'], q=3, labels=[0, 1, 2])
+
+# Create combined class (0-8)
+us_states['bivar_class'] = (us_states['var1_class'].astype(int) * 3 + 
+                            us_states['var2_class'].astype(int))
+
+# Define bivariate color scheme
+# Rows = var1 (low to high), Columns = var2 (low to high)
+bivar_colors = [
+    '#e8e8e8', '#b8d6be', '#73ae80',  # Low var1
+    '#d3b0c3', '#9972af', '#5a3d99',  # Med var1
+    '#c85a5a', '#985356', '#574249'   # High var1
+]
+
+# Create colormap
+bivar_cmap = ListedColormap(bivar_colors)
+
+# Plot
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(column='bivar_class',
+              cmap=bivar_cmap,
+              edgecolor='black',
+              linewidth=0.5,
+              ax=ax,
+              legend=False)
+
+ax.set_title('Bivariate Choropleth: Income × Education',
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+
+# Create custom legend (3x3 grid)
+from matplotlib.patches import Rectangle
+
+# Add legend box
+legend_ax = fig.add_axes([0.15, 0.15, 0.15, 0.15])
+legend_ax.set_xlim([0, 3])
+legend_ax.set_ylim([0, 3])
+
+# Draw 3x3 grid
+for i in range(3):
+    for j in range(3):
+        color_idx = i * 3 + j
+        rect = Rectangle((j, i), 1, 1, 
+                        facecolor=bivar_colors[color_idx],
+                        edgecolor='black', linewidth=1)
+        legend_ax.add_patch(rect)
+
+# Labels
+legend_ax.text(1.5, -0.5, 'Education →', ha='center', fontsize=11, fontweight='bold')
+legend_ax.text(-0.7, 1.5, 'Income\n↑', ha='center', va='center', 
+              fontsize=11, fontweight='bold', rotation=90)
+
+legend_ax.set_xlim([0, 3])
+legend_ax.set_ylim([0, 3])
+legend_ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Diverging Bivariate:**
+
+```python
+# For data with meaningful midpoints
+# e.g., Change in Variable 1 vs Change in Variable 2
+
+# Diverging bivariate colors (9 classes)
+div_bivar_colors = [
+    '#3b4994', '#8c62aa', '#e47eb4',  # Decrease in both → Increase in var2
+    '#5698b9', '#a5a5a5', '#e88e2e',  # No change var1, varying var2
+    '#00796b', '#b8c769', '#f4c72e'   # Increase in both
+]
+
+# Same plotting approach as above
+```
+
+**Advantages:**
+
+✅ Show relationships between variables
+✅ Reveal spatial patterns in correlations
+✅ More information in single map
+
+**Disadvantages:**
+
+❌ Complex to interpret
+❌ Requires legend explanation
+❌ Not colorblind-friendly
+❌ Harder for general audiences
+
+**Alternative: Small Multiples**
+
+```python
+# Often clearer than bivariate
+fig, axes = plt.subplots(1, 2, figsize=(18, 7))
+
+us_states.plot(column='var1', cmap='Blues', legend=True,
+              ax=axes[0], edgecolor='black', linewidth=0.5)
+axes[0].set_title('Income', fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+us_states.plot(column='var2', cmap='Greens', legend=True,
+              ax=axes[1], edgecolor='black', linewidth=0.5)
+axes[1].set_title('Education', fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Side-by-Side Comparison (Often Clearer!)',
+            fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**When to Use:**
+- Research/analysis contexts
+- Sophisticated audiences
+- Exploring variable relationships
+- When small multiples won't fit
+
+---
+
+## Small Multiples for Maps
+
+**Comparing regions or time periods side-by-side**
+
+**What are Small Multiples?**
+
+**Small multiples** (also called trellis charts or panel charts) show multiple related maps in a grid layout, allowing easy comparison across categories or time periods.
+
+**When to Use:**
+- Compare time periods
+- Compare regions
+- Show multiple related variables
+- Alternative to animation
+
+**Time Series Small Multiples:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Load states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate data for 6 years
+years = [2018, 2019, 2020, 2021, 2022, 2023]
+np.random.seed(42)
+
+fig, axes = plt.subplots(2, 3, figsize=(20, 12))
+
+for ax, year in zip(axes.flat, years):
+    # Simulate different values each year
+    us_states['value'] = np.random.randint(50, 150, len(us_states))
+    
+    us_states.plot(
+        column='value',
+        cmap='YlOrRd',
+        legend=False,
+        edgecolor='black',
+        linewidth=0.5,
+        ax=ax,
+        vmin=50,
+        vmax=150
+    )
+    
+    ax.set_title(f'Year {year}', fontsize=14, fontweight='bold')
+    ax.axis('off')
+
+# Add shared colorbar
+sm = plt.cm.ScalarMappable(cmap='YlOrRd', norm=plt.Normalize(vmin=50, vmax=150))
+sm._A = []
+cbar = fig.colorbar(sm, ax=axes, orientation='horizontal', 
+                   fraction=0.05, pad=0.05, aspect=30)
+cbar.set_label('Value', fontsize=12)
+
+plt.suptitle('Regional Values Over Time (Small Multiples)', 
+            fontsize=18, fontweight='bold', y=0.98)
+plt.tight_layout()
+plt.show()
+```
+
+**Comparing Different Variables:**
+
+```python
+import matplotlib.pyplot as plt
+
+# Generate multiple variables
+variables = ['Population', 'GDP', 'Education', 'Healthcare']
+np.random.seed(42)
+
+for var in variables:
+    us_states[var] = np.random.uniform(0, 100, len(us_states))
+
+# Plot each variable
+fig, axes = plt.subplots(2, 2, figsize=(18, 14))
+
+for ax, var in zip(axes.flat, variables):
+    us_states.plot(
+        column=var,
+        cmap='viridis',
+        legend=True,
+        edgecolor='black',
+        linewidth=0.5,
+        ax=ax
+    )
+    ax.set_title(var, fontsize=14, fontweight='bold')
+    ax.axis('off')
+
+plt.suptitle('Comparing Multiple Variables', fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Regional Comparison:**
+
+```python
+# Compare different regions
+continents = ['Africa', 'Asia', 'Europe', 'North America', 'South America', 'Oceania']
+
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+fig, axes = plt.subplots(2, 3, figsize=(20, 12))
+
+for ax, continent in zip(axes.flat, continents):
+    region = world[world['continent'] == continent]
+    
+    region.plot(
+        column='gdp_md_est',
+        cmap='YlGn',
+        legend=False,
+        edgecolor='black',
+        linewidth=0.5,
+        ax=ax
+    )
+    
+    ax.set_title(continent, fontsize=14, fontweight='bold')
+    ax.axis('off')
+
+plt.suptitle('GDP by Continent', fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+✅ **Use same color scale** across all panels for comparison
+✅ **Keep layouts consistent** (same size, orientation)
+✅ **Label clearly** with titles
+✅ **Limit panel count** (9-12 maximum)
+✅ **Arrange logically** (time: left to right, categories: by importance)
+
+**Advantages over Animation:**
+- See all at once (no memory required)
+- Easy to compare specific time points
+- Works in print
+- No technology requirements
+
+---
+
+## Network Maps
+
+**Visualizing routes and connections**
+
+**What are Network Maps?**
+
+**Network maps** show connections between locations, visualizing relationships, routes, or flows in a network structure.
+
+**Use Cases:**
+- Transportation networks
+- Communication networks
+- Social networks (geographic)
+- Supply chains
+- Trade routes
+
+**Basic Network Map:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Create nodes (cities)
+cities = gpd.GeoDataFrame({
+    'city': ['NYC', 'LA', 'Chicago', 'Houston', 'Phoenix', 'Dallas'],
+    'geometry': gpd.points_from_xy(
+        [-74.0, -118.2, -87.6, -95.4, -112.1, -96.8],
+        [40.7, 34.0, 41.9, 29.8, 33.4, 32.8]
+    )
+}, crs='EPSG:4326')
+
+# Create edges (connections)
+connections = [
+    ('NYC', 'LA'), ('NYC', 'Chicago'), ('NYC', 'Dallas'),
+    ('LA', 'Phoenix'), ('LA', 'Dallas'),
+    ('Chicago', 'Houston'), ('Houston', 'Dallas')
+]
+
+# Load US for context
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA']
+
+# Plot
+fig, ax = plt.subplots(figsize=(16, 10))
+
+# Base map
+us_states.plot(ax=ax, color='lightgray', edgecolor='white', linewidth=0.5)
+
+# Draw connections
+for origin_city, dest_city in connections:
+    origin = cities[cities['city'] == origin_city].geometry.iloc[0]
+    dest = cities[cities['city'] == dest_city].geometry.iloc[0]
+    
+    ax.plot([origin.x, dest.x], [origin.y, dest.y], 
+           'b-', linewidth=2, alpha=0.5)
+
+# Draw nodes
+cities.plot(ax=ax, color='red', markersize=200, 
+           edgecolor='black', linewidth=2, zorder=5)
+
+# Labels
+for idx, row in cities.iterrows():
+    ax.annotate(row['city'], 
+               xy=(row.geometry.x, row.geometry.y),
+               xytext=(5, 5),
+               textcoords='offset points',
+               fontsize=11,
+               fontweight='bold')
+
+ax.set_title('Transportation Network', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Weighted Network (Edge Thickness = Traffic):**
+
+```python
+# Add weights to connections
+weighted_connections = pd.DataFrame({
+    'origin': ['NYC', 'NYC', 'NYC', 'LA', 'LA', 'Chicago', 'Houston'],
+    'dest': ['LA', 'Chicago', 'Dallas', 'Phoenix', 'Dallas', 'Houston', 'Dallas'],
+    'traffic': [100, 80, 60, 50, 70, 40, 55]
+})
+
+fig, ax = plt.subplots(figsize=(16, 10))
+
+us_states.plot(ax=ax, color='lightgray', edgecolor='white', linewidth=0.5)
+
+# Draw weighted connections
+for idx, row in weighted_connections.iterrows():
+    origin = cities[cities['city'] == row['origin']].geometry.iloc[0]
+    dest = cities[cities['city'] == row['dest']].geometry.iloc[0]
+    
+    ax.plot([origin.x, dest.x], [origin.y, dest.y], 
+           'b-', linewidth=row['traffic']/10, alpha=0.6)
+
+cities.plot(ax=ax, color='red', markersize=200, 
+           edgecolor='black', linewidth=2, zorder=5)
+
+ax.set_title('Weighted Network (Line Width = Traffic Volume)', 
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Network with folium (Interactive):**
+
+```python
+import folium
+
+# Create map
+m = folium.Map(location=[37, -95], zoom_start=4, tiles='CartoDB positron')
+
+# Add edges
+for idx, row in weighted_connections.iterrows():
+    origin = cities[cities['city'] == row['origin']].geometry.iloc[0]
+    dest = cities[cities['city'] == row['dest']].geometry.iloc[0]
+    
+    folium.PolyLine(
+        locations=[[origin.y, origin.x], [dest.y, dest.x]],
+        color='blue',
+        weight=row['traffic']/10,
+        opacity=0.7,
+        popup=f"{row['origin']} → {row['dest']}: {row['traffic']}"
+    ).add_to(m)
+
+# Add nodes
+for idx, row in cities.iterrows():
+    folium.CircleMarker(
+        location=[row.geometry.y, row.geometry.x],
+        radius=8,
+        popup=row['city'],
+        color='red',
+        fill=True,
+        fillColor='red',
+        fillOpacity=0.8
+    ).add_to(m)
+
+m.save('network_map.html')
+```
+
+**Best Practices:**
+
+✅ Use node size to encode importance
+✅ Use edge thickness to encode flow/weight
+✅ Limit connections shown (show top N)
+✅ Use curved lines to reduce overlap
+✅ Add directionality when relevant
+
+---
+
+## Trajectory Maps
+
+**Showing paths over time**
+
+**What are Trajectory Maps?**
+
+**Trajectory maps** show movement paths of objects/people over time, revealing patterns in spatial-temporal behavior.
+
+**Use Cases:**
+- Animal migration
+- Hurricane tracks
+- Vehicle routing
+- Person movement
+- Ship routes
+
+**Single Trajectory:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Generate hurricane track
+np.random.seed(42)
+n_points = 20
+
+lons = np.linspace(-80, -50, n_points) + np.random.randn(n_points) * 2
+lats = np.linspace(25, 40, n_points) + np.random.randn(n_points) * 1
+times = pd.date_range('2024-08-01', periods=n_points, freq='6H')
+categories = np.clip(np.random.randint(1, 5, n_points), 1, 5)
+
+track = pd.DataFrame({
+    'lon': lons,
+    'lat': lats,
+    'time': times,
+    'category': categories
+})
+
+# Plot
+fig, ax = plt.subplots(figsize=(14, 10))
+
+# Plot track
+ax.plot(track['lon'], track['lat'], 'b-', linewidth=2, alpha=0.7)
+
+# Plot points with category colors
+scatter = ax.scatter(track['lon'], track['lat'], 
+                    c=track['category'], 
+                    s=100,
+                    cmap='YlOrRd',
+                    edgecolor='black',
+                    linewidth=1,
+                    zorder=5)
+
+# Annotate start and end
+ax.scatter(track['lon'].iloc[0], track['lat'].iloc[0], 
+          s=300, marker='o', color='green', 
+          edgecolor='black', linewidth=2, zorder=6, label='Start')
+ax.scatter(track['lon'].iloc[-1], track['lat'].iloc[-1], 
+          s=300, marker='X', color='red', 
+          edgecolor='black', linewidth=2, zorder=6, label='End')
+
+# Colorbar
+cbar = plt.colorbar(scatter, ax=ax)
+cbar.set_label('Hurricane Category', fontsize=11)
+
+ax.set_title('Hurricane Track (August 2024)', fontsize=16, fontweight='bold')
+ax.set_xlabel('Longitude', fontsize=12)
+ax.set_ylabel('Latitude', fontsize=12)
+ax.legend(fontsize=11)
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Multiple Trajectories:**
+
+```python
+# Generate multiple vehicle tracks
+n_vehicles = 5
+n_timesteps = 30
+
+fig, ax = plt.subplots(figsize=(12, 10))
+
+colors = plt.cm.tab10(np.linspace(0, 1, n_vehicles))
+
+for i in range(n_vehicles):
+    # Random walk
+    np.random.seed(i)
+    start_lon, start_lat = -95 + np.random.randn() * 5, 30 + np.random.randn() * 5
+    
+    lons = [start_lon]
+    lats = [start_lat]
+    
+    for t in range(n_timesteps):
+        lons.append(lons[-1] + np.random.randn() * 0.3)
+        lats.append(lats[-1] + np.random.randn() * 0.3)
+    
+    ax.plot(lons, lats, color=colors[i], linewidth=2, 
+           alpha=0.6, label=f'Vehicle {i+1}')
+    ax.scatter(lons[0], lats[0], s=100, color=colors[i], 
+              edgecolor='black', linewidth=2, zorder=5)
+
+ax.set_title('Vehicle Trajectories', fontsize=16, fontweight='bold')
+ax.set_xlabel('Longitude', fontsize=12)
+ax.set_ylabel('Latitude', fontsize=12)
+ax.legend(fontsize=10)
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Trajectory with Time Animation:**
+
+```python
+import plotly.graph_objects as go
+
+# Create animated trajectory
+fig = go.Figure()
+
+# Add trajectory line
+fig.add_trace(go.Scattergeo(
+    lon=track['lon'],
+    lat=track['lat'],
+    mode='lines',
+    line=dict(width=2, color='blue'),
+    name='Track'
+))
+
+# Add animated point
+frames = []
+for i in range(len(track)):
+    frames.append(go.Frame(
+        data=[go.Scattergeo(
+            lon=track['lon'][:i+1],
+            lat=track['lat'][:i+1],
+            mode='markers+lines',
+            marker=dict(size=10, color='red'),
+            line=dict(width=2, color='blue')
+        )],
+        name=str(i)
+    ))
+
+fig.frames = frames
+
+fig.update_layout(
+    title='Hurricane Track Animation',
+    geo=dict(
+        scope='usa',
+        projection_type='albers usa',
+        showland=True,
+        landcolor='lightgray'
+    ),
+    updatemenus=[{
+        'type': 'buttons',
+        'showactive': False,
+        'buttons': [
+            {'label': 'Play', 'method': 'animate', 
+             'args': [None, {'frame': {'duration': 500}}]},
+            {'label': 'Pause', 'method': 'animate',
+             'args': [[None], {'frame': {'duration': 0}, 'mode': 'immediate'}]}
+        ]
+    }]
+)
+
+fig.show()
+```
+
+**Best Practices:**
+
+✅ Show direction (arrows or gradient)
+✅ Mark start and end points
+✅ Use color for attributes (category, speed, etc.)
+✅ Consider time stamps on path
+✅ Use animation for complex paths
+
+---
+
+## Composite Maps
+
+**Layering multiple data types**
+
+**What are Composite Maps?**
+
+**Composite maps** combine multiple geographic layers (points, lines, polygons, rasters) to show complex spatial relationships.
+
+**When to Use:**
+- Show multiple related datasets
+- Context + detail
+- Multi-dimensional analysis
+
+**Points + Polygons:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Load states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate state values
+np.random.seed(42)
+us_states['unemployment'] = np.random.uniform(3, 8, len(us_states))
+
+# Generate city points
+cities = gpd.GeoDataFrame({
+    'city': ['New York', 'Los Angeles', 'Chicago', 'Houston'],
+    'population': [8336000, 3979000, 2693000, 2320000],
+    'geometry': gpd.points_from_xy(
+        [-74.0, -118.2, -87.6, -95.4],
+        [40.7, 34.0, 41.9, 29.8]
+    )
+}, crs='EPSG:4326')
+
+# Create composite map
+fig, ax = plt.subplots(figsize=(16, 10))
+
+# Layer 1: Choropleth (unemployment)
+us_states.plot(column='unemployment', cmap='YlOrRd', 
+              legend=True, ax=ax, edgecolor='black', 
+              linewidth=0.5, alpha=0.7)
+
+# Layer 2: Proportional symbols (population)
+cities.plot(ax=ax, markersize=cities['population']/10000,
+           color='blue', alpha=0.7, edgecolor='white',
+           linewidth=2, zorder=5)
+
+# Layer 3: Labels
+for idx, row in cities.iterrows():
+    ax.annotate(row['city'], 
+               xy=(row.geometry.x, row.geometry.y),
+               xytext=(5, 5), textcoords='offset points',
+               fontsize=10, fontweight='bold',
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.7))
+
+ax.set_title('Composite Map: Unemployment (choropleth) + Population (bubbles)',
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Multiple Layers with Different Geometries:**
+
+```python
+# Simulate highways (lines)
+highway_coords = [
+    [(-100, 30), (-95, 32), (-90, 33)],  # I-10
+    [(-105, 40), (-100, 40), (-95, 40)],  # I-70
+]
+
+from shapely.geometry import LineString
+
+highways = gpd.GeoDataFrame({
+    'name': ['I-10', 'I-70'],
+    'geometry': [LineString(coords) for coords in highway_coords]
+}, crs='EPSG:4326')
+
+# Create comprehensive composite
+fig, ax = plt.subplots(figsize=(16, 10))
+
+# Layer 1: States (choropleth)
+us_states.plot(column='unemployment', cmap='YlOrRd', 
+              legend=False, ax=ax, edgecolor='gray', 
+              linewidth=0.5, alpha=0.5)
+
+# Layer 2: Highways (lines)
+highways.plot(ax=ax, color='darkred', linewidth=3, 
+             linestyle='--', zorder=3, label='Highways')
+
+# Layer 3: Cities (points)
+cities.plot(ax=ax, markersize=200, color='navy', 
+           edgecolor='white', linewidth=2, zorder=5, label='Cities')
+
+ax.set_title('Multi-Layer Composite Map', fontsize=16, fontweight='bold')
+ax.legend(fontsize=12, loc='lower left')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Interactive Composite with folium:**
+
+```python
+import folium
+from folium import plugins
+
+# Create base map
+m = folium.Map(location=[37, -95], zoom_start=5, tiles='CartoDB positron')
+
+# Layer 1: Choropleth
+folium.Choropleth(
+    geo_data=us_states,
+    data=us_states,
+    columns=['name', 'unemployment'],
+    key_on='feature.properties.name',
+    fill_color='YlOrRd',
+    fill_opacity=0.5,
+    line_opacity=0.2,
+    legend_name='Unemployment Rate (%)',
+    name='Unemployment'
+).add_to(m)
+
+# Layer 2: City markers
+for idx, row in cities.iterrows():
+    folium.CircleMarker(
+        location=[row.geometry.y, row.geometry.x],
+        radius=row['population']/1000000 * 5,
+        popup=f"{row['city']}: {row['population']:,}",
+        color='blue',
+        fill=True,
+        fillColor='blue',
+        fillOpacity=0.7
+    ).add_to(m)
+
+# Layer control
+folium.LayerControl().add_to(m)
+
+m.save('composite_interactive.html')
+```
+
+**Best Practices:**
+
+✅ Use transparency for overlapping layers
+✅ Control z-order (background to foreground)
+✅ Limit total layer count (3-5 maximum)
+✅ Use layer controls for interactive maps
+✅ Ensure color schemes don't conflict
+
+---
+
+## Map Annotations
+
+**Adding context with text, arrows, and highlights**
+
+**Why Annotate Maps?**
+
+**Annotations** add explanatory text, highlight important features, or guide the viewer's attention to specific areas.
+
+**Text Annotations:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+fig, ax = plt.subplots(figsize=(16, 10))
+
+us_states.plot(ax=ax, color='lightgray', edgecolor='black', linewidth=0.5)
+
+# Annotate specific locations
+annotations = [
+    {'text': 'West Coast\nHigh Tech Hub', 'xy': (-120, 37), 
+     'color': 'blue', 'size': 12},
+    {'text': 'Midwest\nManufacturing Belt', 'xy': (-90, 42), 
+     'color': 'green', 'size': 12},
+    {'text': 'Sun Belt\nGrowing Population', 'xy': (-97, 32), 
+     'color': 'orange', 'size': 12},
+]
+
+for annot in annotations:
+    ax.annotate(annot['text'], 
+               xy=annot['xy'],
+               fontsize=annot['size'],
+               fontweight='bold',
+               color=annot['color'],
+               ha='center',
+               bbox=dict(boxstyle='round,pad=0.5', 
+                        facecolor='white', 
+                        edgecolor=annot['color'], 
+                        linewidth=2))
+
+ax.set_title('US Regions with Annotations', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Arrows and Callouts:**
+
+```python
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(ax=ax, color='lightblue', edgecolor='black', linewidth=0.5)
+
+# Arrow annotation pointing to specific area
+ax.annotate('Hurricane Impact Zone', 
+           xy=(-85, 30),  # Point to
+           xytext=(-70, 35),  # Text location
+           fontsize=13,
+           fontweight='bold',
+           color='red',
+           arrowprops=dict(
+               arrowstyle='->',
+               color='red',
+               lw=3,
+               connectionstyle='arc3,rad=0.3'
+           ),
+           bbox=dict(boxstyle='round,pad=0.7', 
+                    facecolor='yellow',
+                    edgecolor='red',
+                    linewidth=2))
+
+ax.set_title('Map with Arrow Annotation', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Highlighting Regions:**
+
+```python
+fig, ax = plt.subplots(figsize=(14, 10))
+
+# Plot all states
+us_states.plot(ax=ax, color='lightgray', edgecolor='black', linewidth=0.5)
+
+# Highlight specific region
+highlight_states = ['California', 'Oregon', 'Washington']  # West Coast
+# Note: For naturalearth_lowres, use actual country names
+# This is conceptual - adjust based on your data
+
+# Add circle to highlight area
+from matplotlib.patches import Circle
+highlight = Circle((-120, 40), 5, color='red', fill=False, 
+                  linewidth=3, linestyle='--', label='Focus Area')
+ax.add_patch(highlight)
+
+# Add text
+ax.text(-120, 50, 'FOCUS REGION', fontsize=14, 
+       fontweight='bold', color='red', ha='center')
+
+ax.set_title('Highlighting Specific Regions', fontsize=16, fontweight='bold')
+ax.legend(fontsize=12)
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Scale Bar and North Arrow:**
+
+```python
+from matplotlib.patches import FancyArrowPatch, Rectangle
+from matplotlib_scalebar.scalebar import ScaleBar
+
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(ax=ax, color='lightgreen', edgecolor='black', linewidth=0.5)
+
+# Add scale bar
+scalebar = ScaleBar(111000, location='lower right')  # 111km per degree
+ax.add_artist(scalebar)
+
+# Add north arrow (manual)
+arrow = FancyArrowPatch((-70, 45), (-70, 48),
+                       arrowstyle='->', mutation_scale=30,
+                       linewidth=3, color='black')
+ax.add_patch(arrow)
+ax.text(-70, 49, 'N', fontsize=16, fontweight='bold', ha='center')
+
+ax.set_title('Map with Scale Bar and North Arrow', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+✅ Use annotations sparingly (only key points)
+✅ Ensure text is readable (size, contrast)
+✅ Use arrows to clearly point to features
+✅ Box important text for visibility
+✅ Include scale bar for reference maps
 
 ---
 
 ## Part 3 Summary
 
-✅ Flow and animation
-✅ Clustering techniques
-✅ Advanced aggregation
-✅ Temporal-spatial combinations
+**You've mastered advanced geospatial techniques:**
+
+**Movement & Flow:**
+✅ Flow maps with proportional lines
+✅ Sankey diagrams for geographic flows
+✅ Animated maps for temporal patterns
+✅ Trajectory visualization
+
+**Analysis Techniques:**
+✅ Spatial clustering (DBSCAN, K-means)
+✅ Spatial autocorrelation (Moran's I, LISA)
+✅ Hot spot analysis (Getis-Ord Gi*)
+✅ Hexbin aggregation
+
+**Advanced Visualizations:**
+✅ Voronoi diagrams for territories
+✅ Contour maps for continuous surfaces
+✅ Cartograms for data-weighted geography
+✅ Dot density maps
+
+**Specialized Maps:**
+✅ Proportional symbol maps
+✅ Bivariate choropleths
+✅ Small multiples for comparison
+✅ Network and composite maps
+
+**Key Takeaways:**
+
+⚠️ **Avoid 3D** for data values (use 2D + color)
+✅ **Hexagons > Squares** for spatial binning
+✅ **Normalize by population/area** for rates
+✅ **Small multiples > Animation** for comparison
+✅ **Annotations add clarity** but use sparingly
+
+**When to Use Each:**
+
+| Technique | Best For | Avoid For |
+|-----------|----------|-----------|
+| Flow maps | Migration, trade routes | Static patterns |
+| Animations | Temporal changes | Print, comparison |
+| Clustering | Finding patterns | Prescribed regions |
+| Hexbin | Point density | Individual points |
+| Voronoi | Service areas | Weighted distances |
+| Contours | Continuous surfaces | Discrete data |
+| Cartograms | Emphasizing data | Geography recognition |
+| Dot density | Distribution within regions | Aggregate totals |
+
+**Next:** Part 4 - Real-World Applications & Best Practices
 
 ---
