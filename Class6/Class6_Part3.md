@@ -9,24 +9,71 @@
 # ═══════════════════════════════════════════════════════════════
 
 ## Flow Maps
-## Sankey on Maps
+
+**Visualize movement between locations**
+
+```python
+# Origin-destination with lines
+for origin, dest in routes:
+    folium.PolyLine([origin, dest], color='blue', weight=2).add_to(m)
+```
+
+---
+
 ## Animated Maps
-## Time Series on Maps
+
+**Show change over time**
+
+```python
+# Time slider with folium.plugins
+from folium.plugins import TimestampedGeoJson
+
+# Animate points over time
+```
+
+---
+
 ## Spatial Clustering
-## Spatial Autocorrelation
+
+**Group nearby points**
+
+```python
+from sklearn.cluster import DBSCAN
+
+coords = np.array(list(zip(gdf.geometry.x, gdf.geometry.y)))
+clusters = DBSCAN(eps=0.5, min_samples=5).fit(coords)
+gdf['cluster'] = clusters.labels_
+```
+
+---
+
 ## Hexbin Aggregation
-## Voronoi Diagrams
-## Contour Maps
-## 3D Geographic Visualization
-## Cartograms
-## Dot Density Maps
-## Proportional Symbol Maps
-## Bivariate Choropleth
+
+**Better than square grids**
+
+```python
+gdf.plot(kind='hex', x='lon', y='lat', C='value', reduce_C_function=np.sum)
+```
+
+---
+
 ## Small Multiples for Maps
-## Network Maps
-## Trajectory Maps
-## Composite Maps
-## Map Annotations
+
+**Compare regions or time periods**
+
+```python
+fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+for i, year in enumerate(years):
+    data[data['year']==year].plot(ax=axes.flat[i], column='value')
+```
+
+---
+
 ## Part 3 Summary
+
+✅ Flow and animation
+✅ Clustering techniques
+✅ Advanced aggregation
+✅ Temporal-spatial combinations
 
 ---
