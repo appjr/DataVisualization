@@ -507,4 +507,96 @@ plt.show()
 
 ---
 
-**Batch 1 of 4 complete (5 slides). Committing and continuing...**
+## Coordinate Reference Systems (CRS)
+
+**CRS define how coordinates map to locations on Earth**
+
+**Key Concepts:**
+- **Geographic CRS**: Lat/lon in degrees (WGS84, NAD83)
+- **Projected CRS**: X/Y in meters (UTM, State Plane)
+- **EPSG Codes**: Standard IDs (e.g., EPSG:4326 = WGS84)
+
+**Common CRS:**
+- EPSG:4326 - WGS84 (GPS, web standard)
+- EPSG:3857 - Web Mercator (web maps)
+- EPSG:2163 - US National Atlas (equal area)
+
+**Example:**
+```python
+import geopandas as gpd
+
+# Check CRS
+print(gdf.crs)
+
+# Transform to different CRS
+gdf_projected = gdf.to_crs('EPSG:3857')  # Web Mercator
+
+# Ensure matching CRS before operations
+if gdf1.crs != gdf2.crs:
+    gdf2 = gdf2.to_crs(gdf1.crs)
+```
+
+---
+
+## Working with Shapefiles
+
+**Shapefiles are the standard format for vector geographic data**
+
+**Loading:**
+```python
+import geopandas as gpd
+
+# Read shapefile
+gdf = gpd.read_file('path/to/file.shp')
+
+# Explore
+print(gdf.head())
+print(gdf.columns)
+print(gdf.geometry.type.unique())
+```
+
+---
+
+## Spatial Joins
+
+**Combine datasets based on location**
+
+**Example:**
+```python
+# Points in polygons
+customers_gdf  # Points
+states_gdf     # Polygons
+
+# Join: which state is each customer in?
+joined = gpd.sjoin(customers_gdf, states_gdf, how='left', predicate='within')
+```
+
+---
+
+## Color Schemes for Maps
+
+**Sequential:** Light to dark (0 to high)
+- YlOrRd, Blues, Greens
+
+**Diverging:** Two hues from center
+- RdBu, PiYG (for +/-)
+
+**Rule:** Use ColorBrewer schemes!
+
+---
+
+## Classification Methods
+
+**How to bin continuous data for colors**
+
+**Methods:**
+- **Quantiles**: Equal number of features per bin
+- **Equal Interval**: Equal value ranges
+- **Natural Breaks** (Jenks): Minimize within-group variance
+
+**Example:**
+```python
+gdf.plot(column='value', scheme='quantiles', k=5, cmap='YlOrRd', legend=True)
+```
+
+---
