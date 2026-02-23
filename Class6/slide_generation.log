@@ -1,0 +1,2855 @@
+==========================================
+CLASS 6 - SMART SLIDE GENERATOR
+==========================================
+Checking for existing slides...
+Found       13 existing slides
+Will generate 67 missing slides
+==========================================
+
+Starting generation of missing slides...
+==========================================
+⏭️  Slide 1 exists - skipping
+⏭️  Slide 2 exists - skipping
+
+[3/80] Generating slide 3...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 3...
+✅ Content extracted (900 characters)
+🎨 Generating slide 3 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_003_final.png
+
+================================================================================
+✨ Slide 3 image generated!
+📄 File: Class6/slide_images/slide_003_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 3 generated (1 new, 2 skipped)
+
+[4/80] Generating slide 4...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 4...
+✅ Content extracted (864 characters)
+🎨 Generating slide 4 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_004_final.png
+
+================================================================================
+✨ Slide 4 image generated!
+📄 File: Class6/slide_images/slide_004_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 4 generated (2 new, 2 skipped)
+⏭️  Slide 5 exists - skipping
+⏭️  Slide 6 exists - skipping
+⏭️  Slide 7 exists - skipping
+
+[8/80] Generating slide 8...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 8...
+✅ Content extracted (1916 characters)
+🎨 Generating slide 8 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_008_final.png
+
+================================================================================
+✨ Slide 8 image generated!
+📄 File: Class6/slide_images/slide_008_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 8 generated (3 new, 5 skipped)
+⏭️  Slide 9 exists - skipping
+
+[10/80] Generating slide 10...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 10...
+✅ Content extracted (1925 characters)
+🎨 Generating slide 10 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_010_final.png
+
+================================================================================
+✨ Slide 10 image generated!
+📄 File: Class6/slide_images/slide_010_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 10 generated (4 new, 6 skipped)
+
+📦 Committing progress...
+[main 70bfa88] Generate slides batch (up to slide 10) - 4 new slides
+ 16 files changed, 613 insertions(+), 117 deletions(-)
+ create mode 100644 Class6/slide_002_image_url.txt
+ create mode 100644 Class6/slide_006_image_url.txt
+ create mode 100644 Class6/slide_008_image_url.txt
+ create mode 100644 Class6/slide_010_image_url.txt
+ create mode 100644 Class6/slide_041_image_url.txt
+ create mode 100644 Class6/slide_images/slide_002_final.png
+ create mode 100644 Class6/slide_images/slide_006_final.png
+ create mode 100644 Class6/slide_images/slide_008_final.png
+ create mode 100644 Class6/slide_images/slide_010_final.png
+ create mode 100644 Class6/slide_images/slide_041_final.png
+✅ Checkpoint at slide 10
+⏭️  Slide 11 exists - skipping
+
+[12/80] Generating slide 12...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 12...
+✅ Content extracted (691 characters)
+🎨 Generating slide 12 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_012_final.png
+
+================================================================================
+✨ Slide 12 image generated!
+📄 File: Class6/slide_images/slide_012_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 12 generated (5 new, 7 skipped)
+⏭️  Slide 13 exists - skipping
+
+[14/80] Generating slide 14...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 14...
+✅ Content extracted (280 characters)
+🎨 Generating slide 14 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_014_final.png
+
+================================================================================
+✨ Slide 14 image generated!
+📄 File: Class6/slide_images/slide_014_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 14 generated (6 new, 8 skipped)
+⏭️  Slide 15 exists - skipping
+
+[16/80] Generating slide 16...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 16...
+✅ Content extracted (345 characters)
+🎨 Generating slide 16 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_016_final.png
+
+================================================================================
+✨ Slide 16 image generated!
+📄 File: Class6/slide_images/slide_016_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 16 generated (7 new, 9 skipped)
+⏭️  Slide 17 exists - skipping
+
+[18/80] Generating slide 18...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 18...
+✅ Content extracted (336 characters)
+🎨 Generating slide 18 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_018_final.png
+
+================================================================================
+✨ Slide 18 image generated!
+📄 File: Class6/slide_images/slide_018_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 18 generated (8 new, 10 skipped)
+⏭️  Slide 19 exists - skipping
+
+[20/80] Generating slide 20...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 20...
+✅ Content extracted (249 characters)
+🎨 Generating slide 20 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_020_final.png
+
+================================================================================
+✨ Slide 20 image generated!
+📄 File: Class6/slide_images/slide_020_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 20 generated (9 new, 11 skipped)
+
+📦 Committing progress...
+[main 4db5a74] Generate slides batch (up to slide 20) - 9 new slides
+ 10 files changed, 335 insertions(+)
+ create mode 100644 Class6/slide_012_image_url.txt
+ create mode 100644 Class6/slide_014_image_url.txt
+ create mode 100644 Class6/slide_016_image_url.txt
+ create mode 100644 Class6/slide_018_image_url.txt
+ create mode 100644 Class6/slide_020_image_url.txt
+ create mode 100644 Class6/slide_images/slide_012_final.png
+ create mode 100644 Class6/slide_images/slide_014_final.png
+ create mode 100644 Class6/slide_images/slide_016_final.png
+ create mode 100644 Class6/slide_images/slide_018_final.png
+ create mode 100644 Class6/slide_images/slide_020_final.png
+✅ Checkpoint at slide 20
+
+[21/80] Generating slide 21...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 21...
+✅ Content extracted (1685 characters)
+🎨 Generating slide 21 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_021_final.png
+
+================================================================================
+✨ Slide 21 image generated!
+📄 File: Class6/slide_images/slide_021_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 21 generated (10 new, 11 skipped)
+
+[22/80] Generating slide 22...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 22...
+✅ Content extracted (2530 characters)
+🎨 Generating slide 22 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_022_final.png
+
+================================================================================
+✨ Slide 22 image generated!
+📄 File: Class6/slide_images/slide_022_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 22 generated (11 new, 11 skipped)
+
+[23/80] Generating slide 23...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 23...
+✅ Content extracted (1863 characters)
+🎨 Generating slide 23 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_023_final.png
+
+================================================================================
+✨ Slide 23 image generated!
+📄 File: Class6/slide_images/slide_023_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 23 generated (12 new, 11 skipped)
+
+[24/80] Generating slide 24...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 24...
+✅ Content extracted (3350 characters)
+🎨 Generating slide 24 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_024_final.png
+
+================================================================================
+✨ Slide 24 image generated!
+📄 File: Class6/slide_images/slide_024_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 24 generated (13 new, 11 skipped)
+
+[25/80] Generating slide 25...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 25...
+✅ Content extracted (3098 characters)
+🎨 Generating slide 25 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_025_final.png
+
+================================================================================
+✨ Slide 25 image generated!
+📄 File: Class6/slide_images/slide_025_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 25 generated (14 new, 11 skipped)
+
+[26/80] Generating slide 26...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 26...
+✅ Content extracted (3177 characters)
+🎨 Generating slide 26 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_026_final.png
+
+================================================================================
+✨ Slide 26 image generated!
+📄 File: Class6/slide_images/slide_026_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 26 generated (15 new, 11 skipped)
+
+[27/80] Generating slide 27...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 27...
+✅ Content extracted (1703 characters)
+🎨 Generating slide 27 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_027_final.png
+
+================================================================================
+✨ Slide 27 image generated!
+📄 File: Class6/slide_images/slide_027_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 27 generated (16 new, 11 skipped)
+
+[28/80] Generating slide 28...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 28...
+✅ Content extracted (2398 characters)
+🎨 Generating slide 28 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_028_final.png
+
+================================================================================
+✨ Slide 28 image generated!
+📄 File: Class6/slide_images/slide_028_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 28 generated (17 new, 11 skipped)
+
+[29/80] Generating slide 29...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 29...
+✅ Content extracted (2531 characters)
+🎨 Generating slide 29 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_029_final.png
+
+================================================================================
+✨ Slide 29 image generated!
+📄 File: Class6/slide_images/slide_029_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 29 generated (18 new, 11 skipped)
+
+[30/80] Generating slide 30...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 30...
+✅ Content extracted (1348 characters)
+🎨 Generating slide 30 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_030_final.png
+
+================================================================================
+✨ Slide 30 image generated!
+📄 File: Class6/slide_images/slide_030_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 30 generated (19 new, 11 skipped)
+
+📦 Committing progress...
+[main ab85e29] Generate slides batch (up to slide 30) - 19 new slides
+ 20 files changed, 1435 insertions(+), 28 deletions(-)
+ create mode 100644 Class6/slide_021_image_url.txt
+ create mode 100644 Class6/slide_023_image_url.txt
+ create mode 100644 Class6/slide_024_image_url.txt
+ create mode 100644 Class6/slide_025_image_url.txt
+ create mode 100644 Class6/slide_026_image_url.txt
+ create mode 100644 Class6/slide_027_image_url.txt
+ create mode 100644 Class6/slide_028_image_url.txt
+ create mode 100644 Class6/slide_029_image_url.txt
+ create mode 100644 Class6/slide_030_image_url.txt
+ create mode 100644 Class6/slide_images/slide_021_final.png
+ create mode 100644 Class6/slide_images/slide_023_final.png
+ create mode 100644 Class6/slide_images/slide_024_final.png
+ create mode 100644 Class6/slide_images/slide_025_final.png
+ create mode 100644 Class6/slide_images/slide_026_final.png
+ create mode 100644 Class6/slide_images/slide_027_final.png
+ create mode 100644 Class6/slide_images/slide_028_final.png
+ create mode 100644 Class6/slide_images/slide_029_final.png
+ create mode 100644 Class6/slide_images/slide_030_final.png
+✅ Checkpoint at slide 30
+
+[31/80] Generating slide 31...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 31...
+✅ Content extracted (961 characters)
+🎨 Generating slide 31 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_031_final.png
+
+================================================================================
+✨ Slide 31 image generated!
+📄 File: Class6/slide_images/slide_031_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 31 generated (20 new, 11 skipped)
+
+[32/80] Generating slide 32...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 32...
+⚠️  Slide 32 index 11 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 32 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_032_final.png
+
+================================================================================
+✨ Slide 32 image generated!
+📄 File: Class6/slide_images/slide_032_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 32 generated (21 new, 11 skipped)
+
+[33/80] Generating slide 33...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 33...
+⚠️  Slide 33 index 12 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 33 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_033_final.png
+
+================================================================================
+✨ Slide 33 image generated!
+📄 File: Class6/slide_images/slide_033_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 33 generated (22 new, 11 skipped)
+
+[34/80] Generating slide 34...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 34...
+⚠️  Slide 34 index 13 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 34 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_034_final.png
+
+================================================================================
+✨ Slide 34 image generated!
+📄 File: Class6/slide_images/slide_034_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 34 generated (23 new, 11 skipped)
+
+[35/80] Generating slide 35...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 35...
+⚠️  Slide 35 index 14 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 35 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_035_final.png
+
+================================================================================
+✨ Slide 35 image generated!
+📄 File: Class6/slide_images/slide_035_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 35 generated (24 new, 11 skipped)
+
+[36/80] Generating slide 36...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 36...
+⚠️  Slide 36 index 15 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 36 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_036_final.png
+
+================================================================================
+✨ Slide 36 image generated!
+📄 File: Class6/slide_images/slide_036_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 36 generated (25 new, 11 skipped)
+
+[37/80] Generating slide 37...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 37...
+⚠️  Slide 37 index 16 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 37 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_037_final.png
+
+================================================================================
+✨ Slide 37 image generated!
+📄 File: Class6/slide_images/slide_037_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 37 generated (26 new, 11 skipped)
+
+[38/80] Generating slide 38...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 38...
+⚠️  Slide 38 index 17 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 38 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_038_final.png
+
+================================================================================
+✨ Slide 38 image generated!
+📄 File: Class6/slide_images/slide_038_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 38 generated (27 new, 11 skipped)
+
+[39/80] Generating slide 39...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 39...
+⚠️  Slide 39 index 18 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 39 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_039_final.png
+
+================================================================================
+✨ Slide 39 image generated!
+📄 File: Class6/slide_images/slide_039_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 39 generated (28 new, 11 skipped)
+
+[40/80] Generating slide 40...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 40...
+⚠️  Slide 40 index 19 out of range (found 11 sections)
+✅ Content extracted (1682 characters)
+🎨 Generating slide 40 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_040_final.png
+
+================================================================================
+✨ Slide 40 image generated!
+📄 File: Class6/slide_images/slide_040_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 40 generated (29 new, 11 skipped)
+
+📦 Committing progress...
+[main aa9b8e0] Generate slides batch (up to slide 40) - 29 new slides
+ 20 files changed, 1132 insertions(+)
+ create mode 100644 Class6/slide_031_image_url.txt
+ create mode 100644 Class6/slide_032_image_url.txt
+ create mode 100644 Class6/slide_033_image_url.txt
+ create mode 100644 Class6/slide_034_image_url.txt
+ create mode 100644 Class6/slide_035_image_url.txt
+ create mode 100644 Class6/slide_036_image_url.txt
+ create mode 100644 Class6/slide_037_image_url.txt
+ create mode 100644 Class6/slide_038_image_url.txt
+ create mode 100644 Class6/slide_039_image_url.txt
+ create mode 100644 Class6/slide_040_image_url.txt
+ create mode 100644 Class6/slide_images/slide_031_final.png
+ create mode 100644 Class6/slide_images/slide_032_final.png
+ create mode 100644 Class6/slide_images/slide_033_final.png
+ create mode 100644 Class6/slide_images/slide_034_final.png
+ create mode 100644 Class6/slide_images/slide_035_final.png
+ create mode 100644 Class6/slide_images/slide_036_final.png
+ create mode 100644 Class6/slide_images/slide_037_final.png
+ create mode 100644 Class6/slide_images/slide_038_final.png
+ create mode 100644 Class6/slide_images/slide_039_final.png
+ create mode 100644 Class6/slide_images/slide_040_final.png
+✅ Checkpoint at slide 40
+
+[41/80] Generating slide 41...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 41...
+✅ Content extracted (3968 characters)
+🎨 Generating slide 41 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_041_final.png
+
+================================================================================
+✨ Slide 41 image generated!
+📄 File: Class6/slide_images/slide_041_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 41 generated (30 new, 11 skipped)
+
+[42/80] Generating slide 42...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 42...
+✅ Content extracted (2862 characters)
+🎨 Generating slide 42 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_042_final.png
+
+================================================================================
+✨ Slide 42 image generated!
+📄 File: Class6/slide_images/slide_042_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 42 generated (31 new, 11 skipped)
+
+[43/80] Generating slide 43...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 43...
+✅ Content extracted (3909 characters)
+🎨 Generating slide 43 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_043_final.png
+
+================================================================================
+✨ Slide 43 image generated!
+📄 File: Class6/slide_images/slide_043_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 43 generated (32 new, 11 skipped)
+
+[44/80] Generating slide 44...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 44...
+✅ Content extracted (4026 characters)
+🎨 Generating slide 44 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_044_final.png
+
+================================================================================
+✨ Slide 44 image generated!
+📄 File: Class6/slide_images/slide_044_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 44 generated (33 new, 11 skipped)
+
+[45/80] Generating slide 45...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 45...
+✅ Content extracted (4862 characters)
+🎨 Generating slide 45 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_045_final.png
+
+================================================================================
+✨ Slide 45 image generated!
+📄 File: Class6/slide_images/slide_045_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 45 generated (34 new, 11 skipped)
+
+[46/80] Generating slide 46...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 46...
+✅ Content extracted (4791 characters)
+🎨 Generating slide 46 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_046_final.png
+
+================================================================================
+✨ Slide 46 image generated!
+📄 File: Class6/slide_images/slide_046_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 46 generated (35 new, 11 skipped)
+
+[47/80] Generating slide 47...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 47...
+✅ Content extracted (4830 characters)
+🎨 Generating slide 47 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_047_final.png
+
+================================================================================
+✨ Slide 47 image generated!
+📄 File: Class6/slide_images/slide_047_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 47 generated (36 new, 11 skipped)
+
+[48/80] Generating slide 48...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 48...
+✅ Content extracted (3792 characters)
+🎨 Generating slide 48 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_048_final.png
+
+================================================================================
+✨ Slide 48 image generated!
+📄 File: Class6/slide_images/slide_048_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 48 generated (37 new, 11 skipped)
+
+[49/80] Generating slide 49...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 49...
+✅ Content extracted (5729 characters)
+🎨 Generating slide 49 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_049_final.png
+
+================================================================================
+✨ Slide 49 image generated!
+📄 File: Class6/slide_images/slide_049_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 49 generated (38 new, 11 skipped)
+
+[50/80] Generating slide 50...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 50...
+✅ Content extracted (2735 characters)
+🎨 Generating slide 50 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_050_final.png
+
+================================================================================
+✨ Slide 50 image generated!
+📄 File: Class6/slide_images/slide_050_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 50 generated (39 new, 11 skipped)
+
+📦 Committing progress...
+[main 6eb819f] Generate slides batch (up to slide 50) - 39 new slides
+ 20 files changed, 1999 insertions(+), 50 deletions(-)
+ create mode 100644 Class6/slide_042_image_url.txt
+ create mode 100644 Class6/slide_043_image_url.txt
+ create mode 100644 Class6/slide_044_image_url.txt
+ create mode 100644 Class6/slide_045_image_url.txt
+ create mode 100644 Class6/slide_046_image_url.txt
+ create mode 100644 Class6/slide_047_image_url.txt
+ create mode 100644 Class6/slide_048_image_url.txt
+ create mode 100644 Class6/slide_049_image_url.txt
+ create mode 100644 Class6/slide_050_image_url.txt
+ create mode 100644 Class6/slide_images/slide_042_final.png
+ create mode 100644 Class6/slide_images/slide_043_final.png
+ create mode 100644 Class6/slide_images/slide_044_final.png
+ create mode 100644 Class6/slide_images/slide_045_final.png
+ create mode 100644 Class6/slide_images/slide_046_final.png
+ create mode 100644 Class6/slide_images/slide_047_final.png
+ create mode 100644 Class6/slide_images/slide_048_final.png
+ create mode 100644 Class6/slide_images/slide_049_final.png
+ create mode 100644 Class6/slide_images/slide_050_final.png
+✅ Checkpoint at slide 50
+
+[51/80] Generating slide 51...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 51...
+✅ Content extracted (4319 characters)
+🎨 Generating slide 51 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_051_final.png
+
+================================================================================
+✨ Slide 51 image generated!
+📄 File: Class6/slide_images/slide_051_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 51 generated (40 new, 11 skipped)
+
+[52/80] Generating slide 52...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 52...
+✅ Content extracted (3777 characters)
+🎨 Generating slide 52 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_052_final.png
+
+================================================================================
+✨ Slide 52 image generated!
+📄 File: Class6/slide_images/slide_052_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 52 generated (41 new, 11 skipped)
+
+[53/80] Generating slide 53...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 53...
+✅ Content extracted (5517 characters)
+🎨 Generating slide 53 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_053_final.png
+
+================================================================================
+✨ Slide 53 image generated!
+📄 File: Class6/slide_images/slide_053_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 53 generated (42 new, 11 skipped)
+
+[54/80] Generating slide 54...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 54...
+✅ Content extracted (4292 characters)
+🎨 Generating slide 54 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_054_final.png
+
+================================================================================
+✨ Slide 54 image generated!
+📄 File: Class6/slide_images/slide_054_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 54 generated (43 new, 11 skipped)
+
+[55/80] Generating slide 55...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 55...
+✅ Content extracted (3562 characters)
+🎨 Generating slide 55 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_055_final.png
+
+================================================================================
+✨ Slide 55 image generated!
+📄 File: Class6/slide_images/slide_055_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 55 generated (44 new, 11 skipped)
+
+[56/80] Generating slide 56...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 56...
+✅ Content extracted (4168 characters)
+🎨 Generating slide 56 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_056_final.png
+
+================================================================================
+✨ Slide 56 image generated!
+📄 File: Class6/slide_images/slide_056_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 56 generated (45 new, 11 skipped)
+
+[57/80] Generating slide 57...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 57...
+✅ Content extracted (4444 characters)
+🎨 Generating slide 57 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_057_final.png
+
+================================================================================
+✨ Slide 57 image generated!
+📄 File: Class6/slide_images/slide_057_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 57 generated (46 new, 11 skipped)
+
+[58/80] Generating slide 58...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 58...
+✅ Content extracted (4184 characters)
+🎨 Generating slide 58 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_058_final.png
+
+================================================================================
+✨ Slide 58 image generated!
+📄 File: Class6/slide_images/slide_058_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 58 generated (47 new, 11 skipped)
+
+[59/80] Generating slide 59...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 59...
+✅ Content extracted (4164 characters)
+🎨 Generating slide 59 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_059_final.png
+
+================================================================================
+✨ Slide 59 image generated!
+📄 File: Class6/slide_images/slide_059_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 59 generated (48 new, 11 skipped)
+
+[60/80] Generating slide 60...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 60...
+✅ Content extracted (1534 characters)
+🎨 Generating slide 60 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_060_final.png
+
+================================================================================
+✨ Slide 60 image generated!
+📄 File: Class6/slide_images/slide_060_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 60 generated (49 new, 11 skipped)
+
+📦 Committing progress...
+[main a5970cb] Generate slides batch (up to slide 60) - 49 new slides
+ 20 files changed, 1969 insertions(+)
+ create mode 100644 Class6/slide_051_image_url.txt
+ create mode 100644 Class6/slide_052_image_url.txt
+ create mode 100644 Class6/slide_053_image_url.txt
+ create mode 100644 Class6/slide_054_image_url.txt
+ create mode 100644 Class6/slide_055_image_url.txt
+ create mode 100644 Class6/slide_056_image_url.txt
+ create mode 100644 Class6/slide_057_image_url.txt
+ create mode 100644 Class6/slide_058_image_url.txt
+ create mode 100644 Class6/slide_059_image_url.txt
+ create mode 100644 Class6/slide_060_image_url.txt
+ create mode 100644 Class6/slide_images/slide_051_final.png
+ create mode 100644 Class6/slide_images/slide_052_final.png
+ create mode 100644 Class6/slide_images/slide_053_final.png
+ create mode 100644 Class6/slide_images/slide_054_final.png
+ create mode 100644 Class6/slide_images/slide_055_final.png
+ create mode 100644 Class6/slide_images/slide_056_final.png
+ create mode 100644 Class6/slide_images/slide_057_final.png
+ create mode 100644 Class6/slide_images/slide_058_final.png
+ create mode 100644 Class6/slide_images/slide_059_final.png
+ create mode 100644 Class6/slide_images/slide_060_final.png
+✅ Checkpoint at slide 60
+
+[61/80] Generating slide 61...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 61...
+✅ Content extracted (3601 characters)
+🎨 Generating slide 61 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_061_final.png
+
+================================================================================
+✨ Slide 61 image generated!
+📄 File: Class6/slide_images/slide_061_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 61 generated (50 new, 11 skipped)
+
+[62/80] Generating slide 62...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 62...
+✅ Content extracted (3098 characters)
+🎨 Generating slide 62 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_062_final.png
+
+================================================================================
+✨ Slide 62 image generated!
+📄 File: Class6/slide_images/slide_062_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 62 generated (51 new, 11 skipped)
+
+[63/80] Generating slide 63...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 63...
+✅ Content extracted (3235 characters)
+🎨 Generating slide 63 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_063_final.png
+
+================================================================================
+✨ Slide 63 image generated!
+📄 File: Class6/slide_images/slide_063_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 63 generated (52 new, 11 skipped)
+
+[64/80] Generating slide 64...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 64...
+✅ Content extracted (3249 characters)
+🎨 Generating slide 64 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_064_final.png
+
+================================================================================
+✨ Slide 64 image generated!
+📄 File: Class6/slide_images/slide_064_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 64 generated (53 new, 11 skipped)
+
+[65/80] Generating slide 65...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 65...
+✅ Content extracted (2099 characters)
+🎨 Generating slide 65 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_065_final.png
+
+================================================================================
+✨ Slide 65 image generated!
+📄 File: Class6/slide_images/slide_065_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 65 generated (54 new, 11 skipped)
+
+[66/80] Generating slide 66...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 66...
+✅ Content extracted (1558 characters)
+🎨 Generating slide 66 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_066_final.png
+
+================================================================================
+✨ Slide 66 image generated!
+📄 File: Class6/slide_images/slide_066_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 66 generated (55 new, 11 skipped)
+
+[67/80] Generating slide 67...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 67...
+✅ Content extracted (906 characters)
+🎨 Generating slide 67 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_067_final.png
+
+================================================================================
+✨ Slide 67 image generated!
+📄 File: Class6/slide_images/slide_067_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 67 generated (56 new, 11 skipped)
+
+[68/80] Generating slide 68...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 68...
+✅ Content extracted (1550 characters)
+🎨 Generating slide 68 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_068_final.png
+
+================================================================================
+✨ Slide 68 image generated!
+📄 File: Class6/slide_images/slide_068_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 68 generated (57 new, 11 skipped)
+
+[69/80] Generating slide 69...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 69...
+✅ Content extracted (2773 characters)
+🎨 Generating slide 69 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_069_final.png
+
+================================================================================
+✨ Slide 69 image generated!
+📄 File: Class6/slide_images/slide_069_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 69 generated (58 new, 11 skipped)
+
+[70/80] Generating slide 70...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 70...
+✅ Content extracted (2208 characters)
+🎨 Generating slide 70 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_070_final.png
+
+================================================================================
+✨ Slide 70 image generated!
+📄 File: Class6/slide_images/slide_070_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 70 generated (59 new, 11 skipped)
+
+📦 Committing progress...
+[main 41fbb3b] Generate slides batch (up to slide 70) - 59 new slides
+ 20 files changed, 1342 insertions(+)
+ create mode 100644 Class6/slide_061_image_url.txt
+ create mode 100644 Class6/slide_062_image_url.txt
+ create mode 100644 Class6/slide_063_image_url.txt
+ create mode 100644 Class6/slide_064_image_url.txt
+ create mode 100644 Class6/slide_065_image_url.txt
+ create mode 100644 Class6/slide_066_image_url.txt
+ create mode 100644 Class6/slide_067_image_url.txt
+ create mode 100644 Class6/slide_068_image_url.txt
+ create mode 100644 Class6/slide_069_image_url.txt
+ create mode 100644 Class6/slide_070_image_url.txt
+ create mode 100644 Class6/slide_images/slide_061_final.png
+ create mode 100644 Class6/slide_images/slide_062_final.png
+ create mode 100644 Class6/slide_images/slide_063_final.png
+ create mode 100644 Class6/slide_images/slide_064_final.png
+ create mode 100644 Class6/slide_images/slide_065_final.png
+ create mode 100644 Class6/slide_images/slide_066_final.png
+ create mode 100644 Class6/slide_images/slide_067_final.png
+ create mode 100644 Class6/slide_images/slide_068_final.png
+ create mode 100644 Class6/slide_images/slide_069_final.png
+ create mode 100644 Class6/slide_images/slide_070_final.png
+✅ Checkpoint at slide 70
+
+[71/80] Generating slide 71...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 71...
+✅ Content extracted (2631 characters)
+🎨 Generating slide 71 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_071_final.png
+
+================================================================================
+✨ Slide 71 image generated!
+📄 File: Class6/slide_images/slide_071_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 71 generated (60 new, 11 skipped)
+
+[72/80] Generating slide 72...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 72...
+✅ Content extracted (1457 characters)
+🎨 Generating slide 72 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_072_final.png
+
+================================================================================
+✨ Slide 72 image generated!
+📄 File: Class6/slide_images/slide_072_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 72 generated (61 new, 11 skipped)
+
+[73/80] Generating slide 73...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 73...
+✅ Content extracted (1908 characters)
+🎨 Generating slide 73 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_073_final.png
+
+================================================================================
+✨ Slide 73 image generated!
+📄 File: Class6/slide_images/slide_073_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 73 generated (62 new, 11 skipped)
+
+[74/80] Generating slide 74...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 74...
+✅ Content extracted (1783 characters)
+🎨 Generating slide 74 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_074_final.png
+
+================================================================================
+✨ Slide 74 image generated!
+📄 File: Class6/slide_images/slide_074_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 74 generated (63 new, 11 skipped)
+
+[75/80] Generating slide 75...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 75...
+✅ Content extracted (814 characters)
+🎨 Generating slide 75 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_075_final.png
+
+================================================================================
+✨ Slide 75 image generated!
+📄 File: Class6/slide_images/slide_075_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 75 generated (64 new, 11 skipped)
+
+[76/80] Generating slide 76...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 76...
+✅ Content extracted (906 characters)
+🎨 Generating slide 76 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_076_final.png
+
+================================================================================
+✨ Slide 76 image generated!
+📄 File: Class6/slide_images/slide_076_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 76 generated (65 new, 11 skipped)
+
+[77/80] Generating slide 77...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 77...
+✅ Content extracted (329 characters)
+🎨 Generating slide 77 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_077_final.png
+
+================================================================================
+✨ Slide 77 image generated!
+📄 File: Class6/slide_images/slide_077_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 77 generated (66 new, 11 skipped)
+
+[78/80] Generating slide 78...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 78...
+✅ Content extracted (908 characters)
+🎨 Generating slide 78 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_078_final.png
+
+================================================================================
+✨ Slide 78 image generated!
+📄 File: Class6/slide_images/slide_078_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 78 generated (67 new, 11 skipped)
+
+[79/80] Generating slide 79...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 79...
+✅ Content extracted (1849 characters)
+🎨 Generating slide 79 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_079_final.png
+
+================================================================================
+✨ Slide 79 image generated!
+📄 File: Class6/slide_images/slide_079_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 79 generated (68 new, 11 skipped)
+
+[80/80] Generating slide 80...
+================================================================================
+🎓 GENERIC SLIDE GENERATOR - Playful Academic Cartoon Style
+================================================================================
+
+📝 Extracting content for slide 80...
+✅ Content extracted (2000 characters)
+🎨 Generating slide 80 with playful academic cartoon style...
+Using gpt-image-1 model
+
+Design specs:
+  - Palette: Soft blues, oranges, greens
+  - Style: Playful academic cartoon
+  - Typography: Bold + rounded friendly
+  - Visuals: Illustrated icons, clean diagrams
+
+✅ Image generated successfully!
+
+📥 Saving image...
+✅ Saved to: Class6/slide_images/slide_080_final.png
+
+================================================================================
+✨ Slide 80 image generated!
+📄 File: Class6/slide_images/slide_080_final.png
+
+🎨 Design features:
+   - Playful academic cartoon style
+   - Soft blues, oranges, greens palette
+   - Bold headers + friendly rounded font
+   - Illustrated icons and diagrams
+   - Clean, professional university quality
+
+🚀 To generate another slide, run:
+   python Class6/generate_any_slide.py <slide_number>
+
+Example: python Class6/generate_any_slide.py 5
+✅ Slide 80 generated (69 new, 11 skipped)
+
+📦 Committing progress...
+[main 17325b1] Generate slides batch (up to slide 80) - 69 new slides
+ 20 files changed, 1029 insertions(+)
+ create mode 100644 Class6/slide_071_image_url.txt
+ create mode 100644 Class6/slide_072_image_url.txt
+ create mode 100644 Class6/slide_073_image_url.txt
+ create mode 100644 Class6/slide_074_image_url.txt
+ create mode 100644 Class6/slide_075_image_url.txt
+ create mode 100644 Class6/slide_076_image_url.txt
+ create mode 100644 Class6/slide_077_image_url.txt
+ create mode 100644 Class6/slide_078_image_url.txt
+ create mode 100644 Class6/slide_079_image_url.txt
+ create mode 100644 Class6/slide_080_image_url.txt
+ create mode 100644 Class6/slide_images/slide_071_final.png
+ create mode 100644 Class6/slide_images/slide_072_final.png
+ create mode 100644 Class6/slide_images/slide_073_final.png
+ create mode 100644 Class6/slide_images/slide_074_final.png
+ create mode 100644 Class6/slide_images/slide_075_final.png
+ create mode 100644 Class6/slide_images/slide_076_final.png
+ create mode 100644 Class6/slide_images/slide_077_final.png
+ create mode 100644 Class6/slide_images/slide_078_final.png
+ create mode 100644 Class6/slide_images/slide_079_final.png
+ create mode 100644 Class6/slide_images/slide_080_final.png
+✅ Checkpoint at slide 80
+
+📦 Final commit...
+On branch main
+Your branch is ahead of 'origin/main' by 34 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    Class6/slide_images/slide_020_final.png
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Class6/generate_missing_slides.sh
+	Class6/slide_generation.log
+	Class6/slide_images/.DS_Store
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+==========================================
+✨ GENERATION COMPLETE!
+==========================================
+New slides generated: 69
+Existing slides skipped: 11
+Total slides: 80/80
+Location: Class6/slide_images/
+
