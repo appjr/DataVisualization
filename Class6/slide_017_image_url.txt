@@ -1,0 +1,127 @@
+Slide 17 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Symbol/Bubble Maps
+
+**Symbol maps use size/shape to encode values at point locations**
+
+**What are Symbol Maps?**
+
+**Symbol maps** place markers (circles, squares, icons) at geographic coordinates, with size representing data values.
+
+**When to Use:**
+- Point data (specific locations)
+- Want to show both location AND magnitude
+- Absolute counts (not rates)
+
+**Example:** Store sales, earthquake magnitudes
+
+**Basic Example:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Generate sample store locations
+np.random.seed(42)
+n_stores = 50
+
+store_data = pd.DataFrame({
+    'Store_ID': range(1, n_stores+1),
+    'Longitude': np.random.uniform(-120, -70, n_stores),  # US range
+    'Latitude': np.random.uniform(25, 50, n_stores),
+    'Sales': np.random.randint(100, 5000, n_stores)
+})
+
+# Convert to GeoDataFrame
+geometry = gpd.points_from_xy(store_data.Longitude, store_data.Latitude)
+gdf_stores = gpd.GeoDataFrame(store_data, geometry=geometry)
+
+# Create bubble map
+fig, ax = plt.subplots(figsize=(15, 10))
+
+# Load base map (states for context)
+states.plot(ax=ax, color='lightgray', edgecolor='white', linewidth=0.5)
+
+# Plot stores as bubbles
+gdf_stores.plot(ax=ax,
+               markersize=gdf_stores['Sales']/20,  # Scale size
+               color='red',
+               alpha=0.6,
+               edgecolor='darkred',
+               linewidth=0.5)
+
+ax.set_title('Store Sales (Bubble Map)', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+# Add legend (manually)
+legend_sizes = [500, 2000, 4000]
+for size in legend_sizes:
+    ax.scatter([], [], s=size/20, c='red', alpha=0.6, 
+              edgecolor='darkred', label=f'${size}')
+ax.legend(title='Sales', loc='lower left', frameon=True, fontsize=10)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+ **DO:**
+- Size proportional to value (NOT area - confusing!)
+- Use transparency for overlapping points
+- Include size legend
+- Limit marker count (< 1000 for clarity)
+
+ **DON'T:**
+- Use area for scaling (use radius/markersize)
+- Overcrowd map with too many points
+- Forget basemap for context
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

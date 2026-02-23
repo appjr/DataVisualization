@@ -1,0 +1,111 @@
+Slide 15 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Basic Map Types: Choropleth Maps
+
+**Choropleth maps are the most common geographic visualization**
+
+**What is a Choropleth Map?**
+
+A **choropleth map** uses color to represent data values across geographic regions (counties, states, countries).
+
+**When to Use:**
+- Data aggregated to administrative boundaries
+- Comparing rates/ratios across regions
+- Showing spatial patterns of continuous variables
+
+**Basic Example:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Load US states shapefile (example)
+# In practice: geopandas.datasets or download from census.gov
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['continent'] == 'North America'].copy()
+
+# Generate sample data (sales by state)
+np.random.seed(42)
+us_states['Sales'] = np.random.randint(1000, 10000, len(us_states))
+
+# Create choropleth
+fig, ax = plt.subplots(figsize=(15, 10))
+
+us_states.plot(column='Sales',
+              cmap='YlOrRd',  # Yellow-Orange-Red color scheme
+              legend=True,
+              legend_kwds={'label': 'Sales ($)', 'orientation': 'horizontal'},
+              edgecolor='black',
+              linewidth=0.5,
+              ax=ax)
+
+ax.set_title('Sales by Region (Choropleth Map)', fontsize=16, fontweight='bold')
+ax.axis('off')  # Hide axes for cleaner look
+
+plt.tight_layout()
+plt.show()
+```
+
+**Color Scheme Selection:**
+
+- **Sequential** (light to dark): For continuous data (0 to high)
+- **Diverging** (red-white-blue): For data with meaningful midpoint (profit/loss)
+- **Categorical** (distinct colors): For categories (NOT for choropleth!)
+
+**Common Mistakes:**
+
+ Using population totals (shows population, not rate)  
+ Rainbow colors (hard to interpret)  
+ Too many color bins (confusing)  
+ Use rates/percentages when appropriate  
+ Sequential or diverging color schemes  
+ 5-7 color bins maximum
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+
