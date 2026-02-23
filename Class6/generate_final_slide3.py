@@ -110,24 +110,37 @@ Style reference: Think Coursera or Khan Academy - educational, friendly, profess
     print()
     
     response = client.images.generate(
-        model="dall-e-3",
+        model="gpt-image-1",
         prompt=image_prompt,
-        size="1792x1024",
-        quality="hd",  # Use HD quality for better text rendering
+        size="1536x1024",  # 16:9 landscape format supported by gpt-image-1
+        quality="high",  # Use high quality for better text rendering
         n=1
     )
     
-    image_url = response.data[0].url
+    # gpt-image-1 returns b64_json instead of URL
+    import base64
     
     print(f"✅ Image generated successfully!")
-    print(f"🖼️  URL: {image_url}")
     
     # Download image
     output_file = 'Class6/slide_images/slide_003_final.png'
     os.makedirs('Class6/slide_images', exist_ok=True)
     
-    print(f"\n📥 Downloading image...")
-    subprocess.run(['curl', '-s', '-o', output_file, image_url], check=True)
+    print(f"\n📥 Saving image...")
+    
+    # Check if we have URL or b64_json
+    if hasattr(response.data[0], 'url') and response.data[0].url:
+        image_url = response.data[0].url
+        print(f"🖼️  URL: {image_url}")
+        subprocess.run(['curl', '-s', '-o', output_file, image_url], check=True)
+    elif hasattr(response.data[0], 'b64_json') and response.data[0].b64_json:
+        # Decode base64 image
+        image_data = base64.b64decode(response.data[0].b64_json)
+        with open(output_file, 'wb') as f:
+            f.write(image_data)
+        image_url = "Generated as base64 (no URL)"
+    else:
+        raise ValueError("No image data in response")
     
     print(f"✅ Saved to: {output_file}")
     
