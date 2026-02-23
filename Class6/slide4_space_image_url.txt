@@ -1,0 +1,26 @@
+Space-themed slide 4 illustration
+Generated: 2026-02-22 22:08:52.939537
+URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Lv3iD9T3Qd1GaGduzjucr71F/user-5vW6kWYeuurmJji6LmMZ7KjH/img-Mq82ZVRw9Eeo5JXcZkulNDCK.png?st=2026-02-23T03%3A08%3A52Z&se=2026-02-23T05%3A08%3A52Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=13da7400-b3f7-4f8c-9cba-908fecbd114c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-22T20%3A01%3A35Z&ske=2026-02-23T20%3A01%3A35Z&sks=b&skv=2026-02-06&sig=pVbwdEh/0p%2BfiD%2B2aKUoa/MP00emExwMcTiIovcmibc%3D
+
+Prompt used:
+
+Create an educational illustration for a data visualization class showing the 4 TYPES OF GEOGRAPHIC DATA with a SPACE theme.
+
+The image should show 4 distinct sections/quadrants:
+
+1. POINT DATA (top-left): Individual stars, space stations, or asteroids representing discrete locations in space
+2. LINE DATA (top-right): Orbital paths, flight routes between planets, cosmic highways connecting celestial bodies
+3. POLYGON DATA (bottom-left): Defined regions like star systems, galaxies with borders, territorial zones in space
+4. RASTER DATA (bottom-right): Heat map of cosmic radiation, nebula density grid, continuous surface showing temperature or energy
+
+Requirements:
+- Cosmic background with deep space colors (blues, purples, blacks with stars)
+- Clear visual separation between the 4 types
+- Each quadrant labeled clearly
+- Professional but engaging style
+- Educational diagrams integrated with space theme
+- Data visualization elements visible (dots, lines, colored regions, grids)
+- Suitable for a university business school presentation
+
+Style: Modern, educational, space-themed, professional quality
+
