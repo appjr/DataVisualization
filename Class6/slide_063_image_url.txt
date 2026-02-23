@@ -1,0 +1,159 @@
+Slide 63 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Real-World Case Study 3: Store Location Optimization
+
+**Business Problem:**
+
+Retail chain wants to:
+- Open 10 new stores
+- Maximize market coverage
+- Minimize cannibalization
+- Consider competitor locations
+
+**Analysis Approach:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.spatial import Voronoi
+from shapely.geometry import Point, Polygon
+
+# Current store locations
+np.random.seed(42)
+existing_stores = gpd.GeoDataFrame({
+    'store_id': range(1, 16),
+    'sales': np.random.randint(1000000, 3000000, 15),
+    'geometry': gpd.points_from_xy(
+        np.random.uniform(-100, -95, 15),
+        np.random.uniform(29, 33, 15)
+    )
+}, crs='EPSG:4326')
+
+# Potential new locations
+candidates = gpd.GeoDataFrame({
+    'site_id': range(1, 21),
+    'population_nearby': np.random.randint(50000, 200000, 20),
+    'competitor_count': np.random.randint(0, 5, 20),
+    'geometry': gpd.points_from_xy(
+        np.random.uniform(-100, -95, 20),
+        np.random.uniform(29, 33, 20)
+    )
+}, crs='EPSG:4326')
+
+# Calculate score (higher = better)
+candidates['score'] = (candidates['population_nearby'] / 
+                      (candidates['competitor_count'] + 1))
+
+# Select top candidates
+top_candidates = candidates.nlargest(10, 'score')
+
+# Visualize
+fig, axes = plt.subplots(1, 2, figsize=(18, 8))
+
+# Current coverage (Voronoi)
+ax1 = axes[0]
+ax1.set_xlim([-100.5, -94.5])
+ax1.set_ylim([28.5, 33.5])
+
+# Plot existing stores
+existing_stores.plot(ax=ax1, color='blue', markersize=100, 
+                    edgecolor='black', linewidth=2, zorder=5, label='Existing')
+
+# Simple coverage circles
+for idx, store in existing_stores.iterrows():
+    circle = store.geometry.buffer(0.5)  # ~50 km radius
+    gpd.GeoSeries([circle]).plot(ax=ax1, facecolor='blue', 
+                                 alpha=0.1, edgecolor='blue', linewidth=1)
+
+ax1.set_title('Current Store Coverage', fontsize=14, fontweight='bold')
+ax1.legend(fontsize=11)
+ax1.axis('off')
+
+# Proposed expansion
+ax2 = axes[1]
+ax2.set_xlim([-100.5, -94.5])
+ax2.set_ylim([28.5, 33.5])
+
+# Existing stores
+existing_stores.plot(ax=ax2, color='blue', markersize=100, 
+                    edgecolor='black', linewidth=2, zorder=5, label='Existing')
+
+# Top candidates
+top_candidates.plot(ax=ax2, markersize=top_candidates['score']/500, 
+                   color='green', alpha=0.7, edgecolor='darkgreen', 
+                   linewidth=2, zorder=5, label='Proposed')
+
+# Coverage for proposed
+for idx, store in top_candidates.iterrows():
+    circle = store.geometry.buffer(0.5)
+    gpd.GeoSeries([circle]).plot(ax=ax2, facecolor='green', 
+                                 alpha=0.1, edgecolor='green', linewidth=1)
+
+ax2.set_title('Proposed Expansion Plan', fontsize=14, fontweight='bold')
+ax2.legend(fontsize=11)
+ax2.axis('off')
+
+plt.suptitle('Store Location Optimization Analysis', fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+
+print(f"Proposed sites: {top_candidates['site_id'].tolist()}")
+print(f"Average population coverage: {top_candidates['population_nearby'].mean():,.0f}")
+```
+
+**Decision Factors:**
+ Population density
+ Competitor proximity
+ Existing store coverage
+ Accessibility (roads, parking)
+ Demographics match
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

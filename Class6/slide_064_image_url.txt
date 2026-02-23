@@ -1,0 +1,150 @@
+Slide 64 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Real-World Case Study 4: Disease Outbreak Tracking
+
+**Public Health Application:**
+
+Track and visualize disease spread to:
+- Identify outbreak clusters
+- Allocate medical resources
+- Implement targeted interventions
+- Communicate risk to public
+
+**Visualization:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.cluster import DBSCAN
+from shapely.geometry import Point
+
+# Generate disease case data
+np.random.seed(42)
+
+# Outbreak clusters
+outbreak1 = np.random.multivariate_normal([40.7, -74.0], [[0.02, 0], [0, 0.02]], 150)
+outbreak2 = np.random.multivariate_normal([34.0, -118.2], [[0.03, 0], [0, 0.03]], 100)
+sporadic = np.random.uniform([25, -125], [48, -65], (50, 2))
+
+all_cases = np.vstack([outbreak1, outbreak2, sporadic])
+
+# Create GeoDataFrame
+cases = gpd.GeoDataFrame({
+    'case_id': range(len(all_cases)),
+    'date_reported': pd.date_range('2024-01-01', periods=len(all_cases), freq='D'),
+    'geometry': [Point(lon, lat) for lat, lon in all_cases]
+}, crs='EPSG:4326')
+
+# Perform clustering
+coords = np.array(list(zip(cases.geometry.x, cases.geometry.y)))
+clustering = DBSCAN(eps=0.5, min_samples=10).fit(coords)
+cases['cluster'] = clustering.labels_
+
+# Load states for context
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA']
+
+# Visualize
+fig, axes = plt.subplots(1, 2, figsize=(18, 8))
+
+# All cases
+ax1 = axes[0]
+us_states.plot(ax=ax1, color='lightgray', edgecolor='white', linewidth=0.5)
+cases.plot(ax=ax1, color='red', markersize=10, alpha=0.5, edgecolor='darkred')
+ax1.set_title('All Reported Cases', fontsize=14, fontweight='bold')
+ax1.axis('off')
+
+# Identified clusters
+ax2 = axes[1]
+us_states.plot(ax=ax2, color='lightgray', edgecolor='white', linewidth=0.5)
+
+# Plot clusters
+clusters = cases[cases['cluster'] != -1]
+sporadic_cases = cases[cases['cluster'] == -1]
+
+clusters.plot(ax=ax2, column='cluster', cmap='tab10', 
+             markersize=30, alpha=0.7, edgecolor='black', 
+             linewidth=1, legend=True)
+sporadic_cases.plot(ax=ax2, color='gray', markersize=10, 
+                   alpha=0.3, label='Sporadic')
+
+# Highlight outbreak areas with circles
+for cluster_id in clusters['cluster'].unique():
+    cluster_cases = clusters[clusters['cluster'] == cluster_id]
+    centroid = cluster_cases.geometry.unary_union.centroid
+    buffer = centroid.buffer(1)  # Alert zone
+    gpd.GeoSeries([buffer]).boundary.plot(ax=ax2, color='red', 
+                                          linewidth=3, linestyle='--')
+
+ax2.set_title('Outbreak Clusters (Hot Spot Analysis)', fontsize=14, fontweight='bold')
+ax2.axis('off')
+
+plt.suptitle('Disease Outbreak Tracking & Cluster Detection', 
+            fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+
+# Summary statistics
+n_clusters = len(clusters['cluster'].unique())
+largest_cluster = clusters.groupby('cluster').size().max()
+
+print(f"Clusters identified: {n_clusters}")
+print(f"Largest cluster: {largest_cluster} cases")
+print(f"Sporadic cases: {len(sporadic_cases)}")
+```
+
+**Public Health Actions:**
+1. Deploy resources to cluster areas
+2. Implement contact tracing in hot spots
+3. Issue public health advisories
+4. Monitor spread patterns
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

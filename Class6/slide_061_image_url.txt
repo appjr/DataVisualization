@@ -1,0 +1,156 @@
+Slide 61 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Real-World Case Study 1: Sales Territory Analysis
+
+**Business Problem:**
+
+A retail company wants to:
+- Analyze sales performance across territories
+- Identify underperforming regions
+- Optimize territory assignments
+- Plan new store locations
+
+**Data Available:**
+- Sales by ZIP code
+- Store locations and performance
+- Customer demographics
+- Competitor locations
+
+**Visualization Approach:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Simulate sales territory data
+np.random.seed(42)
+
+# Load US states as territories
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate sales data
+us_states['sales'] = np.random.randint(1000000, 10000000, len(us_states))
+us_states['target'] = us_states['sales'] * 1.2
+us_states['performance'] = (us_states['sales'] / us_states['target']) * 100
+
+# Generate store locations
+stores = gpd.GeoDataFrame({
+    'store_id': range(1, 21),
+    'sales': np.random.randint(100000, 500000, 20),
+    'geometry': gpd.points_from_xy(
+        np.random.uniform(-120, -70, 20),
+        np.random.uniform(25, 48, 20)
+    )
+}, crs='EPSG:4326')
+
+# Create comprehensive dashboard
+fig = plt.figure(figsize=(20, 12))
+
+# Subplot 1: Territory Performance (Choropleth)
+ax1 = plt.subplot(2, 2, 1)
+us_states.plot(column='performance', cmap='RdYlGn', 
+              legend=True, ax=ax1, edgecolor='black', linewidth=0.5,
+              legend_kwds={'label': 'Performance (%)', 'shrink': 0.8})
+ax1.set_title('Territory Performance vs Target', fontsize=14, fontweight='bold')
+ax1.axis('off')
+
+# Subplot 2: Store Sales (Proportional Symbols)
+ax2 = plt.subplot(2, 2, 2)
+us_states.plot(ax=ax2, color='lightgray', edgecolor='black', linewidth=0.5)
+stores.plot(ax=ax2, markersize=stores['sales']/1000, 
+           color='blue', alpha=0.6, edgecolor='darkblue', linewidth=1)
+ax2.set_title('Store Sales (Bubble Size = Revenue)', fontsize=14, fontweight='bold')
+ax2.axis('off')
+
+# Subplot 3: Top/Bottom Performers
+ax3 = plt.subplot(2, 2, 3)
+top_bottom = pd.concat([
+    us_states.nsmallest(5, 'performance')[['name', 'performance']],
+    us_states.nlargest(5, 'performance')[['name', 'performance']]
+])
+colors = ['red'] * 5 + ['green'] * 5
+ax3.barh(range(len(top_bottom)), top_bottom['performance'], color=colors, alpha=0.7)
+ax3.set_yticks(range(len(top_bottom)))
+ax3.set_yticklabels(top_bottom['name'])
+ax3.set_xlabel('Performance (%)', fontsize=11)
+ax3.set_title('Top & Bottom Performing Territories', fontsize=14, fontweight='bold')
+ax3.axvline(100, color='black', linestyle='--', linewidth=2)
+
+# Subplot 4: Sales Distribution
+ax4 = plt.subplot(2, 2, 4)
+ax4.hist(us_states['sales']/1000000, bins=10, color='steelblue', 
+        edgecolor='black', alpha=0.7)
+ax4.axvline(us_states['sales'].mean()/1000000, color='red', 
+           linestyle='--', linewidth=2, label='Mean')
+ax4.set_xlabel('Sales (Millions $)', fontsize=11)
+ax4.set_ylabel('Frequency', fontsize=11)
+ax4.set_title('Sales Distribution Across Territories', fontsize=14, fontweight='bold')
+ax4.legend()
+
+plt.suptitle('Sales Territory Analysis Dashboard', fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Key Insights:**
+ Visual comparison of territory performance
+ Identify geographic patterns in sales
+ Spot outliers (overperforming/underperforming)
+ Support data-driven territory adjustments
+
+**Recommendations:**
+- Reallocate resources to underperforming territories
+- Investigate success factors in top territories
+- Consider splitting high-performing territories
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

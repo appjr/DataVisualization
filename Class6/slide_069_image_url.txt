@@ -1,0 +1,170 @@
+Slide 69 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Common Mistakes to Avoid
+
+**Top 10 Geographic Visualization Pitfalls:**
+
+**1.  Using Raw Counts in Choropleth**
+
+```python
+# WRONG: Just shows population!
+states.plot(column='covid_cases', cmap='Reds')
+
+# CORRECT: Normalize by population
+states['cases_per_100k'] = (states['covid_cases'] / states['population']) * 100000
+states.plot(column='cases_per_100k', cmap='Reds')
+```
+
+**2.  Rainbow Color Schemes**
+
+```python
+# WRONG: Perceptually non-uniform, not colorblind safe
+states.plot(column='value', cmap='rainbow')
+
+# CORRECT: Use sequential or diverging schemes
+states.plot(column='value', cmap='YlOrRd')  # Sequential
+# or
+states.plot(column='value', cmap='RdBu')  # Diverging
+```
+
+**3.  Ignoring Projections**
+
+```python
+# WRONG: Comparing areas in Web Mercator (distorted)
+gdf_web_mercator = gdf.to_crs('EPSG:3857')
+gdf_web_mercator['area'] = gdf_web_mercator.geometry.area  # WRONG!
+
+# CORRECT: Use equal-area projection
+gdf_equal_area = gdf.to_crs('EPSG:5070')  # Albers equal area
+gdf_equal_area['area_km2'] = gdf_equal_area.geometry.area / 1_000_000
+```
+
+**4.  Too Many Data Points**
+
+```python
+# WRONG: Plotting 100,000 individual points
+for point in all_100k_points:
+    folium.Marker(point).add_to(m)  # Slow!
+
+# CORRECT: Use clustering or hexbin
+from folium.plugins import MarkerCluster
+MarkerCluster(all_100k_points).add_to(m)  # Fast!
+```
+
+**5.  No Legend or Scale**
+
+```python
+# WRONG
+gdf.plot(column='value')
+plt.show()
+
+# CORRECT
+gdf.plot(column='value', legend=True,
+        legend_kwds={'label': 'Sales ($)', 'orientation': 'horizontal'})
+plt.title('Sales by Region')
+plt.show()
+```
+
+**6.  Inconsistent Classification**
+
+```python
+# WRONG: Different scales make comparison impossible
+for year in years:
+    data[year].plot(column='value', cmap='YlOrRd')  # Auto-scales each!
+
+# CORRECT: Use same scale
+vmin, vmax = data.stack().min(), data.stack().max()
+for year in years:
+    data[year].plot(column='value', cmap='YlOrRd', vmin=vmin, vmax=vmax)
+```
+
+**7.  Alaska/Hawaii Problem**
+
+```python
+# CORRECT: Reposition AK/HI for compact display
+# Use specialized tools or manually adjust positions
+```
+
+**8.  Missing Attribution**
+
+```python
+# WRONG
+m = folium.Map()
+
+# CORRECT
+m = folium.Map()
+folium.TileLayer(
+    tiles='OpenStreetMap',
+    attr=' OpenStreetMap contributors'
+).add_to(m)
+```
+
+**9.  Overlapping Labels**
+
+```python
+# CORRECT: Use adjustText or limit labels
+from adjustText import adjust_text
+
+texts = []
+for idx, row in important_only.iterrows():  # Not all points!
+    texts.append(ax.text(row.geometry.x, row.geometry.y, row['name']))
+
+adjust_text(texts)  # Automatically prevents overlap
+```
+
+**10.  Not Testing on Target Devices**
+
+Always test on:
+- Different browsers
+- Mobile devices
+- Various screen sizes
+- Slow connections
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

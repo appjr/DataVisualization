@@ -1,0 +1,103 @@
+Slide 66 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Multi-Map Dashboards
+
+**Overview + Detail Pattern:**
+
+```python
+import matplotlib.pyplot as plt
+import geopandas as gpd
+import numpy as np
+
+# Load data
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+np.random.seed(42)
+us_states['value'] = np.random.randint(50, 150, len(us_states))
+
+# Create figure
+fig = plt.figure(figsize=(20, 10))
+
+# Overview map (entire country)
+ax_overview = plt.subplot(1, 2, 1)
+us_states.plot(column='value', cmap='YlOrRd', legend=True,
+              ax=ax_overview, edgecolor='black', linewidth=0.5)
+
+# Highlight region of interest
+from matplotlib.patches import Rectangle
+highlight_box = Rectangle((-100, 28), 6, 5, linewidth=3, 
+                         edgecolor='blue', facecolor='none', linestyle='--')
+ax_overview.add_patch(highlight_box)
+
+ax_overview.set_title('OVERVIEW: National View', fontsize=14, fontweight='bold')
+ax_overview.axis('off')
+
+# Detail map (zoomed region)
+ax_detail = plt.subplot(1, 2, 2)
+us_states.plot(column='value', cmap='YlOrRd', legend=False,
+              ax=ax_detail, edgecolor='black', linewidth=0.5)
+
+# Zoom to region
+ax_detail.set_xlim([-100, -94])
+ax_detail.set_ylim([28, 33])
+ax_detail.set_title('DETAIL: Texas Region', fontsize=14, fontweight='bold')
+ax_detail.axis('off')
+
+plt.suptitle('Overview + Detail Dashboard', fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**When to Use:**
+- Large geographic extent with local details
+- National + state level analysis
+- Context + specific findings
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

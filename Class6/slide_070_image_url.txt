@@ -1,0 +1,122 @@
+Slide 70 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Misleading Map Examples
+
+**How Maps Can Deceive (And How to Avoid It)**
+
+**Example 1: Mercator Distortion**
+
+The Mercator projection severely distorts size, making Greenland appear larger than Africa (in reality, Africa is 14x larger!).
+
+** MISLEADING:**
+- Using Mercator for area comparisons
+- Showing global data without noting distortion
+
+** CORRECT:**
+- Use equal-area projections (Albers, Lambert)
+- Add disclaimer about projection distortion
+- Choose projection appropriate for your data
+
+**Example 2: Manipulated Color Scales**
+
+```python
+#  MISLEADING: Truncated scale hides variation
+import matplotlib.pyplot as plt
+import geopandas as gpd
+import numpy as np
+
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+np.random.seed(42)
+us_states['value'] = np.random.uniform(48, 52, len(us_states))
+
+fig, axes = plt.subplots(1, 2, figsize=(18, 7))
+
+# Misleading: Narrow range exaggerates differences
+us_states.plot(column='value', cmap='RdYlGn', vmin=48, vmax=52,
+              legend=True, ax=axes[0], edgecolor='black', linewidth=0.5)
+axes[0].set_title(' MISLEADING: Exaggerated Differences', 
+                 fontsize=13, fontweight='bold', color='red')
+axes[0].axis('off')
+
+# Honest: Full range shows actual variation
+us_states.plot(column='value', cmap='RdYlGn', vmin=0, vmax=100,
+              legend=True, ax=axes[1], edgecolor='black', linewidth=0.5)
+axes[1].set_title(' HONEST: True Scale', 
+                 fontsize=13, fontweight='bold', color='green')
+axes[1].axis('off')
+
+plt.suptitle('Impact of Color Scale Manipulation', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Example 3: Cherry-Picked Regions**
+
+Showing only favorable regions while hiding others.
+
+** MISLEADING:**
+- Only showing states where product performs well
+- Excluding data from analysis without disclosure
+
+** CORRECT:**
+- Show all regions
+- If filtering, clearly state criteria
+- Indicate missing/excluded data
+
+**Red Flags for Misleading Maps:**
+ No data source cited
+ No legend or unclear units
+ Unusual projection choice
+ Inconsistent time periods
+ Selected regions without explanation
+ Truncated or inverted scales
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

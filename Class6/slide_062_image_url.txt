@@ -1,0 +1,135 @@
+Slide 62 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Real-World Case Study 2: Demographic Mapping for Marketing
+
+**Business Problem:**
+
+Marketing team needs to:
+- Identify target demographics by location
+- Plan advertising spend by region
+- Understand market penetration
+- Find expansion opportunities
+
+**Visualization Strategy:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+# Load geography
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate demographic data
+np.random.seed(42)
+us_states['median_income'] = np.random.randint(40000, 80000, len(us_states))
+us_states['age_25_34_pct'] = np.random.uniform(10, 20, len(us_states))
+us_states['market_penetration'] = np.random.uniform(5, 40, len(us_states))
+
+# Classify states by income and age (bivariate)
+us_states['income_class'] = pd.qcut(us_states['median_income'], q=3, labels=[0, 1, 2])
+us_states['age_class'] = pd.qcut(us_states['age_25_34_pct'], q=3, labels=[0, 1, 2])
+us_states['bivar_class'] = (us_states['income_class'].astype(int) * 3 + 
+                            us_states['age_class'].astype(int))
+
+# Bivariate color scheme
+from matplotlib.colors import ListedColormap
+bivar_colors = [
+    '#e8e8e8', '#b8d6be', '#73ae80',  # Low income
+    '#d3b0c3', '#9972af', '#5a3d99',  # Med income
+    '#c85a5a', '#985356', '#574249'   # High income
+]
+bivar_cmap = ListedColormap(bivar_colors)
+
+# Create visualization
+fig, axes = plt.subplots(1, 2, figsize=(20, 8))
+
+# Bivariate map: Income  Young Adults
+us_states.plot(column='bivar_class', cmap=bivar_cmap, 
+              ax=axes[0], edgecolor='black', linewidth=0.5, legend=False)
+axes[0].set_title('Target Demographics: Income  Young Adults %', 
+                 fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+# Add legend
+from matplotlib.patches import Rectangle
+legend_ax = fig.add_axes([0.12, 0.15, 0.12, 0.12])
+for i in range(3):
+    for j in range(3):
+        rect = Rectangle((j, i), 1, 1, facecolor=bivar_colors[i*3+j],
+                        edgecolor='black', linewidth=1)
+        legend_ax.add_patch(rect)
+legend_ax.text(1.5, -0.4, '% Young Adults ', ha='center', fontsize=10, fontweight='bold')
+legend_ax.text(-0.6, 1.5, 'Income\n', ha='center', va='center', 
+              fontsize=10, fontweight='bold', rotation=90)
+legend_ax.set_xlim([0, 3])
+legend_ax.set_ylim([0, 3])
+legend_ax.axis('off')
+
+# Market penetration
+us_states.plot(column='market_penetration', cmap='RdYlGn', 
+              legend=True, ax=axes[1], edgecolor='black', linewidth=0.5,
+              legend_kwds={'label': 'Penetration (%)', 'shrink': 0.8})
+axes[1].set_title('Current Market Penetration', fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Demographic & Market Analysis', fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Strategic Actions:**
+1. **High Priority** (High income, Young adults, Low penetration): Growth opportunity
+2. **Maintain** (High penetration areas): Customer retention
+3. **Evaluate** (Low income, Low penetration): Consider exit strategy
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+
