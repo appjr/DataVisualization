@@ -1,0 +1,228 @@
+Slide 57 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Trajectory Maps
+
+**Showing paths over time**
+
+**What are Trajectory Maps?**
+
+**Trajectory maps** show movement paths of objects/people over time, revealing patterns in spatial-temporal behavior.
+
+**Use Cases:**
+- Animal migration
+- Hurricane tracks
+- Vehicle routing
+- Person movement
+- Ship routes
+
+**Single Trajectory:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Generate hurricane track
+np.random.seed(42)
+n_points = 20
+
+lons = np.linspace(-80, -50, n_points) + np.random.randn(n_points) * 2
+lats = np.linspace(25, 40, n_points) + np.random.randn(n_points) * 1
+times = pd.date_range('2024-08-01', periods=n_points, freq='6H')
+categories = np.clip(np.random.randint(1, 5, n_points), 1, 5)
+
+track = pd.DataFrame({
+    'lon': lons,
+    'lat': lats,
+    'time': times,
+    'category': categories
+})
+
+# Plot
+fig, ax = plt.subplots(figsize=(14, 10))
+
+# Plot track
+ax.plot(track['lon'], track['lat'], 'b-', linewidth=2, alpha=0.7)
+
+# Plot points with category colors
+scatter = ax.scatter(track['lon'], track['lat'], 
+                    c=track['category'], 
+                    s=100,
+                    cmap='YlOrRd',
+                    edgecolor='black',
+                    linewidth=1,
+                    zorder=5)
+
+# Annotate start and end
+ax.scatter(track['lon'].iloc[0], track['lat'].iloc[0], 
+          s=300, marker='o', color='green', 
+          edgecolor='black', linewidth=2, zorder=6, label='Start')
+ax.scatter(track['lon'].iloc[-1], track['lat'].iloc[-1], 
+          s=300, marker='X', color='red', 
+          edgecolor='black', linewidth=2, zorder=6, label='End')
+
+# Colorbar
+cbar = plt.colorbar(scatter, ax=ax)
+cbar.set_label('Hurricane Category', fontsize=11)
+
+ax.set_title('Hurricane Track (August 2024)', fontsize=16, fontweight='bold')
+ax.set_xlabel('Longitude', fontsize=12)
+ax.set_ylabel('Latitude', fontsize=12)
+ax.legend(fontsize=11)
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Multiple Trajectories:**
+
+```python
+# Generate multiple vehicle tracks
+n_vehicles = 5
+n_timesteps = 30
+
+fig, ax = plt.subplots(figsize=(12, 10))
+
+colors = plt.cm.tab10(np.linspace(0, 1, n_vehicles))
+
+for i in range(n_vehicles):
+    # Random walk
+    np.random.seed(i)
+    start_lon, start_lat = -95 + np.random.randn() * 5, 30 + np.random.randn() * 5
+    
+    lons = [start_lon]
+    lats = [start_lat]
+    
+    for t in range(n_timesteps):
+        lons.append(lons[-1] + np.random.randn() * 0.3)
+        lats.append(lats[-1] + np.random.randn() * 0.3)
+    
+    ax.plot(lons, lats, color=colors[i], linewidth=2, 
+           alpha=0.6, label=f'Vehicle {i+1}')
+    ax.scatter(lons[0], lats[0], s=100, color=colors[i], 
+              edgecolor='black', linewidth=2, zorder=5)
+
+ax.set_title('Vehicle Trajectories', fontsize=16, fontweight='bold')
+ax.set_xlabel('Longitude', fontsize=12)
+ax.set_ylabel('Latitude', fontsize=12)
+ax.legend(fontsize=10)
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Trajectory with Time Animation:**
+
+```python
+import plotly.graph_objects as go
+
+# Create animated trajectory
+fig = go.Figure()
+
+# Add trajectory line
+fig.add_trace(go.Scattergeo(
+    lon=track['lon'],
+    lat=track['lat'],
+    mode='lines',
+    line=dict(width=2, color='blue'),
+    name='Track'
+))
+
+# Add animated point
+frames = []
+for i in range(len(track)):
+    frames.append(go.Frame(
+        data=[go.Scattergeo(
+            lon=track['lon'][:i+1],
+            lat=track['lat'][:i+1],
+            mode='markers+lines',
+            marker=dict(size=10, color='red'),
+            line=dict(width=2, color='blue')
+        )],
+        name=str(i)
+    ))
+
+fig.frames = frames
+
+fig.update_layout(
+    title='Hurricane Track Animation',
+    geo=dict(
+        scope='usa',
+        projection_type='albers usa',
+        showland=True,
+        landcolor='lightgray'
+    ),
+    updatemenus=[{
+        'type': 'buttons',
+        'showactive': False,
+        'buttons': [
+            {'label': 'Play', 'method': 'animate', 
+             'args': [None, {'frame': {'duration': 500}}]},
+            {'label': 'Pause', 'method': 'animate',
+             'args': [[None], {'frame': {'duration': 0}, 'mode': 'immediate'}]}
+        ]
+    }]
+)
+
+fig.show()
+```
+
+**Best Practices:**
+
+ Show direction (arrows or gradient)
+ Mark start and end points
+ Use color for attributes (category, speed, etc.)
+ Consider time stamps on path
+ Use animation for complex paths
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

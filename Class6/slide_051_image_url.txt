@@ -1,0 +1,212 @@
+Slide 51 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Cartograms
+
+**Distorting geography to emphasize data**
+
+**What are Cartograms?**
+
+**Cartograms** distort the size/shape of geographic regions to make area proportional to a data variable rather than actual geographic area.
+
+**Types:**
+- **Contiguous**: Regions stay connected (topology preserved)
+- **Non-contiguous**: Regions can separate
+- **Dorling**: Regions become circles
+
+**When to Use:**
+- Population-weighted views
+- Emphasizing data over geography
+- Showing relative importance
+- Alternative to choropleth
+
+**Non-Contiguous Cartogram (Simple Scale):**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load data
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Scale geometries by population
+def scale_geometry(geom, scale_factor):
+    centroid = geom.centroid
+    scaled = geom.scale(xfact=scale_factor, yfact=scale_factor, origin=centroid)
+    return scaled
+
+# Normalize population for scaling
+world['scale'] = np.sqrt(world['pop_est'] / world['pop_est'].max())
+
+# Create cartogram
+world['cartogram_geom'] = world.apply(
+    lambda row: scale_geometry(row['geometry'], row['scale']), 
+    axis=1
+)
+
+# Plot comparison
+fig, axes = plt.subplots(1, 2, figsize=(20, 8))
+
+# Original
+world.plot(ax=axes[0], color='lightblue', edgecolor='black', linewidth=0.5)
+axes[0].set_title('Original Geographic Map', fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+# Cartogram
+world.set_geometry('cartogram_geom').plot(
+    ax=axes[1], color='lightcoral', edgecolor='black', linewidth=0.5
+)
+axes[1].set_title('Population Cartogram', fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Geography vs Population-Weighted View', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Dorling Cartogram (Circle-based):**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from shapely.geometry import Point
+
+# Load US states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Get centroids
+us_states['centroid'] = us_states.geometry.centroid
+
+# Create circles proportional to population
+us_states['circle_radius'] = np.sqrt(us_states['pop_est'] / np.pi) / 100000
+
+# Create circle geometries
+us_states['circles'] = us_states.apply(
+    lambda row: row['centroid'].buffer(row['circle_radius']), 
+    axis=1
+)
+
+# Plot
+fig, axes = plt.subplots(1, 2, figsize=(20, 8))
+
+# Original
+us_states.plot(column='pop_est', cmap='YlOrRd', legend=True,
+              ax=axes[0], edgecolor='black', linewidth=0.5)
+axes[0].set_title('Traditional Choropleth', fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+# Dorling Cartogram
+us_states.set_geometry('circles').plot(
+    column='pop_est', cmap='YlOrRd', legend=True,
+    ax=axes[1], edgecolor='black', linewidth=1
+)
+axes[1].set_title('Dorling Cartogram (Circle Size = Population)', 
+                 fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Choropleth vs Dorling Cartogram', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Hexagonal Cartogram:**
+
+```python
+# Conceptual - create hexagonal grid
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Simple hex grid representation
+fig, ax = plt.subplots(figsize=(12, 10))
+
+# Each state becomes a hexagon
+# Position based on actual geography (approximated)
+states_hex = {
+    'CA': (0, 2), 'OR': (0, 3), 'WA': (0, 4),
+    'TX': (3, 1), 'NY': (8, 4), 'FL': (7, 0),
+    # ... etc
+}
+
+# Draw hexagons
+for state, (x, y) in states_hex.items():
+    hexagon = plt.Circle((x, y), 0.4, color='lightblue', 
+                        edgecolor='black', linewidth=2)
+    ax.add_patch(hexagon)
+    ax.text(x, y, state, ha='center', va='center', 
+           fontweight='bold', fontsize=10)
+
+ax.set_xlim([-1, 10])
+ax.set_ylim([-1, 6])
+ax.set_aspect('equal')
+ax.set_title('Hexagonal Tile Cartogram (Conceptual)', 
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Pros and Cons:**
+
+**Pros:**
+ Equal visual weight per unit of data
+ Reduces geographic bias
+ Makes small regions visible
+
+**Cons:**
+ Unfamiliar to readers
+ Hard to identify regions
+ Can be misleading if not explained
+
+**Best Practice:** Always show both traditional map AND cartogram for comparison
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

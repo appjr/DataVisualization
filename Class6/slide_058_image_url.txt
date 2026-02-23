@@ -1,0 +1,206 @@
+Slide 58 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Composite Maps
+
+**Layering multiple data types**
+
+**What are Composite Maps?**
+
+**Composite maps** combine multiple geographic layers (points, lines, polygons, rasters) to show complex spatial relationships.
+
+**When to Use:**
+- Show multiple related datasets
+- Context + detail
+- Multi-dimensional analysis
+
+**Points + Polygons:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Load states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate state values
+np.random.seed(42)
+us_states['unemployment'] = np.random.uniform(3, 8, len(us_states))
+
+# Generate city points
+cities = gpd.GeoDataFrame({
+    'city': ['New York', 'Los Angeles', 'Chicago', 'Houston'],
+    'population': [8336000, 3979000, 2693000, 2320000],
+    'geometry': gpd.points_from_xy(
+        [-74.0, -118.2, -87.6, -95.4],
+        [40.7, 34.0, 41.9, 29.8]
+    )
+}, crs='EPSG:4326')
+
+# Create composite map
+fig, ax = plt.subplots(figsize=(16, 10))
+
+# Layer 1: Choropleth (unemployment)
+us_states.plot(column='unemployment', cmap='YlOrRd', 
+              legend=True, ax=ax, edgecolor='black', 
+              linewidth=0.5, alpha=0.7)
+
+# Layer 2: Proportional symbols (population)
+cities.plot(ax=ax, markersize=cities['population']/10000,
+           color='blue', alpha=0.7, edgecolor='white',
+           linewidth=2, zorder=5)
+
+# Layer 3: Labels
+for idx, row in cities.iterrows():
+    ax.annotate(row['city'], 
+               xy=(row.geometry.x, row.geometry.y),
+               xytext=(5, 5), textcoords='offset points',
+               fontsize=10, fontweight='bold',
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.7))
+
+ax.set_title('Composite Map: Unemployment (choropleth) + Population (bubbles)',
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Multiple Layers with Different Geometries:**
+
+```python
+# Simulate highways (lines)
+highway_coords = [
+    [(-100, 30), (-95, 32), (-90, 33)],  # I-10
+    [(-105, 40), (-100, 40), (-95, 40)],  # I-70
+]
+
+from shapely.geometry import LineString
+
+highways = gpd.GeoDataFrame({
+    'name': ['I-10', 'I-70'],
+    'geometry': [LineString(coords) for coords in highway_coords]
+}, crs='EPSG:4326')
+
+# Create comprehensive composite
+fig, ax = plt.subplots(figsize=(16, 10))
+
+# Layer 1: States (choropleth)
+us_states.plot(column='unemployment', cmap='YlOrRd', 
+              legend=False, ax=ax, edgecolor='gray', 
+              linewidth=0.5, alpha=0.5)
+
+# Layer 2: Highways (lines)
+highways.plot(ax=ax, color='darkred', linewidth=3, 
+             linestyle='--', zorder=3, label='Highways')
+
+# Layer 3: Cities (points)
+cities.plot(ax=ax, markersize=200, color='navy', 
+           edgecolor='white', linewidth=2, zorder=5, label='Cities')
+
+ax.set_title('Multi-Layer Composite Map', fontsize=16, fontweight='bold')
+ax.legend(fontsize=12, loc='lower left')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Interactive Composite with folium:**
+
+```python
+import folium
+from folium import plugins
+
+# Create base map
+m = folium.Map(location=[37, -95], zoom_start=5, tiles='CartoDB positron')
+
+# Layer 1: Choropleth
+folium.Choropleth(
+    geo_data=us_states,
+    data=us_states,
+    columns=['name', 'unemployment'],
+    key_on='feature.properties.name',
+    fill_color='YlOrRd',
+    fill_opacity=0.5,
+    line_opacity=0.2,
+    legend_name='Unemployment Rate (%)',
+    name='Unemployment'
+).add_to(m)
+
+# Layer 2: City markers
+for idx, row in cities.iterrows():
+    folium.CircleMarker(
+        location=[row.geometry.y, row.geometry.x],
+        radius=row['population']/1000000 * 5,
+        popup=f"{row['city']}: {row['population']:,}",
+        color='blue',
+        fill=True,
+        fillColor='blue',
+        fillOpacity=0.7
+    ).add_to(m)
+
+# Layer control
+folium.LayerControl().add_to(m)
+
+m.save('composite_interactive.html')
+```
+
+**Best Practices:**
+
+ Use transparency for overlapping layers
+ Control z-order (background to foreground)
+ Limit total layer count (3-5 maximum)
+ Use layer controls for interactive maps
+ Ensure color schemes don't conflict
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

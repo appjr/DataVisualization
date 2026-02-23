@@ -1,0 +1,199 @@
+Slide 59 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Map Annotations
+
+**Adding context with text, arrows, and highlights**
+
+**Why Annotate Maps?**
+
+**Annotations** add explanatory text, highlight important features, or guide the viewer's attention to specific areas.
+
+**Text Annotations:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+fig, ax = plt.subplots(figsize=(16, 10))
+
+us_states.plot(ax=ax, color='lightgray', edgecolor='black', linewidth=0.5)
+
+# Annotate specific locations
+annotations = [
+    {'text': 'West Coast\nHigh Tech Hub', 'xy': (-120, 37), 
+     'color': 'blue', 'size': 12},
+    {'text': 'Midwest\nManufacturing Belt', 'xy': (-90, 42), 
+     'color': 'green', 'size': 12},
+    {'text': 'Sun Belt\nGrowing Population', 'xy': (-97, 32), 
+     'color': 'orange', 'size': 12},
+]
+
+for annot in annotations:
+    ax.annotate(annot['text'], 
+               xy=annot['xy'],
+               fontsize=annot['size'],
+               fontweight='bold',
+               color=annot['color'],
+               ha='center',
+               bbox=dict(boxstyle='round,pad=0.5', 
+                        facecolor='white', 
+                        edgecolor=annot['color'], 
+                        linewidth=2))
+
+ax.set_title('US Regions with Annotations', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Arrows and Callouts:**
+
+```python
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(ax=ax, color='lightblue', edgecolor='black', linewidth=0.5)
+
+# Arrow annotation pointing to specific area
+ax.annotate('Hurricane Impact Zone', 
+           xy=(-85, 30),  # Point to
+           xytext=(-70, 35),  # Text location
+           fontsize=13,
+           fontweight='bold',
+           color='red',
+           arrowprops=dict(
+               arrowstyle='->',
+               color='red',
+               lw=3,
+               connectionstyle='arc3,rad=0.3'
+           ),
+           bbox=dict(boxstyle='round,pad=0.7', 
+                    facecolor='yellow',
+                    edgecolor='red',
+                    linewidth=2))
+
+ax.set_title('Map with Arrow Annotation', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Highlighting Regions:**
+
+```python
+fig, ax = plt.subplots(figsize=(14, 10))
+
+# Plot all states
+us_states.plot(ax=ax, color='lightgray', edgecolor='black', linewidth=0.5)
+
+# Highlight specific region
+highlight_states = ['California', 'Oregon', 'Washington']  # West Coast
+# Note: For naturalearth_lowres, use actual country names
+# This is conceptual - adjust based on your data
+
+# Add circle to highlight area
+from matplotlib.patches import Circle
+highlight = Circle((-120, 40), 5, color='red', fill=False, 
+                  linewidth=3, linestyle='--', label='Focus Area')
+ax.add_patch(highlight)
+
+# Add text
+ax.text(-120, 50, 'FOCUS REGION', fontsize=14, 
+       fontweight='bold', color='red', ha='center')
+
+ax.set_title('Highlighting Specific Regions', fontsize=16, fontweight='bold')
+ax.legend(fontsize=12)
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Scale Bar and North Arrow:**
+
+```python
+from matplotlib.patches import FancyArrowPatch, Rectangle
+from matplotlib_scalebar.scalebar import ScaleBar
+
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(ax=ax, color='lightgreen', edgecolor='black', linewidth=0.5)
+
+# Add scale bar
+scalebar = ScaleBar(111000, location='lower right')  # 111km per degree
+ax.add_artist(scalebar)
+
+# Add north arrow (manual)
+arrow = FancyArrowPatch((-70, 45), (-70, 48),
+                       arrowstyle='->', mutation_scale=30,
+                       linewidth=3, color='black')
+ax.add_patch(arrow)
+ax.text(-70, 49, 'N', fontsize=16, fontweight='bold', ha='center')
+
+ax.set_title('Map with Scale Bar and North Arrow', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+ Use annotations sparingly (only key points)
+ Ensure text is readable (size, contrast)
+ Use arrows to clearly point to features
+ Box important text for visibility
+ Include scale bar for reference maps
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

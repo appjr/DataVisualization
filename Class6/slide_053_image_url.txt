@@ -1,0 +1,240 @@
+Slide 53 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Proportional Symbol Maps
+
+**Size encodes magnitude**
+
+**What are Proportional Symbol Maps?**
+
+**Proportional symbol maps** use symbols (usually circles) sized proportionally to represent data values at specific locations.
+
+**When to Use:**
+- Point data with associated values
+- Absolute quantities (not rates)
+- Multiple locations to compare
+- Want to show both location AND magnitude
+
+**Basic Proportional Symbols:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Sample data: Cities with populations
+cities = gpd.GeoDataFrame({
+    'city': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
+             'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose'],
+    'population': [8336000, 3979000, 2693000, 2320000, 1680000,
+                   1584000, 1547000, 1423000, 1343000, 1021000],
+    'geometry': gpd.points_from_xy(
+        [-74.0, -118.2, -87.6, -95.4, -112.1, -75.2, -98.5, -117.2, -96.8, -121.9],
+        [40.7, 34.0, 41.9, 29.8, 33.4, 39.9, 29.4, 32.7, 32.8, 37.3]
+    )
+}, crs='EPSG:4326')
+
+# Load US states for context
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA']
+
+# Plot
+fig, ax = plt.subplots(figsize=(16, 10))
+
+# Base map
+us_states.plot(ax=ax, color='lightgray', edgecolor='white', linewidth=0.5)
+
+# Proportional symbols
+cities.plot(ax=ax,
+           markersize=cities['population']/10000,  # Scale for visibility
+           color='red',
+           alpha=0.6,
+           edgecolor='darkred',
+           linewidth=1.5)
+
+# Add city labels
+for idx, row in cities.iterrows():
+    ax.annotate(row['city'], 
+               xy=(row.geometry.x, row.geometry.y),
+               xytext=(5, 5),
+               textcoords='offset points',
+               fontsize=9,
+               fontweight='bold')
+
+# Add manual legend
+from matplotlib.lines import Line2D
+legend_sizes = [1000000, 5000000, 8000000]
+legend_elements = [
+    Line2D([0], [0], marker='o', color='w', 
+          markerfacecolor='red', markersize=np.sqrt(s/10000), 
+          alpha=0.6, label=f'{s/1000000:.0f}M')
+    for s in legend_sizes
+]
+ax.legend(handles=legend_elements, title='Population', 
+         loc='lower left', fontsize=11, frameon=True)
+
+ax.set_title('US Cities: Proportional Symbol Map', 
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Scaled vs Unscaled:**
+
+```python
+fig, axes = plt.subplots(1, 2, figsize=(18, 8))
+
+# Linearly scaled (WRONG - hard to compare)
+us_states.plot(ax=axes[0], color='lightgray', edgecolor='white')
+cities.plot(ax=axes[0],
+           markersize=cities['population']/50000,
+           color='blue', alpha=0.6)
+axes[0].set_title(' Linear Scaling (Misleading)', 
+                 fontsize=13, fontweight='bold', color='red')
+axes[0].axis('off')
+
+# Square root scaled (CORRECT - area proportional)
+us_states.plot(ax=axes[1], color='lightgray', edgecolor='white')
+cities.plot(ax=axes[1],
+           markersize=np.sqrt(cities['population'])*2,
+           color='green', alpha=0.6)
+axes[1].set_title(' Square Root Scaling (Correct)', 
+                 fontsize=13, fontweight='bold', color='green')
+axes[1].axis('off')
+
+plt.suptitle('Importance of Proper Scaling', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Graduated Symbols (Binned):**
+
+```python
+# Bin into size classes
+cities['size_class'] = pd.cut(cities['population'], 
+                              bins=[0, 2000000, 5000000, 10000000],
+                              labels=['Small', 'Medium', 'Large'])
+
+size_map = {'Small': 50, 'Medium': 150, 'Large': 300}
+cities['marker_size'] = cities['size_class'].map(size_map)
+
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(ax=ax, color='lightgray', edgecolor='white')
+
+for size_class in ['Small', 'Medium', 'Large']:
+    subset = cities[cities['size_class'] == size_class]
+    subset.plot(ax=ax,
+               markersize=size_map[size_class],
+               color='purple',
+               alpha=0.6,
+               edgecolor='black',
+               linewidth=1,
+               label=size_class)
+
+ax.legend(title='City Size', fontsize=11)
+ax.set_title('Graduated Symbol Map', fontsize=16, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Multivariate Symbols (Size + Color):**
+
+```python
+# Add GDP per capita data
+cities['gdp_per_capita'] = np.random.uniform(40000, 80000, len(cities))
+
+fig, ax = plt.subplots(figsize=(14, 10))
+
+us_states.plot(ax=ax, color='lightgray', edgecolor='white')
+
+# Size = population, Color = GDP per capita
+scatter = ax.scatter(
+    cities.geometry.x,
+    cities.geometry.y,
+    s=cities['population']/10000,
+    c=cities['gdp_per_capita'],
+    cmap='RdYlGn',
+    alpha=0.7,
+    edgecolors='black',
+    linewidth=1.5
+)
+
+# Colorbars
+cbar = plt.colorbar(scatter, ax=ax, shrink=0.6)
+cbar.set_label('GDP per Capita ($)', fontsize=11)
+
+ax.set_title('Multivariate Map: Size = Population, Color = GDP per Capita',
+            fontsize=15, fontweight='bold')
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+ **Scale by radius**, not area (use markersize in matplotlib)
+ **Limit symbol count** (< 50 for clarity)
+ **Use transparency** for overlapping symbols
+ **Include legend** with example sizes
+ **Consider binning** for many similar values
+
+**Common Mistakes:**
+
+ Scaling by diameter or area instead of radius
+ Too many overlapping symbols
+ No legend showing scale
+ Using for rates/ratios (use choropleth instead)
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

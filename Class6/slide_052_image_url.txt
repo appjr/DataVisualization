@@ -1,0 +1,183 @@
+Slide 52 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Dot Density Maps
+
+**One dot = N units**
+
+**What are Dot Density Maps?**
+
+**Dot density maps** place individual dots to represent quantities, where each dot represents a fixed number of units (e.g., 1 dot = 100 people).
+
+**When to Use:**
+- Show distribution within regions
+- Reveal patterns invisible in choropleth
+- Raw counts (not rates)
+- Multiple categories
+
+**Basic Dot Density:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from shapely.geometry import Point
+
+# Load states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate random points within polygons
+def generate_points_in_polygon(polygon, n_points):
+    """Generate random points inside polygon"""
+    min_x, min_y, max_x, max_y = polygon.bounds
+    points = []
+    
+    while len(points) < n_points:
+        random_point = Point(np.random.uniform(min_x, max_x),
+                            np.random.uniform(min_y, max_y))
+        if polygon.contains(random_point):
+            points.append(random_point)
+    
+    return points
+
+# Create dots (1 dot = 1 million people)
+dots_per_million = 1
+all_dots = []
+
+for idx, state in us_states.iterrows():
+    n_dots = int(state['pop_est'] / 1_000_000)
+    if n_dots > 0:
+        dots = generate_points_in_polygon(state.geometry, n_dots)
+        all_dots.extend(dots)
+
+# Create GeoDataFrame of dots
+dots_gdf = gpd.GeoDataFrame({'geometry': all_dots}, crs='EPSG:4326')
+
+# Plot
+fig, axes = plt.subplots(1, 2, figsize=(20, 8))
+
+# Choropleth
+us_states.plot(column='pop_est', cmap='YlOrRd', legend=True,
+              ax=axes[0], edgecolor='black', linewidth=0.5)
+axes[0].set_title('Choropleth: Population by State', 
+                 fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+# Dot density
+us_states.plot(ax=axes[1], color='white', edgecolor='black', linewidth=0.5)
+dots_gdf.plot(ax=axes[1], color='red', markersize=5, alpha=0.6)
+axes[1].set_title('Dot Density: 1 dot = 1M people', 
+                 fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Choropleth vs Dot Density', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Multi-Category Dot Density:**
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Simulate multi-category data (population by ethnicity)
+np.random.seed(42)
+
+# Generate dots for different categories
+categories = {
+    'Category A': {'color': 'red', 'n_dots': 500},
+    'Category B': {'color': 'blue', 'n_dots': 300},
+    'Category C': {'color': 'green', 'n_dots': 200}
+}
+
+fig, ax = plt.subplots(figsize=(12, 10))
+
+for category, props in categories.items():
+    # Random points within a region
+    x = np.random.rand(props['n_dots']) * 10
+    y = np.random.rand(props['n_dots']) * 10
+    ax.scatter(x, y, c=props['color'], s=10, alpha=0.6, label=category)
+
+ax.set_title('Multi-Category Dot Density Map', fontsize=16, fontweight='bold')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.legend(title='Categories', fontsize=11)
+ax.set_xlim([0, 10])
+ax.set_ylim([0, 10])
+
+plt.tight_layout()
+plt.show()
+```
+
+**Dasymetric Mapping (Intelligent Dot Placement):**
+
+```python
+# Conceptual: Place dots only in habitable areas
+# In practice, use land cover data to avoid water, mountains, etc.
+
+# Example: Avoid placing dots in water bodies
+# dots_gdf = dots_gdf[~dots_gdf.intersects(water_bodies)]
+```
+
+**Best Practices:**
+
+ **Specify dot value** clearly (1 dot = X units)
+ **Use for raw counts**, not rates
+ **Random placement** within regions
+ **Semi-transparent dots** for overlap
+ **Consider dasymetric** for accuracy
+
+**Advantages over Choropleth:**
+- Shows distribution within regions
+- Doesn't hide variation in large regions
+- Visually intuitive (more dots = more units)
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

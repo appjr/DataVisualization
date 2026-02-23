@@ -1,0 +1,189 @@
+Slide 55 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Small Multiples for Maps
+
+**Comparing regions or time periods side-by-side**
+
+**What are Small Multiples?**
+
+**Small multiples** (also called trellis charts or panel charts) show multiple related maps in a grid layout, allowing easy comparison across categories or time periods.
+
+**When to Use:**
+- Compare time periods
+- Compare regions
+- Show multiple related variables
+- Alternative to animation
+
+**Time Series Small Multiples:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Load states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate data for 6 years
+years = [2018, 2019, 2020, 2021, 2022, 2023]
+np.random.seed(42)
+
+fig, axes = plt.subplots(2, 3, figsize=(20, 12))
+
+for ax, year in zip(axes.flat, years):
+    # Simulate different values each year
+    us_states['value'] = np.random.randint(50, 150, len(us_states))
+    
+    us_states.plot(
+        column='value',
+        cmap='YlOrRd',
+        legend=False,
+        edgecolor='black',
+        linewidth=0.5,
+        ax=ax,
+        vmin=50,
+        vmax=150
+    )
+    
+    ax.set_title(f'Year {year}', fontsize=14, fontweight='bold')
+    ax.axis('off')
+
+# Add shared colorbar
+sm = plt.cm.ScalarMappable(cmap='YlOrRd', norm=plt.Normalize(vmin=50, vmax=150))
+sm._A = []
+cbar = fig.colorbar(sm, ax=axes, orientation='horizontal', 
+                   fraction=0.05, pad=0.05, aspect=30)
+cbar.set_label('Value', fontsize=12)
+
+plt.suptitle('Regional Values Over Time (Small Multiples)', 
+            fontsize=18, fontweight='bold', y=0.98)
+plt.tight_layout()
+plt.show()
+```
+
+**Comparing Different Variables:**
+
+```python
+import matplotlib.pyplot as plt
+
+# Generate multiple variables
+variables = ['Population', 'GDP', 'Education', 'Healthcare']
+np.random.seed(42)
+
+for var in variables:
+    us_states[var] = np.random.uniform(0, 100, len(us_states))
+
+# Plot each variable
+fig, axes = plt.subplots(2, 2, figsize=(18, 14))
+
+for ax, var in zip(axes.flat, variables):
+    us_states.plot(
+        column=var,
+        cmap='viridis',
+        legend=True,
+        edgecolor='black',
+        linewidth=0.5,
+        ax=ax
+    )
+    ax.set_title(var, fontsize=14, fontweight='bold')
+    ax.axis('off')
+
+plt.suptitle('Comparing Multiple Variables', fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Regional Comparison:**
+
+```python
+# Compare different regions
+continents = ['Africa', 'Asia', 'Europe', 'North America', 'South America', 'Oceania']
+
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+fig, axes = plt.subplots(2, 3, figsize=(20, 12))
+
+for ax, continent in zip(axes.flat, continents):
+    region = world[world['continent'] == continent]
+    
+    region.plot(
+        column='gdp_md_est',
+        cmap='YlGn',
+        legend=False,
+        edgecolor='black',
+        linewidth=0.5,
+        ax=ax
+    )
+    
+    ax.set_title(continent, fontsize=14, fontweight='bold')
+    ax.axis('off')
+
+plt.suptitle('GDP by Continent', fontsize=18, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+ **Use same color scale** across all panels for comparison
+ **Keep layouts consistent** (same size, orientation)
+ **Label clearly** with titles
+ **Limit panel count** (9-12 maximum)
+ **Arrange logically** (time: left to right, categories: by importance)
+
+**Advantages over Animation:**
+- See all at once (no memory required)
+- Easy to compare specific time points
+- Works in print
+- No technology requirements
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+
