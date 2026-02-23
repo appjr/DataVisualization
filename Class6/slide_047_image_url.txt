@@ -1,0 +1,231 @@
+Slide 47 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Hexbin Aggregation
+
+**Hexagonal binning for point aggregation**
+
+**Why Hexagons?**
+
+**Hexagons** are better than squares for spatial binning because:
+-  Equal distance from center to all edges
+-  Better sampling efficiency
+-  No orientation bias
+-  Aesthetically pleasing
+-  Tesselate perfectly
+
+**Basic Hexbin with matplotlib:**
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate random point data
+np.random.seed(42)
+n_points = 5000
+x = np.random.randn(n_points) * 2 + 10
+y = np.random.randn(n_points) * 2 + 10
+
+# Create hexbin plot
+fig, axes = plt.subplots(1, 2, figsize=(16, 7))
+
+# Scatter (original points)
+axes[0].scatter(x, y, alpha=0.3, s=10)
+axes[0].set_title('Original Points', fontsize=14, fontweight='bold')
+axes[0].set_xlabel('X')
+axes[0].set_ylabel('Y')
+
+# Hexbin aggregation
+hb = axes[1].hexbin(x, y, gridsize=20, cmap='YlOrRd', mincnt=1)
+axes[1].set_title('Hexbin Aggregation', fontsize=14, fontweight='bold')
+axes[1].set_xlabel('X')
+axes[1].set_ylabel('Y')
+
+# Add colorbar
+cb = plt.colorbar(hb, ax=axes[1])
+cb.set_label('Point Count', fontsize=11)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Geographic Hexbin:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from shapely.geometry import Point
+
+# Generate point data (customer locations)
+np.random.seed(42)
+n_customers = 2000
+
+# Clustered around major cities
+clusters = [
+    (40.7, -74.0, 800),   # NYC
+    (34.0, -118.2, 600),  # LA
+    (41.8, -87.6, 400),   # Chicago
+    (29.7, -95.3, 200)    # Houston
+]
+
+points = []
+for lat, lon, n in clusters:
+    cluster_points = np.random.multivariate_normal(
+        [lat, lon], [[0.3, 0], [0, 0.3]], n
+    )
+    points.extend(cluster_points)
+
+points = np.array(points)
+
+# Create figure
+fig, axes = plt.subplots(1, 2, figsize=(18, 8))
+
+# Original points
+axes[0].scatter(points[:, 1], points[:, 0], alpha=0.3, s=5, c='blue')
+axes[0].set_title('Customer Locations (Points)', fontsize=14, fontweight='bold')
+axes[0].set_xlabel('Longitude')
+axes[0].set_ylabel('Latitude')
+axes[0].set_xlim([-130, -65])
+axes[0].set_ylim([25, 50])
+
+# Hexbin density
+hb = axes[1].hexbin(points[:, 1], points[:, 0], 
+                   gridsize=30, cmap='YlOrRd', mincnt=1)
+axes[1].set_title('Customer Density (Hexbin)', fontsize=14, fontweight='bold')
+axes[1].set_xlabel('Longitude')
+axes[1].set_ylabel('Latitude')
+axes[1].set_xlim([-130, -65])
+axes[1].set_ylim([25, 50])
+
+cb = plt.colorbar(hb, ax=axes[1])
+cb.set_label('Customer Count per Hexagon', fontsize=11)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Hexbin with Value Aggregation:**
+
+```python
+# Generate points with values (e.g., sales)
+np.random.seed(42)
+n_points = 1000
+x = np.random.randn(n_points) * 3 + 10
+y = np.random.randn(n_points) * 3 + 10
+values = np.random.exponential(100, n_points)  # Sales values
+
+# Create figure
+fig, axes = plt.subplots(1, 3, figsize=(20, 6))
+
+# Count
+hb1 = axes[0].hexbin(x, y, gridsize=15, cmap='Blues')
+axes[0].set_title('Point Count', fontsize=13, fontweight='bold')
+plt.colorbar(hb1, ax=axes[0])
+
+# Sum of values
+hb2 = axes[1].hexbin(x, y, C=values, gridsize=15, reduce_C_function=np.sum, cmap='Greens')
+axes[1].set_title('Total Sales', fontsize=13, fontweight='bold')
+plt.colorbar(hb2, ax=axes[1])
+
+# Mean of values
+hb3 = axes[2].hexbin(x, y, C=values, gridsize=15, reduce_C_function=np.mean, cmap='Oranges')
+axes[2].set_title('Average Sales', fontsize=13, fontweight='bold')
+plt.colorbar(hb3, ax=axes[2])
+
+plt.tight_layout()
+plt.show()
+```
+
+**H3 Hexagonal Hierarchical Geospatial Index:**
+
+```python
+# Install: pip install h3
+import h3
+import geopandas as gpd
+from shapely.geometry import Polygon
+import matplotlib.pyplot as plt
+
+# Function to convert H3 hexagon to polygon
+def h3_to_polygon(h):
+    coords = h3.h3_to_geo_boundary(h, geo_json=True)
+    return Polygon(coords)
+
+# Generate hexagons for a region
+resolution = 5  # H3 resolution (0-15, higher = smaller hexes)
+lat, lon = 40.7, -74.0
+hexagons = h3.k_ring(h3.geo_to_h3(lat, lon, resolution), 10)
+
+# Convert to GeoDataFrame
+hex_polygons = [h3_to_polygon(h) for h in hexagons]
+gdf_hexes = gpd.GeoDataFrame({'h3_id': list(hexagons)}, 
+                             geometry=hex_polygons, crs='EPSG:4326')
+
+# Assign random values
+gdf_hexes['value'] = np.random.rand(len(gdf_hexes))
+
+# Plot
+fig, ax = plt.subplots(figsize=(12, 10))
+gdf_hexes.plot(column='value', cmap='viridis', legend=True,
+              edgecolor='white', linewidth=0.5, ax=ax)
+ax.set_title(f'H3 Hexagons (Resolution {resolution})', 
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+ Use hexagons over squares for spatial binning
+ Adjust `gridsize` to balance detail vs clarity
+ Choose appropriate aggregation function (count, sum, mean, median)
+ Consider H3 for multi-scale hierarchical analysis
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

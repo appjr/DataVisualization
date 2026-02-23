@@ -1,0 +1,214 @@
+Slide 46 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Spatial Autocorrelation
+
+**Measuring spatial dependence and patterns**
+
+**What is Spatial Autocorrelation?**
+
+**Spatial autocorrelation** measures whether nearby locations have similar values. It answers: "Do neighboring areas tend to be similar?"
+
+**Concepts:**
+- **Positive autocorrelation**: Neighbors are similar (clustering)
+- **Negative autocorrelation**: Neighbors are different (dispersion)
+- **No autocorrelation**: Random spatial pattern
+
+**Moran's I Statistic:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from libpysal.weights import Queen
+from esda.moran import Moran
+
+# Load data
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate sample data with spatial pattern
+np.random.seed(42)
+us_states['value'] = np.random.randn(len(us_states)) * 10 + 50
+
+# Create spatial weights matrix (defines neighbors)
+w = Queen.from_dataframe(us_states)
+
+# Calculate Moran's I
+moran = Moran(us_states['value'], w)
+
+print(f"Moran's I: {moran.I:.3f}")
+print(f"p-value: {moran.p_sim:.3f}")
+print(f"Expected I: {moran.EI:.3f}")
+
+if moran.p_sim < 0.05:
+    if moran.I > 0:
+        print("Significant positive spatial autocorrelation (clustering)")
+    else:
+        print("Significant negative spatial autocorrelation (dispersion)")
+else:
+    print("No significant spatial autocorrelation")
+
+# Visualize
+fig, ax = plt.subplots(figsize=(12, 8))
+us_states.plot(column='value', cmap='RdYlGn', legend=True, ax=ax,
+              edgecolor='black', linewidth=0.5)
+ax.set_title(f"Value Distribution (Moran's I = {moran.I:.3f}, p = {moran.p_sim:.3f})",
+            fontsize=14, fontweight='bold')
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+**Moran Scatterplot:**
+
+```python
+from splot.esda import plot_moran
+
+fig, ax = plt.subplots(figsize=(10, 8))
+plot_moran(moran, zstandard=True, ax=ax)
+plt.title("Moran's I Scatterplot", fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Local Indicators of Spatial Association (LISA):**
+
+```python
+from esda.moran import Moran_Local
+from splot.esda import lisa_cluster
+
+# Local Moran's I
+lisa = Moran_Local(us_states['value'], w)
+
+# Add to dataframe
+us_states['lisa_cluster'] = lisa.q
+
+# Define cluster labels
+lisa_labels = {1: 'HH (High-High)', 2: 'LH (Low-High)', 
+               3: 'LL (Low-Low)', 4: 'HL (High-Low)'}
+
+# Plot LISA clusters
+fig, ax = plt.subplots(figsize=(14, 10))
+
+# Color by cluster type
+colors = {1: 'red', 2: 'pink', 3: 'blue', 4: 'lightblue', 0: 'lightgray'}
+us_states['color'] = us_states['lisa_cluster'].map(colors)
+
+us_states.plot(color=us_states['color'], edgecolor='black', 
+              linewidth=0.5, ax=ax)
+
+# Create legend
+from matplotlib.patches import Patch
+legend_elements = [
+    Patch(facecolor='red', label='HH: High value, high neighbors'),
+    Patch(facecolor='lightblue', label='HL: High value, low neighbors'),
+    Patch(facecolor='blue', label='LL: Low value, low neighbors'),
+    Patch(facecolor='pink', label='LH: Low value, high neighbors'),
+    Patch(facecolor='lightgray', label='Not significant')
+]
+ax.legend(handles=legend_elements, loc='lower left', fontsize=10)
+
+ax.set_title('LISA Cluster Map', fontsize=16, fontweight='bold')
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+**Getis-Ord Gi* (Hot Spot Analysis):**
+
+```python
+from esda.getisord import G_Local
+
+# Calculate Getis-Ord Gi*
+gi_star = G_Local(us_states['value'], w)
+
+# Add to dataframe
+us_states['gi_star'] = gi_star.Zs
+us_states['hotspot'] = 'Not Significant'
+us_states.loc[(gi_star.Zs > 1.96) & (gi_star.p_sim < 0.05), 'hotspot'] = 'Hot Spot'
+us_states.loc[(gi_star.Zs < -1.96) & (gi_star.p_sim < 0.05), 'hotspot'] = 'Cold Spot'
+
+# Plot hot spots
+fig, ax = plt.subplots(figsize=(14, 10))
+
+hotspot_colors = {'Hot Spot': 'red', 'Cold Spot': 'blue', 'Not Significant': 'lightgray'}
+us_states['hs_color'] = us_states['hotspot'].map(hotspot_colors)
+
+us_states.plot(color=us_states['hs_color'], edgecolor='black', 
+              linewidth=0.5, ax=ax)
+
+legend_elements = [
+    Patch(facecolor='red', label='Hot Spot (p < 0.05)'),
+    Patch(facecolor='blue', label='Cold Spot (p < 0.05)'),
+    Patch(facecolor='lightgray', label='Not Significant')
+]
+ax.legend(handles=legend_elements, loc='lower left', fontsize=11)
+
+ax.set_title('Getis-Ord Gi* Hot Spot Analysis', fontsize=16, fontweight='bold')
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+**Interpretation:**
+
+**Moran's I:**
+- Range: -1 to +1
+- **I > 0**: Positive autocorrelation (similar values cluster)
+- **I < 0**: Negative autocorrelation (dissimilar values cluster)
+- **I  0**: Random spatial pattern
+
+**Use Cases:**
+ Identify disease clusters
+ Find crime hot spots
+ Detect market concentration
+ Validate spatial randomness assumptions
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

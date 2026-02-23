@@ -1,0 +1,194 @@
+Slide 44 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Time Series on Maps
+
+**Visualizing temporal patterns across space**
+
+**What are Time Series Maps?**
+
+**Time series maps** show how values change over time at specific locations, combining temporal and spatial dimensions.
+
+**Small Multiples for Time Comparison:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Load states
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+
+# Generate sample data for multiple years
+years = [2018, 2019, 2020, 2021, 2022, 2023]
+np.random.seed(42)
+
+fig, axes = plt.subplots(2, 3, figsize=(20, 12))
+
+for ax, year in zip(axes.flat, years):
+    # Simulate changing values
+    us_states['value'] = np.random.randint(50, 150, len(us_states))
+    
+    us_states.plot(
+        column='value',
+        cmap='YlOrRd',
+        legend=False,
+        edgecolor='black',
+        linewidth=0.5,
+        ax=ax,
+        vmin=50,
+        vmax=150
+    )
+    
+    ax.set_title(f'Year {year}', fontsize=14, fontweight='bold')
+    ax.axis('off')
+
+# Add shared colorbar
+sm = plt.cm.ScalarMappable(cmap='YlOrRd', norm=plt.Normalize(vmin=50, vmax=150))
+sm._A = []
+cbar = fig.colorbar(sm, ax=axes, orientation='horizontal', 
+                   fraction=0.05, pad=0.05, aspect=30)
+cbar.set_label('Value', fontsize=12)
+
+plt.suptitle('Regional Values Over Time (Small Multiples)', 
+            fontsize=18, fontweight='bold', y=0.98)
+plt.tight_layout()
+plt.show()
+```
+
+**Sparklines on Map:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Rectangle
+
+# Create state centroids
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+us_states['centroid'] = us_states.geometry.centroid
+
+# Generate time series for each state
+np.random.seed(42)
+time_series_data = {}
+for idx, state in us_states.iterrows():
+    time_series_data[idx] = np.cumsum(np.random.randn(12))
+
+# Create base map
+fig, ax = plt.subplots(figsize=(16, 10))
+us_states.plot(ax=ax, color='lightgray', edgecolor='black', linewidth=0.5)
+
+# Add sparklines at centroids
+for idx, state in us_states.iterrows():
+    centroid = state['centroid']
+    values = time_series_data[idx]
+    
+    # Normalize values for plotting
+    values_norm = (values - values.min()) / (values.max() - values.min() + 0.001)
+    
+    # Create mini time series plot
+    x_offset = np.linspace(-2, 2, len(values))
+    y_offset = values_norm * 2 - 1
+    
+    ax.plot(centroid.x + x_offset, centroid.y + y_offset, 
+           'b-', linewidth=1, alpha=0.7)
+
+ax.set_title('State-Level Time Series (Sparklines on Map)', 
+            fontsize=16, fontweight='bold')
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+**Heatmap Timeline:**
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import numpy as np
+
+# Generate data: cities  months
+cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 
+          'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose']
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+# Simulate temperature data
+np.random.seed(42)
+data = np.random.randint(30, 90, size=(len(cities), len(months)))
+
+df = pd.DataFrame(data, index=cities, columns=months)
+
+# Create heatmap
+fig, ax = plt.subplots(figsize=(14, 8))
+sns.heatmap(df, annot=True, fmt='d', cmap='RdYlBu_r', 
+           cbar_kws={'label': 'Temperature (F)'}, ax=ax)
+
+ax.set_title('Average Temperature by City and Month', 
+            fontsize=16, fontweight='bold')
+ax.set_xlabel('Month', fontsize=12)
+ax.set_ylabel('City', fontsize=12)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+ Keep temporal resolution consistent
+ Use same scale across time periods for comparison
+ Consider small multiples for discrete time points
+ Use animation for many time points
+ Highlight trends with sparklines or line overlays
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

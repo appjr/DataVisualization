@@ -6,56 +6,163 @@ Prompt used:
 Create a professional university presentation slide image with the following specifications:
 
 SLIDE CONTENT:
-## Part 3 Summary
+## Flow Maps
 
-**You've mastered advanced geospatial techniques:**
+**Visualizing movement and connections between locations**
 
-**Movement & Flow:**
- Flow maps with proportional lines
- Sankey diagrams for geographic flows
- Animated maps for temporal patterns
- Trajectory visualization
+**What are Flow Maps?**
 
-**Analysis Techniques:**
- Spatial clustering (DBSCAN, K-means)
- Spatial autocorrelation (Moran's I, LISA)
- Hot spot analysis (Getis-Ord Gi*)
- Hexbin aggregation
+**Flow maps** show movement between origins and destinations, with lines representing routes and line width/color representing volume or magnitude.
 
-**Advanced Visualizations:**
- Voronoi diagrams for territories
- Contour maps for continuous surfaces
- Cartograms for data-weighted geography
- Dot density maps
+**Use Cases:**
+- Migration patterns
+- Trade routes
+- Commuter flows
+- Flight paths
+- Supply chain networks
+- Customer movement
 
-**Specialized Maps:**
- Proportional symbol maps
- Bivariate choropleths
- Small multiples for comparison
- Network and composite maps
+**Basic Flow Map with folium:**
 
-**Key Takeaways:**
+```python
+import folium
+import pandas as pd
 
- **Avoid 3D** for data values (use 2D + color)
- **Hexagons > Squares** for spatial binning
- **Normalize by population/area** for rates
- **Small multiples > Animation** for comparison
- **Annotations add clarity** but use sparingly
+# Sample route data (flights between cities)
+routes = pd.DataFrame({
+    'origin_city': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'],
+    'dest_city': ['Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'New York'],
+    'origin_lat': [40.7128, 34.0522, 41.8781, 29.7604, 33.4484],
+    'origin_lon': [-74.0060, -118.2437, -87.6298, -95.3698, -112.0740],
+    'dest_lat': [34.0522, 41.8781, 29.7604, 33.4484, 40.7128],
+    'dest_lon': [-118.2437, -87.6298, -95.3698, -112.0740, -74.0060],
+    'passengers': [15000, 12000, 8000, 6000, 10000]
+})
 
-**When to Use Each:**
+# Create map
+m = folium.Map(location=[37.0902, -95.7129], zoom_start=4, tiles='CartoDB positron')
 
-| Technique | Best For | Avoid For |
-|-----------|----------|-----------|
-| Flow maps | Migration, trade routes | Static patterns |
-| Animations | Temporal changes | Print, comparison |
-| Clustering | Finding patterns | Prescribed regions |
-| Hexbin | Point density | Individual points |
-| Voronoi | Service areas | Weighted distances |
-| Contours | Continuous surfaces | Discrete data |
-| Cartograms | Emphasizing data | Geography recognition |
-| Dot density | Distribution within regions | Aggregate totals |
+# Add flow lines
+for idx, route in routes.iterrows():
+    # Line thickness based on passenger volume
+    weight = route['passengers'] / 2000
+    
+    folium.PolyLine(
+        locations=[
+            [route['origin_lat'], route['origin_lon']],
+            [route['dest_lat'], route['dest_lon']]
+        ],
+        color='blue',
+        weight=weight,
+        opacity=0.6,
+        popup=f"{route['origin_city']}  {route['dest_city']}<br>Passengers: {route['passengers']:,}"
+    ).add_to(m)
+    
+    # Add origin markers
+    folium.CircleMarker(
+        [route['origin_lat'], route['origin_lon']],
+        radius=5,
+        color='red',
+        fill=True,
+        fillColor='red',
+        fillOpacity=0.7,
+        popup=route['origin_city']
+    ).add_to(m)
 
-**Next:** Part 4 - Real-World Applications & Best Practices
+m.save('flow_map.html')
+```
+
+**Curved Flow Lines (More Aesthetic):**
+
+```python
+import folium
+from folium.plugins import AntPath
+import numpy as np
+
+def create_curved_line(start, end, num_points=100):
+    """Create curved line between two points"""
+    lat1, lon1 = start
+    lat2, lon2 = end
+    
+    # Create control point for bezier curve (offset to side)
+    mid_lat = (lat1 + lat2) / 2
+    mid_lon = (lon1 + lon2) / 2
+    
+    # Offset perpendicular to line
+    offset = 5  # degrees
+    mid_lat += offset
+    
+    # Generate curve points
+    t = np.linspace(0, 1, num_points)
+    lats = (1-t)**2 * lat1 + 2*(1-t)*t * mid_lat + t**2 * lat2
+    lons = (1-t)**2 * lon1 + 2*(1-t)*t * mid_lon + t**2 * lon2
+    
+    return list(zip(lats, lons))
+
+# Create map
+m = folium.Map(location=[37, -95], zoom_start=4)
+
+# Add curved flow
+origin = [40.7128, -74.0060]  # NYC
+destination = [34.0522, -118.2437]  # LA
+
+curved_path = create_curved_line(origin, destination)
+
+# Animated path
+AntPath(
+    locations=curved_path,
+    color='blue',
+    weight=3,
+    opacity=0.8
+).add_to(m)
+
+m.save('curved_flow.html')
+```
+
+**Flow Map with Direction Arrows:**
+
+```python
+import folium
+from folium.plugins import PolyLineTextPath
+
+m = folium.Map(location=[37, -95], zoom_start=4)
+
+# Create directional flow
+flow_line = folium.PolyLine(
+    locations=[[40.7128, -74.0060], [34.0522, -118.2437]],
+    color='blue',
+    weight=4,
+    opacity=0.7
+)
+
+# Add arrows to show direction
+PolyLineTextPath(
+    flow_line,
+    '          ',
+    repeat=True,
+    offset=5,
+    attributes={'fill': 'blue', 'font-weight': 'bold', 'font-size': '20'}
+).add_to(m)
+
+m.save('directional_flow.html')
+```
+
+**Best Practices:**
+
+ **Line width** = flow magnitude (more = thicker)
+ **Color** can encode categories or direction
+ **Curved lines** reduce overlap and improve aesthetics
+ **Arrows** clearly indicate direction
+ **Limit flows** shown to avoid clutter (top N routes)
+
+**Common Mistakes:**
+
+ Too many lines (cluttered, unreadable)
+ No directionality indication
+ Equal width lines (magnitude lost)
+ Straight lines crossing (hard to trace)
+
+---
 
 DESIGN THEME: Playful academic cartoon + clean university style
 

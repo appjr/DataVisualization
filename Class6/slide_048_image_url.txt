@@ -1,0 +1,198 @@
+Slide 48 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Voronoi Diagrams
+
+**Dividing space by nearest neighbors**
+
+**What are Voronoi Diagrams?**
+
+**Voronoi diagrams** partition space into regions where each region contains all points closest to a particular seed point.
+
+**Use Cases:**
+- Service area delineation
+- Nearest facility analysis
+- Territory assignment
+- Coverage planning
+
+**Basic Voronoi:**
+
+```python
+from scipy.spatial import Voronoi, voronoi_plot_2d
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate random seed points (e.g., store locations)
+np.random.seed(42)
+points = np.random.rand(20, 2) * 100
+
+# Create Voronoi diagram
+vor = Voronoi(points)
+
+# Plot
+fig, ax = plt.subplots(figsize=(12, 10))
+voronoi_plot_2d(vor, ax=ax, show_vertices=False, line_colors='blue',
+               line_width=2, line_alpha=0.6, point_size=10)
+
+ax.set_title('Voronoi Diagram', fontsize=16, fontweight='bold')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_xlim([0, 100])
+ax.set_ylim([0, 100])
+
+plt.tight_layout()
+plt.show()
+```
+
+**Geographic Voronoi with geopandas:**
+
+```python
+import geopandas as gpd
+from scipy.spatial import Voronoi
+from shapely.geometry import Polygon, Point
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Create store locations
+stores = gpd.GeoDataFrame({
+    'name': ['Store A', 'Store B', 'Store C', 'Store D', 'Store E'],
+    'geometry': [
+        Point(-96.8, 32.8),  # Dallas area
+        Point(-96.7, 32.7),
+        Point(-96.9, 32.9),
+        Point(-96.75, 32.85),
+        Point(-96.85, 32.75)
+    ]
+}, crs='EPSG:4326')
+
+# Extract coordinates
+coords = np.array([[p.x, p.y] for p in stores.geometry])
+
+# Create Voronoi
+vor = Voronoi(coords)
+
+# Convert Voronoi regions to polygons
+polygons = []
+for region_index in vor.point_region:
+    region = vor.regions[region_index]
+    if -1 not in region and len(region) > 0:
+        polygon = Polygon([vor.vertices[i] for i in region])
+        polygons.append(polygon)
+    else:
+        polygons.append(None)
+
+# Create GeoDataFrame
+voronoi_gdf = gpd.GeoDataFrame({
+    'store': stores['name'],
+    'geometry': polygons
+}, crs='EPSG:4326')
+
+# Plot
+fig, ax = plt.subplots(figsize=(12, 10))
+
+# Plot Voronoi regions
+voronoi_gdf.plot(ax=ax, alpha=0.3, edgecolor='black', 
+                cmap='tab10', linewidth=2)
+
+# Plot stores
+stores.plot(ax=ax, color='red', markersize=200, 
+           edgecolor='black', linewidth=2, zorder=5)
+
+# Add labels
+for idx, row in stores.iterrows():
+    ax.annotate(row['name'], xy=(row.geometry.x, row.geometry.y),
+               xytext=(5, 5), textcoords='offset points',
+               fontsize=11, fontweight='bold')
+
+ax.set_title('Store Service Areas (Voronoi)', fontsize=16, fontweight='bold')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Weighted Voronoi (Power Diagram):**
+
+```python
+# Assign weights (e.g., store capacity)
+stores['capacity'] = [100, 150, 80, 120, 90]
+
+# Note: True weighted Voronoi requires specialized libraries
+# Here's a conceptual visualization
+
+fig, ax = plt.subplots(figsize=(12, 10))
+
+# Plot with bubble size = capacity
+stores.plot(ax=ax, markersize=stores['capacity']*5, 
+           alpha=0.5, color='blue', edgecolor='black', linewidth=2)
+
+# Add labels
+for idx, row in stores.iterrows():
+    ax.annotate(f"{row['name']}\n({row['capacity']} cap)",
+               xy=(row.geometry.x, row.geometry.y),
+               ha='center', fontsize=10, fontweight='bold')
+
+ax.set_title('Store Locations with Capacity', fontsize=16, fontweight='bold')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Applications:**
+
+ **Retail**: Assign customers to nearest store
+ **Healthcare**: Hospital service areas
+ **Emergency**: Fire station coverage
+ **Utilities**: Service territories
+ **Wildlife**: Animal territory analysis
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

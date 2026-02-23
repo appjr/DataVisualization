@@ -1,0 +1,240 @@
+Slide 49 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Contour Maps
+
+**Showing continuous surfaces with isolines**
+
+**What are Contour Maps?**
+
+**Contour maps** use lines (isolines) to connect points of equal value, showing continuous variation across space.
+
+**Types:**
+- **Isoline**: Generic equal-value line
+- **Contour**: Equal elevation
+- **Isotherm**: Equal temperature
+- **Isobar**: Equal pressure
+- **Isochrone**: Equal travel time
+
+**Basic Contour Plot:**
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.interpolate import griddata
+
+# Generate sample data (elevation points)
+np.random.seed(42)
+n_points = 100
+x = np.random.rand(n_points) * 100
+y = np.random.rand(n_points) * 100
+z = np.sin(x/10) * np.cos(y/10) * 50 + 50 + np.random.randn(n_points) * 5
+
+# Create grid
+xi = np.linspace(0, 100, 100)
+yi = np.linspace(0, 100, 100)
+xi, yi = np.meshgrid(xi, yi)
+
+# Interpolate
+zi = griddata((x, y), z, (xi, yi), method='cubic')
+
+# Create contour plot
+fig, axes = plt.subplots(1, 3, figsize=(20, 6))
+
+# Filled contours
+cf = axes[0].contourf(xi, yi, zi, levels=15, cmap='terrain')
+axes[0].scatter(x, y, c='red', s=20, alpha=0.5, label='Sample Points')
+axes[0].set_title('Filled Contours', fontsize=13, fontweight='bold')
+axes[0].legend()
+plt.colorbar(cf, ax=axes[0], label='Elevation (m)')
+
+# Line contours
+cs = axes[1].contour(xi, yi, zi, levels=15, colors='black', linewidths=1)
+axes[1].clabel(cs, inline=True, fontsize=8)
+axes[1].set_title('Line Contours with Labels', fontsize=13, fontweight='bold')
+
+# Combined
+cf2 = axes[2].contourf(xi, yi, zi, levels=15, cmap='terrain', alpha=0.7)
+cs2 = axes[2].contour(xi, yi, zi, levels=15, colors='black', 
+                     linewidths=0.5, alpha=0.5)
+axes[2].scatter(x, y, c='red', s=20, alpha=0.7)
+axes[2].set_title('Combined View', fontsize=13, fontweight='bold')
+plt.colorbar(cf2, ax=axes[2], label='Elevation (m)')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Geographic Contour Map:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.interpolate import griddata
+
+# Create sample temperature data for US cities
+cities = pd.DataFrame({
+    'city': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
+             'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose',
+             'Seattle', 'Denver', 'Boston', 'Atlanta', 'Miami'],
+    'lat': [40.7, 34.0, 41.9, 29.8, 33.4, 39.9, 29.4, 32.7, 32.8, 37.3,
+            47.6, 39.7, 42.4, 33.7, 25.8],
+    'lon': [-74.0, -118.2, -87.6, -95.4, -112.1, -75.2, -98.5, -117.2, 
+            -96.8, -121.9, -122.3, -105.0, -71.1, -84.4, -80.2],
+    'temp': [65, 72, 55, 78, 85, 64, 79, 70, 75, 68, 
+             58, 62, 60, 70, 82]
+})
+
+# Create interpolation grid
+lat_min, lat_max = 25, 50
+lon_min, lon_max = -125, -65
+
+grid_lat = np.linspace(lat_min, lat_max, 100)
+grid_lon = np.linspace(lon_min, lon_max, 100)
+grid_lon, grid_lat = np.meshgrid(grid_lon, grid_lat)
+
+# Interpolate temperature
+grid_temp = griddata(
+    (cities['lon'], cities['lat']),
+    cities['temp'],
+    (grid_lon, grid_lat),
+    method='cubic'
+)
+
+# Plot
+fig, ax = plt.subplots(figsize=(16, 10))
+
+# Filled contours
+cf = ax.contourf(grid_lon, grid_lat, grid_temp, levels=20, 
+                cmap='RdYlBu_r', alpha=0.8)
+
+# Contour lines
+cs = ax.contour(grid_lon, grid_lat, grid_temp, levels=10, 
+               colors='black', linewidths=0.5, alpha=0.4)
+ax.clabel(cs, inline=True, fontsize=9, fmt='%dF')
+
+# Plot cities
+ax.scatter(cities['lon'], cities['lat'], c='black', s=50, 
+          edgecolor='white', linewidth=1, zorder=5)
+
+# Add city labels
+for idx, row in cities.iterrows():
+    ax.annotate(row['city'], xy=(row['lon'], row['lat']),
+               xytext=(5, 5), textcoords='offset points',
+               fontsize=8)
+
+ax.set_title('Temperature Contour Map (Interpolated)', 
+            fontsize=16, fontweight='bold')
+ax.set_xlabel('Longitude', fontsize=12)
+ax.set_ylabel('Latitude', fontsize=12)
+ax.set_xlim([lon_min, lon_max])
+ax.set_ylim([lat_min, lat_max])
+
+plt.colorbar(cf, ax=ax, label='Temperature (F)')
+plt.tight_layout()
+plt.show()
+```
+
+**Isochrone Map (Travel Time Contours):**
+
+```python
+# Conceptual example - in practice use routing APIs
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Store location
+store_lat, store_lon = 40.7, -74.0
+
+# Create grid
+grid_size = 100
+lats = np.linspace(40.5, 40.9, grid_size)
+lons = np.linspace(-74.3, -73.7, grid_size)
+lon_grid, lat_grid = np.meshgrid(lons, lats)
+
+# Simulate travel time (simplified - actual would use routing)
+# Distance-based approximation
+travel_time = np.sqrt((lat_grid - store_lat)**2 * 69**2 + 
+                     (lon_grid - store_lon)**2 * 54**2) / 30 * 60  # ~30 mph
+
+# Plot isochrones
+fig, ax = plt.subplots(figsize=(12, 10))
+
+levels = [5, 10, 15, 20, 30, 45, 60]  # minutes
+colors = ['darkgreen', 'green', 'yellow', 'orange', 'red', 'darkred', 'purple']
+
+cf = ax.contourf(lon_grid, lat_grid, travel_time, levels=levels, 
+                colors=colors, alpha=0.6)
+cs = ax.contour(lon_grid, lat_grid, travel_time, levels=levels,
+               colors='black', linewidths=2)
+ax.clabel(cs, inline=True, fontsize=10, fmt='%d min')
+
+# Plot store
+ax.scatter([store_lon], [store_lat], c='blue', s=300, marker='*',
+          edgecolor='white', linewidth=2, zorder=5, label='Store')
+
+ax.set_title('Isochrone Map: Travel Time from Store', 
+            fontsize=16, fontweight='bold')
+ax.set_xlabel('Longitude', fontsize=12)
+ax.set_ylabel('Latitude', fontsize=12)
+ax.legend(fontsize=12)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+ Use appropriate interpolation method
+ Label contour lines for clarity
+ Choose color scheme that matches data type
+ Include sample points when showing interpolated data
+ Consider smoothing for noisy data
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

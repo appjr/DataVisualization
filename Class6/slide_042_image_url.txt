@@ -1,0 +1,152 @@
+Slide 42 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Sankey on Maps
+
+**Combining flow magnitude with geographic routing**
+
+**What is a Sankey Map?**
+
+A **Sankey map** combines traditional Sankey diagrams (flow diagrams with proportional width) with geographic routing.
+
+**Using plotly for Sankey-Style Flows:**
+
+```python
+import plotly.graph_objects as go
+import pandas as pd
+
+# Migration data example
+migration = pd.DataFrame({
+    'origin': ['California', 'Texas', 'Florida', 'New York', 'Illinois'],
+    'destination': ['Texas', 'California', 'North Carolina', 'Florida', 'Texas'],
+    'migrants': [150000, 120000, 95000, 110000, 85000],
+    'origin_lat': [36.7783, 31.9686, 27.6648, 43.2994, 40.6331],
+    'origin_lon': [-119.4179, -99.9018, -81.5158, -74.2179, -89.3985],
+    'dest_lat': [31.9686, 36.7783, 35.7596, 27.6648, 31.9686],
+    'dest_lon': [-99.9018, -119.4179, -79.0193, -81.5158, -99.9018]
+})
+
+# Create figure
+fig = go.Figure()
+
+# Add flows as lines with width based on volume
+for idx, row in migration.iterrows():
+    fig.add_trace(go.Scattergeo(
+        lon=[row['origin_lon'], row['dest_lon']],
+        lat=[row['origin_lat'], row['dest_lat']],
+        mode='lines',
+        line=dict(
+            width=row['migrants']/10000,
+            color='rgba(100, 100, 200, 0.5)'
+        ),
+        hoverinfo='text',
+        text=f"{row['origin']}  {row['destination']}<br>{row['migrants']:,} migrants"
+    ))
+
+# Add origin points
+fig.add_trace(go.Scattergeo(
+    lon=migration['origin_lon'],
+    lat=migration['origin_lat'],
+    mode='markers',
+    marker=dict(size=10, color='red'),
+    text=migration['origin'],
+    hoverinfo='text'
+))
+
+fig.update_layout(
+    title='Interstate Migration Flows',
+    geo=dict(
+        scope='usa',
+        projection_type='albers usa',
+        showland=True,
+        landcolor='rgb(243, 243, 243)',
+        coastlinecolor='rgb(204, 204, 204)',
+    ),
+    showlegend=False,
+    height=600
+)
+
+fig.show()
+```
+
+**True Sankey Diagram (Non-Geographic):**
+
+```python
+import plotly.graph_objects as go
+
+# Sankey for regional trade
+fig = go.Figure(data=[go.Sankey(
+    node=dict(
+        pad=15,
+        thickness=20,
+        line=dict(color='black', width=0.5),
+        label=['North America', 'Europe', 'Asia', 
+               'Manufacturing', 'Services', 'Agriculture',
+               'Exports', 'Domestic'],
+        color=['blue', 'green', 'red', 'orange', 'purple', 'brown', 'pink', 'gray']
+    ),
+    link=dict(
+        source=[0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5],
+        target=[3, 4, 3, 4, 3, 4, 6, 7, 6, 7, 6, 7],
+        value=[100, 80, 90, 70, 150, 60, 200, 180, 120, 90, 40, 30]
+    )
+)])
+
+fig.update_layout(title='Regional Trade Flows', font_size=12)
+fig.show()
+```
+
+**When to Use:**
+
+ Show proportional flows between regions
+ Trade, migration, or supply chain analysis
+ Multiple source/destination combinations
+ Need to show relative magnitudes clearly
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

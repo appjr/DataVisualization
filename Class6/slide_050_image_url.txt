@@ -1,0 +1,159 @@
+Slide 50 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## 3D Geographic Visualization
+
+**When (and when not) to use 3D maps**
+
+**What is 3D Mapping?**
+
+**3D maps** add a vertical dimension to geographic visualizations, typically representing elevation, building heights, or data values.
+
+**When to Use (Rarely!):**
+-  Terrain/elevation visualization
+-  Urban planning (building heights)
+-  Dramatic presentations
+-  Immersive experiences
+
+**When NOT to Use:**
+-  Data values (use color instead)
+-  Precise comparisons
+-  Print media
+-  Accessibility concerns
+
+**3D Surface Plot:**
+
+```python
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+
+# Create elevation data
+x = np.linspace(-5, 5, 50)
+y = np.linspace(-5, 5, 50)
+X, Y = np.meshgrid(x, y)
+Z = np.sin(np.sqrt(X**2 + Y**2))
+
+# Create 3D plot
+fig = plt.figure(figsize=(14, 10))
+ax = fig.add_subplot(111, projection='3d')
+
+surf = ax.plot_surface(X, Y, Z, cmap='terrain', alpha=0.8,
+                      linewidth=0, antialiased=True)
+
+ax.set_xlabel('X', fontsize=12)
+ax.set_ylabel('Y', fontsize=12)
+ax.set_zlabel('Elevation', fontsize=12)
+ax.set_title('3D Terrain Surface', fontsize=16, fontweight='bold')
+
+fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
+
+plt.tight_layout()
+plt.show()
+```
+
+**3D Bar Map with plotly:**
+
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+# Create sample data (sales by region)
+regions = ['North', 'South', 'East', 'West', 'Central']
+x_pos = [1, 1, 2, 0, 1]
+y_pos = [2, 0, 1, 1, 1]
+sales = [100, 80, 120, 90, 110]
+
+fig = go.Figure(data=[go.Mesh3d(
+    x=[0, 0, 1, 1, 0, 0, 1, 1],
+    y=[0, 1, 1, 0, 0, 1, 1, 0],
+    z=[0, 0, 0, 0, 1, 1, 1, 1],
+    colorbar_title='z',
+    colorscale=[[0, 'gold'],
+                [0.5, 'mediumturquoise'],
+                [1, 'magenta']],
+    intensity=[0, 0.33, 0.66, 1, 0, 0.33, 0.66, 1],
+    i=[7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
+    j=[3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
+    k=[0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
+)])
+
+fig.update_layout(
+    title='3D Visualization (Use Sparingly!)',
+    scene=dict(
+        xaxis_title='X',
+        yaxis_title='Y',
+        zaxis_title='Value'
+    ),
+    height=600
+)
+
+fig.show()
+```
+
+**Best Practices:**
+
+ **Avoid 3D for data values** - Use 2D with color instead
+ **Use for actual 3D data** (terrain, buildings)
+ **Provide rotation/interaction** for better understanding
+ **Include 2D alternative** for comparison
+ **Never use 3D pie charts** or 3D bar charts for non-spatial data
+
+**Alternative: 2.5D (Extruded Polygons):**
+
+```python
+import plotly.express as px
+
+# Better alternative: choropleth with hover
+# Shows data clearly without 3D confusion
+```
+
+**Key Insight:** "3D is often a solution looking for a problem. Use 2D with effective visual encoding instead."
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

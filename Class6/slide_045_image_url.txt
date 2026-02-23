@@ -1,0 +1,238 @@
+Slide 45 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Spatial Clustering
+
+**Identifying geographic clusters in point data**
+
+**What is Spatial Clustering?**
+
+**Spatial clustering** groups nearby points together to reveal concentrations, hot spots, and spatial patterns.
+
+**DBSCAN Clustering:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.cluster import DBSCAN
+from shapely.geometry import Point
+
+# Generate clustered point data
+np.random.seed(42)
+
+# 3 clusters
+cluster1 = np.random.multivariate_normal([40.7, -74.0], [[0.01, 0], [0, 0.01]], 100)
+cluster2 = np.random.multivariate_normal([34.0, -118.2], [[0.01, 0], [0, 0.01]], 150)
+cluster3 = np.random.multivariate_normal([41.8, -87.6], [[0.01, 0], [0, 0.01]], 80)
+
+points = np.vstack([cluster1, cluster2, cluster3])
+
+# Create GeoDataFrame
+geometry = [Point(lon, lat) for lat, lon in points]
+gdf = gpd.GeoDataFrame({'geometry': geometry}, crs='EPSG:4326')
+
+# Extract coordinates for clustering
+coords = np.array(list(zip(gdf.geometry.x, gdf.geometry.y)))
+
+# Apply DBSCAN
+clustering = DBSCAN(eps=0.5, min_samples=5).fit(coords)
+gdf['cluster'] = clustering.labels_
+
+# Plot results
+fig, axes = plt.subplots(1, 2, figsize=(18, 7))
+
+# Before clustering
+gdf.plot(ax=axes[0], color='blue', alpha=0.5, markersize=20)
+axes[0].set_title('Original Points', fontsize=14, fontweight='bold')
+axes[0].axis('off')
+
+# After clustering
+gdf[gdf['cluster'] != -1].plot(
+    column='cluster',
+    cmap='tab10',
+    legend=True,
+    ax=axes[1],
+    markersize=30,
+    alpha=0.7
+)
+# Plot noise points
+gdf[gdf['cluster'] == -1].plot(
+    ax=axes[1],
+    color='gray',
+    markersize=10,
+    alpha=0.3,
+    label='Noise'
+)
+axes[1].set_title('DBSCAN Clusters', fontsize=14, fontweight='bold')
+axes[1].axis('off')
+
+plt.suptitle('Spatial Clustering with DBSCAN', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+
+print(f"Found {len(gdf['cluster'].unique()) - 1} clusters")
+print(f"Noise points: {(gdf['cluster'] == -1).sum()}")
+```
+
+**K-Means Clustering:**
+
+```python
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Apply K-Means
+n_clusters = 3
+kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+gdf['kmeans_cluster'] = kmeans.fit_predict(coords)
+
+# Get cluster centers
+centers = kmeans.cluster_centers_
+
+# Plot
+fig, ax = plt.subplots(figsize=(12, 10))
+
+gdf.plot(
+    column='kmeans_cluster',
+    cmap='viridis',
+    legend=True,
+    ax=ax,
+    markersize=30,
+    alpha=0.6,
+    categorical=True
+)
+
+# Plot cluster centers
+ax.scatter(centers[:, 0], centers[:, 1], 
+          c='red', s=300, alpha=0.8, 
+          edgecolors='black', linewidth=2,
+          marker='X', label='Cluster Centers')
+
+ax.set_title('K-Means Clustering (k=3)', fontsize=16, fontweight='bold')
+ax.legend()
+ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Cluster Convex Hulls:**
+
+```python
+from shapely.ops import unary_union
+from shapely.geometry import MultiPoint
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(14, 10))
+
+# Plot points by cluster
+gdf.plot(column='cluster', cmap='tab10', ax=ax, markersize=20, alpha=0.6)
+
+# Draw convex hull around each cluster
+for cluster_id in gdf[gdf['cluster'] != -1]['cluster'].unique():
+    cluster_points = gdf[gdf['cluster'] == cluster_id]
+    
+    if len(cluster_points) >= 3:
+        # Create convex hull
+        points = MultiPoint(cluster_points.geometry.tolist())
+        hull = points.convex_hull
+        
+        # Plot hull
+        hull_gdf = gpd.GeoDataFrame([1], geometry=[hull], crs='EPSG:4326')
+        hull_gdf.boundary.plot(ax=ax, color='red', linewidth=2)
+
+ax.set_title('Clusters with Convex Hulls', fontsize=16, fontweight='bold')
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+**Hierarchical Clustering Dendrogram:**
+
+```python
+from scipy.cluster.hierarchy import dendrogram, linkage
+import matplotlib.pyplot as plt
+
+# Perform hierarchical clustering
+Z = linkage(coords[:50], method='ward')  # Use subset for clarity
+
+# Plot dendrogram
+plt.figure(figsize=(14, 7))
+dendrogram(Z, truncate_mode='lastp', p=12, leaf_rotation=90, leaf_font_size=12)
+plt.title('Hierarchical Clustering Dendrogram', fontsize=16, fontweight='bold')
+plt.xlabel('Cluster Index', fontsize=12)
+plt.ylabel('Distance', fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+
+**Key Parameters:**
+
+**DBSCAN:**
+- `eps`: Maximum distance between points in cluster
+- `min_samples`: Minimum points to form cluster
+- **Pros**: Finds arbitrary shapes, handles noise
+- **Cons**: Sensitive to parameters
+
+**K-Means:**
+- `n_clusters`: Number of clusters
+- **Pros**: Fast, simple
+- **Cons**: Requires k, assumes spherical clusters
+
+**Best Practices:**
+
+ Visualize before clustering (understand distribution)
+ Try multiple algorithms
+ Validate with domain knowledge
+ Use convex hulls or buffers to show cluster extent
+ Consider distance metrics (Euclidean vs Haversine for lat/lon)
+
+---
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

@@ -1,0 +1,216 @@
+Slide 43 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Animated Maps
+
+**Showing temporal change on maps**
+
+**What are Animated Maps?**
+
+**Animated maps** show how geographic data changes over time, using animation to reveal temporal patterns.
+
+**Time Series Animation with plotly:**
+
+```python
+import plotly.express as px
+import pandas as pd
+import numpy as np
+
+# Generate sample data: disease spread over time
+dates = pd.date_range('2024-01-01', '2024-12-31', freq='W')
+cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix']
+lats = [40.7128, 34.0522, 41.8781, 29.7604, 33.4484]
+lons = [-74.0060, -118.2437, -87.6298, -95.3698, -112.0740]
+
+data = []
+for i, date in enumerate(dates):
+    for city, lat, lon in zip(cities, lats, lons):
+        cases = int(100 * (1 + i/10) * np.random.rand())
+        data.append({
+            'date': date,
+            'city': city,
+            'lat': lat,
+            'lon': lon,
+            'cases': cases
+        })
+
+df = pd.DataFrame(data)
+
+# Create animated scatter plot
+fig = px.scatter_geo(
+    df,
+    lat='lat',
+    lon='lon',
+    size='cases',
+    color='cases',
+    hover_name='city',
+    animation_frame=df['date'].dt.strftime('%Y-%m-%d'),
+    scope='usa',
+    color_continuous_scale='Reds',
+    size_max=50,
+    title='Disease Spread Over Time'
+)
+
+fig.update_layout(
+    geo=dict(
+        projection_type='albers usa',
+        showland=True,
+        landcolor='rgb(243, 243, 243)'
+    )
+)
+
+fig.show()
+```
+
+**Animated Choropleth:**
+
+```python
+import plotly.express as px
+import pandas as pd
+
+# Sample data: unemployment by state over years
+states_data = []
+years = range(2015, 2024)
+states = ['California', 'Texas', 'Florida', 'New York', 'Illinois']
+
+for year in years:
+    for state in states:
+        states_data.append({
+            'year': year,
+            'state': state,
+            'unemployment': np.random.uniform(3, 8)
+        })
+
+df_states = pd.DataFrame(states_data)
+
+# Create animated choropleth
+fig = px.choropleth(
+    df_states,
+    locations='state',
+    locationmode='USA-states',
+    color='unemployment',
+    animation_frame='year',
+    scope='usa',
+    color_continuous_scale='RdYlGn_r',
+    range_color=[3, 8],
+    title='Unemployment Rate by State (2015-2023)',
+    labels={'unemployment': 'Unemployment %'}
+)
+
+fig.update_layout(
+    geo=dict(
+        projection_type='albers usa'
+    )
+)
+
+fig.show()
+```
+
+**Animated Points with folium TimestampedGeoJson:**
+
+```python
+import folium
+from folium.plugins import TimestampedGeoJson
+import pandas as pd
+from datetime import datetime, timedelta
+
+# Generate moving point data (e.g., hurricane track)
+start_date = datetime(2024, 8, 1)
+track_data = []
+
+for i in range(20):
+    track_data.append({
+        'time': (start_date + timedelta(hours=i*6)).isoformat(),
+        'coordinates': [-80 + i*2, 25 + i*0.5],
+        'popup': f'Hour {i*6}: Category {min(5, i//4 + 1)}'
+    })
+
+# Create GeoJSON features
+features = []
+for point in track_data:
+    features.append({
+        'type': 'Feature',
+        'geometry': {
+            'type': 'Point',
+            'coordinates': point['coordinates']
+        },
+        'properties': {
+            'time': point['time'],
+            'popup': point['popup'],
+            'icon': 'circle',
+            'iconstyle': {
+                'fillColor': 'red',
+                'fillOpacity': 0.8,
+                'stroke': 'true',
+                'radius': 10
+            }
+        }
+    })
+
+# Create map
+m = folium.Map(location=[30, -70], zoom_start=4)
+
+# Add animated layer
+TimestampedGeoJson({
+    'type': 'FeatureCollection',
+    'features': features
+}, period='PT6H', add_last_point=True, auto_play=False, loop=False).add_to(m)
+
+m.save('hurricane_animation.html')
+```
+
+**Best Practices:**
+
+ Keep animation speed appropriate (not too fast)
+ Provide play/pause controls
+ Show time clearly in title or overlay
+ Limit frame count (< 50 for smooth experience)
+ Consider small multiples as alternative
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+
