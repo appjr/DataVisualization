@@ -1,0 +1,24 @@
+Space-themed slide 3 illustration
+Generated: 2026-02-22 22:04:44.406265
+URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Lv3iD9T3Qd1GaGduzjucr71F/user-5vW6kWYeuurmJji6LmMZ7KjH/img-8FvDe7NnK289MJJkwADCG8wy.png?st=2026-02-23T03%3A04%3A43Z&se=2026-02-23T05%3A04%3A43Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=ed3ea2f9-5e38-44be-9a1b-7c1e65e4d54f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-23T04%3A04%3A43Z&ske=2026-02-24T04%3A04%3A43Z&sks=b&skv=2026-02-06&sig=q0xRVr8EiESttdLmgaMRKxYpm%2BBjTpjBQDdqXKQSqLY%3D
+
+Prompt used:
+
+Create a vibrant, educational illustration for a data visualization class slide with a SPACE theme.
+
+The image should show:
+- A cosmic background with stars, galaxies, and nebulae
+- Multiple planets or celestial bodies, each representing different applications:
+  * A planet with business charts/graphs floating around it (Business Applications)
+  * A planet with medical/health symbols (Public Health)
+  * A planet with building/housing icons (Real Estate)
+  * A planet with vehicle/transport symbols (Transportation)
+  * A planet with nature/environmental symbols (Environmental)
+- Data visualization elements (charts, graphs, maps) integrated into the space scene
+- A central theme showing how data "orbits" around Earth or connects different worlds
+- Professional yet playful style suitable for a university course
+- Vibrant colors: blues, purples, oranges, cosmic colors
+- Include subtle geographic/map elements integrated with the space theme
+
+Style: Modern, educational, slightly whimsical but professional, suitable for a business school presentation.
+
