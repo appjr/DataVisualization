@@ -101,7 +101,7 @@ Style reference: Think Coursera or Khan Academy - educational, friendly, profess
 """
     
     print("🎨 Generating slide 3 with playful academic cartoon style...")
-    print("Using latest OpenAI model (gpt-4 + DALL-E 3)")
+    print("Using latest OpenAI model (ChatGPT 5.2 + DALL-E 3)")
     print("\nDesign specs:")
     print("  - Palette: Soft blues, oranges, greens")
     print("  - Style: Playful academic cartoon")
