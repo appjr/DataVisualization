@@ -13,46 +13,40 @@ from openai import OpenAI
 def extract_slide_content(slide_number):
     """Extract slide content from markdown files"""
     
-    # Determine which part file to read
+    # Determine which part file to read and offset
     if slide_number <= 20:
         markdown_file = 'Class6/Class6_Part1.md'
+        slide_offset = slide_number - 1  # Slides 1-20 in Part 1
     elif slide_number <= 40:
         markdown_file = 'Class6/Class6_Part2.md'
+        slide_offset = slide_number - 21  # Slides 21-40 in Part 2
     elif slide_number <= 60:
         markdown_file = 'Class6/Class6_Part3.md'
+        slide_offset = slide_number - 41  # Slides 41-60 in Part 3
     else:
         markdown_file = 'Class6/Class6_Part4.md'
+        slide_offset = slide_number - 61  # Slides 61-80 in Part 4
     
     # Read the file
     with open(markdown_file, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Split by slide markers (---) or section headers (##)
-    slides = re.split(r'\n---\n|(?=\n## )', content)
+    # Split by ## headers to get sections
+    sections = re.split(r'\n## ', content)
+    sections = [s.strip() for s in sections if s.strip() and not s.startswith('#')]
     
-    # Find the slide content
-    slide_content = None
-    for section in slides:
-        if section.strip():
-            # Check if this is the right slide
-            if slide_number == 3 and 'Why Geographic Visualization Matters' in section:
-                slide_content = section
-                break
-            elif slide_number == 4 and 'Types of Geographic Data' in section:
-                slide_content = section
-                break
-            # Add more specific matching as needed
-    
-    if not slide_content:
-        # Fallback: just get by index
-        print(f"⚠️  Using fallback method to extract slide {slide_number}")
-        if slide_number < len(slides):
-            slide_content = slides[slide_number]
+    # Get the appropriate section
+    if slide_offset < len(sections):
+        slide_content = "## " + sections[slide_offset]
+    else:
+        print(f"⚠️  Slide {slide_number} index {slide_offset} out of range (found {len(sections)} sections)")
+        # Try to get any content
+        slide_content = sections[0] if sections else ""
     
     # Clean content - remove emojis
     slide_content = re.sub(r'[^\x00-\x7F]+', '', slide_content)
     
-    # Remove markdown formatting but keep structure
+    # Keep structure but clean
     slide_content = slide_content.strip()
     
     return slide_content
