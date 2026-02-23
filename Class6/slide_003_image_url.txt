@@ -1,5 +1,5 @@
 Slide 3 - Playful Academic Cartoon Style
-URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Lv3iD9T3Qd1GaGduzjucr71F/user-5vW6kWYeuurmJji6LmMZ7KjH/img-3kKZnpHRTMhVRMopzfZvu4Ky.png?st=2026-02-23T04%3A22%3A49Z&se=2026-02-23T06%3A22%3A49Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=35890473-cca8-4a54-8305-05a39e0bc9c3&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-22T19%3A30%3A04Z&ske=2026-02-23T19%3A30%3A04Z&sks=b&skv=2026-02-06&sig=yVvofxOOawa9%2BVDN4LnCVTgqbcOd1VBrYuULIyAXlR4%3D
+URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-Lv3iD9T3Qd1GaGduzjucr71F/user-5vW6kWYeuurmJji6LmMZ7KjH/img-j6z0fj3aIvj3pMlmqtIx82GC.png?st=2026-02-23T04%3A24%3A50Z&se=2026-02-23T06%3A24%3A50Z&sp=r&sv=2026-02-06&sr=b&rscd=inline&rsct=image/png&skoid=9346e9b9-5d29-4d37-a0a9-c6f95f09f79d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-02-23T05%3A04%3A14Z&ske=2026-02-24T05%3A04%3A14Z&sks=b&skv=2026-02-06&sig=qlT4m9O3h7lhlJrJYjYINrYxmRHmOA8Gj9JC%2BI3zabs%3D
 
 Prompt used:
 Create a professional university presentation slide image with the following specifications:
