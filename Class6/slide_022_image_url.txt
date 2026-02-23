@@ -6,34 +6,115 @@ Prompt used:
 Create a professional university presentation slide image with the following specifications:
 
 SLIDE CONTENT:
-## Part 2 Summary
+## geopandas Basics
 
-**You've mastered Python mapping tools:**
+**geopandas extends pandas with spatial capabilities**
 
-**Core Libraries:**
- **geopandas** - Spatial data manipulation and static maps
- **folium** - Interactive web maps with Leaflet.js
- **plotly** - Dashboard-ready interactive visualizations
- **contextily** - Basemap integration
+**What is a GeoDataFrame?**
 
-**Key Skills:**
- Loading and exploring geographic data
- Creating choropleth maps with multiple classification schemes
- Choosing appropriate color schemes
- Adding basemaps for context
- Building interactive maps with markers and popups
- Clustering markers for performance
- Exporting maps in multiple formats
+A **GeoDataFrame** is like a pandas DataFrame with a special `geometry` column containing spatial objects (points, lines, polygons).
 
-**Best Practices:**
- Match CRS before spatial operations
- Transform to EPSG:3857 for web tiles
- Use sequential colors for continuous data
- Limit choropleth classes to 5-7
- Add interactivity when sharing with non-technical users
- Test maps at different zoom levels
+**Loading Geographic Data:**
 
-**Next:** Part 3 - Advanced Geospatial Techniques (Flow maps, animations, clustering, and more!)
+```python
+import geopandas as gpd
+
+# Read shapefile
+states = gpd.read_file('states.shp')
+
+# Read GeoJSON
+cities = gpd.read_file('cities.geojson')
+
+# Read from URL
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Read from PostGIS database
+gdf = gpd.read_postgis("SELECT * FROM table", connection)
+```
+
+**Exploring GeoDataFrame:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+# Load sample data
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Inspect
+print(world.head())
+print(world.shape)  # (177, 6) - 177 countries
+print(world.columns)
+# Index(['pop_est', 'continent', 'name', 'iso_a3', 'gdp_md_est', 'geometry'], dtype='object')
+
+# Check geometry types
+print(world.geometry.type.unique())
+# ['MultiPolygon' 'Polygon']
+
+# Check CRS (Coordinate Reference System)
+print(world.crs)
+# EPSG:4326 (WGS84 - lat/lon)
+
+# Get bounds
+print(world.total_bounds)
+# [minx, miny, maxx, maxy]
+
+# Summary statistics
+print(world.describe())
+```
+
+**Basic Operations:**
+
+```python
+# Filter data
+usa = world[world['name'] == 'United States of America']
+
+# Select columns
+world_simple = world[['name', 'pop_est', 'geometry']]
+
+# Sort by attribute
+world_sorted = world.sort_values('pop_est', ascending=False)
+
+# Calculate area (in CRS units)
+world['area_km2'] = world.geometry.area / 1_000_000  # If in meters
+
+# Calculate centroid
+world['centroid'] = world.geometry.centroid
+
+# Buffer (expand geometry)
+world['buffered'] = world.geometry.buffer(1)  # 1 degree buffer
+```
+
+**Coordinate Reference System (CRS) Operations:**
+
+```python
+# Check current CRS
+print(world.crs)  # EPSG:4326
+
+# Transform to different CRS
+world_mercator = world.to_crs('EPSG:3857')  # Web Mercator
+world_albers = world.to_crs('EPSG:5070')    # US Albers Equal Area
+
+# Set CRS (if missing)
+world = world.set_crs('EPSG:4326')
+```
+
+**Writing Data:**
+
+```python
+# Save as shapefile
+world.to_file('world.shp')
+
+# Save as GeoJSON
+world.to_file('world.geojson', driver='GeoJSON')
+
+# Save as GeoPackage (modern alternative to shapefile)
+world.to_file('world.gpkg', driver='GPKG')
+```
+
+**Key Takeaway:** geopandas combines the power of pandas (data manipulation) with spatial operations, making it the foundation of Python geospatial analysis.
+
+---
 
 DESIGN THEME: Playful academic cartoon + clean university style
 

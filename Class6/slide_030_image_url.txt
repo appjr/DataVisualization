@@ -1,0 +1,114 @@
+Slide 30 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Marker Clustering
+
+**Handle thousands of markers efficiently**
+
+**Using MarkerCluster:**
+
+```python
+import folium
+from folium.plugins import MarkerCluster
+import numpy as np
+
+# Generate many random points
+np.random.seed(42)
+n_points = 1000
+lats = np.random.uniform(25, 48, n_points)
+lons = np.random.uniform(-125, -65, n_points)
+
+# Create map
+m = folium.Map(location=[37, -95], zoom_start=5)
+
+# Create marker cluster
+marker_cluster = MarkerCluster().add_to(m)
+
+# Add markers to cluster
+for lat, lon in zip(lats, lons):
+    folium.Marker(
+        location=[lat, lon],
+        popup=f'Point at ({lat:.2f}, {lon:.2f})'
+    ).add_to(marker_cluster)
+
+m.save('clustered_markers.html')
+```
+
+**Custom Cluster Icons:**
+
+```python
+from folium.plugins import MarkerCluster
+import folium
+
+m = folium.Map(location=[37, -95], zoom_start=5)
+
+# Custom cluster options
+marker_cluster = MarkerCluster(
+    options={
+        'maxClusterRadius': 50,
+        'disableClusteringAtZoom': 10,
+        'spiderfyOnMaxZoom': True
+    }
+).add_to(m)
+
+# Add clustered data
+for lat, lon in zip(lats[:500], lons[:500]):
+    folium.Marker([lat, lon]).add_to(marker_cluster)
+
+m.save('custom_cluster.html')
+```
+
+**Key Benefits:**
+
+ Performance with 1000s of points
+ Auto-aggregation at different zoom levels
+ Click to "spiderfy" overlapping markers
+ Numbers show cluster size
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

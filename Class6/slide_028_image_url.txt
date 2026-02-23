@@ -1,0 +1,158 @@
+Slide 28 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## folium Choropleth
+
+**Interactive colored regions**
+
+**Basic Choropleth:**
+
+```python
+import folium
+import geopandas as gpd
+import json
+
+# Load data
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Convert to GeoJSON (folium requirement)
+world_json = world.to_json()
+
+# Create base map
+m = folium.Map(location=[20, 0], zoom_start=2, tiles='CartoDB positron')
+
+# Add choropleth
+folium.Choropleth(
+    geo_data=world_json,
+    name='Population',
+    data=world,
+    columns=['name', 'pop_est'],
+    key_on='feature.properties.name',
+    fill_color='YlOrRd',
+    fill_opacity=0.7,
+    line_opacity=0.2,
+    legend_name='Population'
+).add_to(m)
+
+folium.LayerControl().add_to(m)
+
+m.save('world_population_choropleth.html')
+```
+
+**With Pandas DataFrame:**
+
+```python
+import folium
+import pandas as pd
+import geopandas as gpd
+
+# Load US states
+us_states = gpd.read_file('https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/us-states.json')
+
+# Create sample data
+state_data = pd.DataFrame({
+    'state': ['California', 'Texas', 'Florida', 'New York', 'Pennsylvania'],
+    'unemployment': [5.3, 4.8, 4.5, 5.1, 5.6]
+})
+
+# Create map
+m = folium.Map(location=[37.8, -96], zoom_start=4, tiles='CartoDB positron')
+
+folium.Choropleth(
+    geo_data=us_states,
+    name='choropleth',
+    data=state_data,
+    columns=['state', 'unemployment'],
+    key_on='feature.properties.name',
+    fill_color='YlGn',
+    fill_opacity=0.7,
+    line_opacity=0.5,
+    legend_name='Unemployment Rate (%)',
+    nan_fill_color='lightgray'
+).add_to(m)
+
+folium.LayerControl().add_to(m)
+m.save('us_unemployment.html')
+```
+
+**Interactive with Tooltips:**
+
+```python
+import folium
+import geopandas as gpd
+
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+m = folium.Map(location=[20, 0], zoom_start=2)
+
+# Add GeoJson with tooltip
+folium.GeoJson(
+    world,
+    name='countries',
+    tooltip=folium.GeoJsonTooltip(
+        fields=['name', 'pop_est', 'gdp_md_est'],
+        aliases=['Country', 'Population', 'GDP (millions)'],
+        localize=True
+    ),
+    style_function=lambda x: {
+        'fillColor': 'lightblue',
+        'color': 'black',
+        'weight': 1,
+        'fillOpacity': 0.6
+    },
+    highlight_function=lambda x: {
+        'fillColor': 'darkblue',
+        'fillOpacity': 0.8
+    }
+).add_to(m)
+
+m.save('world_interactive_tooltip.html')
+```
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

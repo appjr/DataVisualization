@@ -1,0 +1,130 @@
+Slide 23 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Creating Your First Map
+
+**Simple static maps with geopandas**
+
+**Basic World Map:**
+
+```python
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+# Load world data
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+# Create simple map
+fig, ax = plt.subplots(figsize=(15, 10))
+world.plot(ax=ax, color='lightblue', edgecolor='black', linewidth=0.5)
+
+ax.set_title('World Map', fontsize=18, fontweight='bold')
+ax.set_xlabel('Longitude', fontsize=12)
+ax.set_ylabel('Latitude', fontsize=12)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Filter and Focus on Region:**
+
+```python
+# Focus on Europe
+europe = world[world['continent'] == 'Europe']
+
+fig, ax = plt.subplots(figsize=(12, 10))
+europe.plot(ax=ax, color='lightgreen', edgecolor='darkgreen', linewidth=0.8)
+
+ax.set_title('Europe', fontsize=16, fontweight='bold')
+ax.set_xlim([-25, 45])
+ax.set_ylim([35, 72])
+ax.axis('off')  # Hide axes for cleaner look
+
+plt.tight_layout()
+plt.show()
+```
+
+**Styling Options:**
+
+```python
+# Different styles
+fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+
+# Simple
+world.plot(ax=axes[0,0], color='lightblue', edgecolor='black')
+axes[0,0].set_title('Simple Style')
+axes[0,0].axis('off')
+
+# No borders
+world.plot(ax=axes[0,1], color='coral', edgecolor='none')
+axes[0,1].set_title('No Borders')
+axes[0,1].axis('off')
+
+# Thick borders
+world.plot(ax=axes[1,0], color='wheat', edgecolor='brown', linewidth=2)
+axes[1,0].set_title('Thick Borders')
+axes[1,0].axis('off')
+
+# Transparent fill
+world.plot(ax=axes[1,1], facecolor='none', edgecolor='navy', linewidth=0.5)
+axes[1,1].set_title('Outline Only')
+axes[1,1].axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Best Practices:**
+
+ Use `figsize` for proper proportions
+ Use `axis('off')` for cleaner maps
+ Match colors to purpose (subdued for background)
+ Set appropriate bounds with `set_xlim()` and `set_ylim()`
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

@@ -1,0 +1,164 @@
+Slide 29 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## folium Markers and Popups
+
+**Adding interactive point features**
+
+**Simple Markers:**
+
+```python
+import folium
+
+# Create map
+m = folium.Map(location=[40.7128, -74.0060], zoom_start=13)
+
+# Add marker
+folium.Marker(
+    location=[40.7128, -74.0060],
+    popup='New York City',
+    tooltip='Click for more info',
+    icon=folium.Icon(color='red', icon='info-sign')
+).add_to(m)
+
+m.save('nyc_marker.html')
+```
+
+**Multiple Markers:**
+
+```python
+import folium
+import pandas as pd
+
+# Sample store data
+stores = pd.DataFrame({
+    'name': ['Store A', 'Store B', 'Store C', 'Store D'],
+    'lat': [40.7128, 40.7580, 40.7489, 40.7614],
+    'lon': [-74.0060, -73.9855, -73.9680, -73.9776],
+    'sales': [125000, 98000, 156000, 87000]
+})
+
+# Create map
+m = folium.Map(location=[40.7489, -73.9680], zoom_start=13)
+
+# Add markers for each store
+for idx, row in stores.iterrows():
+    folium.Marker(
+        location=[row['lat'], row['lon']],
+        popup=f"<b>{row['name']}</b><br>Sales: ${row['sales']:,}",
+        tooltip=row['name'],
+        icon=folium.Icon(
+            color='green' if row['sales'] > 100000 else 'orange',
+            icon='shopping-cart',
+            prefix='fa'
+        )
+    ).add_to(m)
+
+m.save('stores_map.html')
+```
+
+**Custom Icons:**
+
+```python
+import folium
+
+m = folium.Map(location=[34.0522, -118.2437], zoom_start=12)
+
+# Different icon styles
+icons = [
+    ('red', 'cloud'),
+    ('blue', 'star'),
+    ('green', 'leaf'),
+    ('purple', 'heart'),
+    ('orange', 'fire')
+]
+
+lats = [34.0522, 34.0622, 34.0422, 34.0522, 34.0722]
+lons = [-118.2437, -118.2537, -118.2337, -118.2237, -118.2637]
+
+for (color, icon_name), lat, lon in zip(icons, lats, lons):
+    folium.Marker(
+        location=[lat, lon],
+        popup=f'{color} {icon_name}',
+        icon=folium.Icon(color=color, icon=icon_name)
+    ).add_to(m)
+
+m.save('custom_icons.html')
+```
+
+**Circle Markers (Better for many points):**
+
+```python
+import folium
+import numpy as np
+
+# Generate random points
+np.random.seed(42)
+n_points = 50
+lats = np.random.uniform(40.70, 40.80, n_points)
+lons = np.random.uniform(-74.02, -73.92, n_points)
+values = np.random.randint(10, 100, n_points)
+
+m = folium.Map(location=[40.75, -73.97], zoom_start=12)
+
+for lat, lon, val in zip(lats, lons, values):
+    folium.CircleMarker(
+        location=[lat, lon],
+        radius=val/10,  # Size based on value
+        popup=f'Value: {val}',
+        color='red',
+        fill=True,
+        fillColor='red',
+        fillOpacity=0.6
+    ).add_to(m)
+
+m.save('circle_markers.html')
+```
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+
