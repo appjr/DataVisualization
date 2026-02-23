@@ -1,0 +1,112 @@
+Slide 74 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Best Practices Checklist
+
+**Before Publishing Your Map:**
+
+**Data Quality:**
+- [ ] Data source verified and credible
+- [ ] Collection date within acceptable range
+- [ ] Sample size sufficient for conclusions
+- [ ] Missing data handled appropriately
+- [ ] Outliers investigated
+
+**Technical Accuracy:**
+- [ ] Appropriate map type selected
+- [ ] Correct projection for analysis type
+- [ ] CRS matches across all layers
+- [ ] Data properly normalized (rates, not counts)
+- [ ] Classification method appropriate
+
+**Visual Design:**
+- [ ] Color scheme appropriate (sequential/diverging/categorical)
+- [ ] Colors are colorblind-safe
+- [ ] Legend included and clear
+- [ ] Title describes what map shows
+- [ ] Labels are readable (14px minimum)
+- [ ] Scale bar included (if relevant)
+- [ ] North arrow (if orientation matters)
+
+**Accessibility:**
+- [ ] Meets WCAG AA contrast requirements
+- [ ] Doesn't rely solely on color
+- [ ] Alt text provided for static maps
+- [ ] Keyboard navigation works (interactive)
+- [ ] Screen reader compatible
+
+**Ethics & Privacy:**
+- [ ] Individual privacy protected
+- [ ] Sensitive data aggregated appropriately
+- [ ] No harmful stereotypes reinforced
+- [ ] Cultural sensitivity considered
+- [ ] Informed consent obtained (if needed)
+
+**Documentation:**
+- [ ] Data source cited
+- [ ] Methodology explained
+- [ ] Limitations noted
+- [ ] Update date shown
+- [ ] Contact information provided
+- [ ] License/usage rights clear
+
+**Performance:**
+- [ ] Loads in < 3 seconds
+- [ ] Interactive response < 100ms
+- [ ] Works on mobile devices
+- [ ] File size < 5 MB
+- [ ] Tested on target browsers
+
+**Communication:**
+- [ ] Main insight is obvious
+- [ ] Supports intended message
+- [ ] Matches audience expertise level
+- [ ] Call-to-action clear (if applicable)
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

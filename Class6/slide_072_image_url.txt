@@ -1,0 +1,105 @@
+Slide 72 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Map Ethics
+
+**Responsible Geographic Visualization**
+
+**1. Respect Privacy**
+
+```python
+#  WRONG: Showing exact home locations
+customers.plot()  # Individual houses visible!
+
+#  CORRECT: Aggregate to appropriate level
+# ZIP code or census tract level
+aggregated = customers.groupby('zip_code').size()
+```
+
+**2. Avoid Reinforcing Stereotypes**
+
+Be careful when mapping:
+- Crime by neighborhood (can reinforce racism)
+- Poverty/wealth (stigmatization)
+- Health conditions (discrimination)
+
+**Best Practice:** Always provide context, historical factors, and systemic causes.
+
+**3. Consider Impact**
+
+Ask yourself:
+- Could this map be used to harm people?
+- Does it reveal sensitive information?
+- Will it be misinterpreted?
+- Have affected communities been consulted?
+
+**4. Cultural Sensitivity**
+
+- Respect disputed borders (show both claims or neutral)
+- Use locally-preferred place names
+- Acknowledge indigenous territories
+- Note historical context
+
+**5. Be Transparent**
+
+Always disclose:
+- Data source and collection date
+- Sample size and coverage
+- Limitations and uncertainties
+- Methodology used
+- Your affiliations and potential conflicts
+
+**Ethical Framework:**
+1. **Do No Harm**: Could this map hurt people?
+2. **Informed Consent**: Do people know their data is mapped?
+3. **Privacy**: Is location data sufficiently aggregated?
+4. **Fairness**: Does this map reinforce inequalities?
+5. **Transparency**: Are methods and limitations clear?
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

@@ -1,0 +1,138 @@
+Slide 71 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Accessibility in Maps
+
+**Making Maps Usable for Everyone**
+
+**Color-Blind Friendly Palettes:**
+
+```python
+import matplotlib.pyplot as plt
+import geopandas as gpd
+import numpy as np
+
+states = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+us_states = states[states['iso_a3'] == 'USA'].copy()
+np.random.seed(42)
+us_states['value'] = np.random.randint(1, 6, len(us_states))
+
+# Color-blind safe palettes
+cb_safe_palettes = {
+    'Sequential': 'YlOrBr',  # Yellow-Orange-Brown
+    'Diverging': 'PuOr',     # Purple-Orange
+    'Qualitative': 'Set2'     # Pastels
+}
+
+fig, axes = plt.subplots(1, 3, figsize=(20, 6))
+
+for ax, (name, cmap) in zip(axes, cb_safe_palettes.items()):
+    us_states.plot(column='value', cmap=cmap, legend=True,
+                  ax=ax, edgecolor='black', linewidth=0.5)
+    ax.set_title(f'{name} (Color-Blind Safe)', 
+                fontsize=13, fontweight='bold')
+    ax.axis('off')
+
+plt.suptitle('Color-Blind Friendly Palettes', fontsize=16, fontweight='bold')
+plt.tight_layout()
+plt.show()
+```
+
+**Test Your Colors:**
+- Use [colorbrewer2.org](http://colorbrewer2.org) "colorblind safe" filter
+- Use [Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/) simulator
+- Check contrast ratios (WCAG AA: 4.5:1 minimum)
+
+**Don't Rely on Color Alone:**
+
+```python
+# Add patterns/textures in addition to color
+import matplotlib.patches as mpatches
+
+fig, axes = plt.subplots(1, 2, figsize=(16, 7))
+
+# Color only
+us_states.plot(column='value', cmap='Set1', legend=True,
+              ax=axes[0], edgecolor='black', linewidth=0.5)
+axes[0].set_title('Color Only ( Not Accessible)', 
+                 fontsize=13, fontweight='bold')
+axes[0].axis('off')
+
+# Color + Borders/Patterns
+us_states.plot(column='value', cmap='Set1', legend=False,
+              ax=axes[1], edgecolor='black', linewidth=2)  # Thicker borders
+axes[1].set_title('Color + Strong Borders ( Better)', 
+                 fontsize=13, fontweight='bold')
+axes[1].axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Keyboard Navigation:**
+- Interactive maps should be keyboard-accessible
+- Tab through features
+- Enter to activate popups
+
+**Screen Reader Support:**
+- Provide alt text for static maps
+- Include data table alongside map
+- Describe key patterns in caption
+
+**Accessibility Checklist:**
+- [ ] Color-blind safe palette used
+- [ ] Contrast ratio meets WCAG AA (4.5:1)
+- [ ] Don't rely on color alone (use shapes, patterns, labels)
+- [ ] Text readable (min 14px)
+- [ ] Alt text provided for images
+- [ ] Keyboard navigation works
+- [ ] Data table alternative provided
+- [ ] Clear, descriptive title and legend
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

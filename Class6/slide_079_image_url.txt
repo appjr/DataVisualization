@@ -1,0 +1,97 @@
+Slide 79 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Resources & References
+
+**Data Sources:**
+
+**Geographic Boundaries:**
+- **Natural Earth**: [naturalearthdata.com](https://naturalearthdata.com) - Country, state, city boundaries
+- **US Census TIGER**: [census.gov/geo/maps-data/data/tiger.html](https://www.census.gov/geo/maps-data/data/tiger.html) - Detailed US boundaries
+- **GADM**: [gadm.org](https://gadm.org) - Administrative boundaries worldwide
+- **OpenStreetMap**: [openstreetmap.org](https://www.openstreetmap.org) - Crowdsourced geographic data
+
+**Demographic & Economic Data:**
+- **US Census Bureau**: [census.gov](https://www.census.gov)
+- **World Bank**: [data.worldbank.org](https://data.worldbank.org)
+- **OECD**: [stats.oecd.org](https://stats.oecd.org)
+
+**Health Data:**
+- **CDC**: [cdc.gov/datastatistics](https://www.cdc.gov/datastatistics/)
+- **WHO**: [who.int/data](https://www.who.int/data)
+
+**Basemap Tiles:**
+- **OpenStreetMap**: Free, open
+- **Stamen**: Artistic tiles
+- **CartoDB**: Clean, minimal
+- **Mapbox**: Customizable (requires API key)
+
+**Documentation & Tutorials:**
+
+**Libraries:**
+- **geopandas**: [geopandas.org](https://geopandas.org)
+- **folium**: [python-visualization.github.io/folium](https://python-visualization.github.io/folium/)
+- **plotly**: [plotly.com/python/maps](https://plotly.com/python/maps/)
+- **contextily**: [contextily.readthedocs.io](https://contextily.readthedocs.io)
+
+**Books:**
+- "Python for Geospatial Data Analysis" by Bonny P. McClain
+- "Geographic Data Science with Python" by Geographic Data Science Lab
+- "Cartography: Thematic Map Design" by Slocum et al.
+
+**Online Courses:**
+- Coursera: "Geographic Information Systems (GIS)"
+- DataCamp: "Visualizing Geospatial Data in Python"
+
+**Tools:**
+- **QGIS**: Free desktop GIS software
+- **Kepler.gl**: Web-based geospatial analysis
+- **Mapshaper**: Simplify and edit geo files
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

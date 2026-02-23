@@ -1,0 +1,126 @@
+Slide 73 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Data Privacy on Maps
+
+**Protecting Individual Privacy**
+
+**Problem: Location Data is Extremely Identifying**
+
+```python
+# Just 4 spatio-temporal points can uniquely identify 95% of people!
+# Example: Home, work, gym, grocery store
+```
+
+**Privacy-Preserving Techniques:**
+
+**1. Aggregation**
+
+```python
+# Instead of individual points
+individual_homes = gpd.GeoDataFrame(...)  # 
+
+# Aggregate to census tracts
+census_tracts['count'] = individual_homes.groupby('tract_id').size()  # 
+```
+
+**2. Random Displacement (Jittering)**
+
+```python
+import numpy as np
+
+# Add random noise to coordinates
+np.random.seed(42)
+noise_meters = 500  # 500m displacement
+
+gdf['lon_noisy'] = gdf['lon'] + np.random.uniform(-0.005, 0.005, len(gdf))
+gdf['lat_noisy'] = gdf['lat'] + np.random.uniform(-0.005, 0.005, len(gdf))
+```
+
+**3. K-Anonymity**
+
+Ensure each location has at least k individuals:
+
+```python
+# Remove cells with < 5 people
+min_count = 5
+aggregated = aggregated[aggregated['count'] >= min_count]
+```
+
+**4. Differential Privacy**
+
+Add calibrated noise to protect individual privacy while preserving aggregate patterns.
+
+**5. Heat Maps vs. Points**
+
+```python
+# Instead of exact points
+folium.Marker([lat, lon]).add_to(m)  #  Reveals exact location
+
+# Use density heat map
+from folium.plugins import HeatMap
+HeatMap(points).add_to(m)  #  Shows general area only
+```
+
+**Privacy Risk Assessment:**
+
+| Risk Level | Mitigation |
+|------------|------------|
+| **High** (Individual homes) | Aggregate to tract, add noise, or use hexbins |
+| **Medium** (Workplace) | Aggregate to block group minimum |
+| **Low** (Public venues) | Can show with some jittering |
+
+**Legal Requirements:**
+- **GDPR** (Europe): Explicit consent for location data
+- **CCPA** (California): Right to know and delete location data
+- **HIPAA** (US Healthcare): Strict geographic privacy rules
+
+**Best Practice:** When in doubt, aggregate more!
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

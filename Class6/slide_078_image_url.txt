@@ -1,0 +1,89 @@
+Slide 78 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Assignment Overview
+
+**Final Project: Geographic Data Analysis**
+
+**Choose one scenario:**
+
+**Option A: Business Analysis**
+- Analyze sales territories
+- Identify expansion opportunities
+- Create executive dashboard
+
+**Option B: Public Health**
+- Track disease outbreak
+- Identify hot spots
+- Recommend interventions
+
+**Option C: Demographics**
+- Map target market segments
+- Analyze market penetration
+- Plan marketing strategy
+
+**Deliverables:**
+1. **Interactive Dashboard** (HTML with folium/plotly)
+2. **Static Report** (PDF with matplotlib maps)
+3. **Written Analysis** (2-3 pages)
+   - Methodology
+   - Key findings
+   - Recommendations
+4. **Code Notebook** (Jupyter with documentation)
+
+**Rubric:**
+- Data quality & appropriateness (20%)
+- Visualization design & clarity (25%)
+- Technical execution (20%)
+- Analysis & insights (20%)
+- Documentation & presentation (15%)
+
+**Due:** End of week 3
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+

@@ -1,0 +1,87 @@
+Slide 76 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Exercise 2: Interactive Point Map
+
+**Task:** Create an interactive folium map with store locations and sales data.
+
+**Requirements:**
+1. Use marker clustering for performance
+2. Add popups with store details
+3. Color markers by performance level
+4. Include basemap selection
+
+**Starter Code:**
+
+```python
+import folium
+from folium.plugins import MarkerCluster
+import pandas as pd
+import numpy as np
+
+# Generate sample store data
+np.random.seed(42)
+stores = pd.DataFrame({
+    'store_id': range(1, 51),
+    'name': [f'Store {i}' for i in range(1, 51)],
+    'lat': np.random.uniform(25, 48, 50),
+    'lon': np.random.uniform(-125, -65, 50),
+    'sales': np.random.randint(100000, 1000000, 50)
+})
+
+# YOUR CODE HERE: Create interactive map
+# 1. Create folium map
+# 2. Add markers with clustering
+# 3. Add popups showing store details
+# 4. Color code by sales performance
+
+# m.save('store_map.html')
+```
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+
