@@ -31,28 +31,11 @@ echo "Starting batch generation..."
 echo "=========================================="
 
 # Counter for progress
-total=78
+total=80
 completed=0
 
-# Generate slides 1-2
-for i in 1 2; do
-    echo ""
-    echo "[$((completed+1))/$total] Generating slide $i..."
-    python Class6/generate_any_slide.py $i
-    
-    if [ $? -eq 0 ]; then
-        ((completed++))
-        echo "✅ Slide $i complete ($completed/$total)"
-    else
-        echo "❌ Failed to generate slide $i"
-    fi
-    
-    # Wait between calls to avoid rate limiting
-    sleep 3
-done
-
-# Generate slides 5-80 (skip 3 and 4 - already done)
-for i in {5..80}; do
+# Generate ALL slides 1-80
+for i in {1..80}; do
     echo ""
     echo "[$((completed+1))/$total] Generating slide $i..."
     python Class6/generate_any_slide.py $i
