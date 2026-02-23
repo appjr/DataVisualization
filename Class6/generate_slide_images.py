@@ -128,46 +128,41 @@ def generate_space_image(slide_num, slide_content):
     # Create image prompt based on slide content
     if slide_num == 3:
         image_prompt = """
-Create a professional presentation slide image with SPACE THEME for a data visualization class.
+Create a professional PowerPoint-style presentation slide background with subtle SPACE THEME.
 
-Title at top: "Why Geographic Visualization Matters"
+CRITICAL REQUIREMENTS - TEXT MUST BE READABLE:
+- The slide background should be SUBTLE with space elements (stars, nebula) at 20% opacity
+- Leave 80% of the slide area CLEAR for text content
+- Dark space blue/purple gradient background
+- Small stars scattered in corners only
+- NO text, labels, or content in the image - this is BACKGROUND ONLY
+- Clean, professional layout suitable for business school
+- 16:9 aspect ratio (1792x1024)
 
-The slide should show:
-- Space/cosmic background (deep blues, purples, stars, galaxies)
-- Five sections arranged clearly:
-  1. Business Applications (with business/chart icons in space)
-  2. Public Health (with medical/health symbols)
-  3. Real Estate (with building/property icons)
-  4. Transportation (with vehicle/route symbols)
-  5. Environmental (with nature/planet icons)
-- Each section should have a cosmic planet or celestial body representing it
-- Professional layout suitable for university presentation
-- Clear text areas for bullet points
-- Footer noting "80% of business data has geographic component"
+The slide will contain this text (you are creating background only):
+Title: "Why Geographic Visualization Matters"
+5 sections: Business, Health, Real Estate, Transportation, Environmental
 
-Style: Modern, professional, space-themed, suitable for business school, 16:9 aspect ratio
+Style: Subtle, professional, space-themed BACKGROUND only - text will be added separately
 """
     else:  # slide 4
         image_prompt = """
-Create a professional presentation slide image with SPACE THEME for a data visualization class.
+Create a professional PowerPoint-style presentation slide background with subtle SPACE THEME.
 
-Title at top: "Types of Geographic Data"
+CRITICAL REQUIREMENTS - TEXT MUST BE READABLE:
+- The slide background should be SUBTLE with space elements (stars, nebula) at 20% opacity
+- Leave 80% of the slide area CLEAR for text content
+- Dark space blue/purple gradient background
+- Small stars scattered in corners only
+- NO text, labels, or content in the image - this is BACKGROUND ONLY
+- Clean, professional layout suitable for business school
+- 16:9 aspect ratio (1792x1024)
 
-The slide should show 4 distinct quadrants or sections:
-1. Point Data - showing individual stars/points in space
-2. Line Data - showing orbital paths/connections
-3. Polygon Data - showing defined regions like galaxies/territories
-4. Raster Data - showing grid/continuous surface like heat maps
+The slide will contain this text (you are creating background only):
+Title: "Types of Geographic Data"
+4 data types: Point, Line, Polygon, Raster
 
-Requirements:
-- Space/cosmic background (deep blues, purples, nebulae)
-- Each data type clearly labeled and visually distinct
-- Professional diagrams showing the concept
-- Suitable for university business school presentation
-- 16:9 aspect ratio
-- Modern, clean design
-
-Style: Educational, professional, space-themed
+Style: Subtle, professional, space-themed BACKGROUND only - text will be added separately
 """
     
     print(f"🎨 Generating space-themed image for slide {slide_num}...")
