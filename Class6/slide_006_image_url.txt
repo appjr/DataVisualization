@@ -1,4 +1,4 @@
-Slide 5 - Playful Academic Cartoon Style
+Slide 6 - Playful Academic Cartoon Style
 Model: gpt-image-1
 URL: Generated as base64 (no URL)
 
@@ -6,76 +6,26 @@ Prompt used:
 Create a professional university presentation slide image with the following specifications:
 
 SLIDE CONTENT:
-## Types of Geographic Data
+## Map Projections Fundamentals
 
-**Understanding your spatial data type guides visualization choice**
+**All maps distort reality - understanding how matters**
 
-**1. Point Data (Discrete Locations)**
+**The Problem:** Earth is 3D (sphere), maps are 2D (flat)
 
-**Definition:** Individual locations with lat/lon coordinates
+**Tradeoffs:** Cannot preserve all of:
+-  Shape
+-  Area
+-  Distance
+-  Direction
 
-**Examples:**
-- Store locations
-- Customer addresses
-- Disease cases
-- Earthquake epicenters
-- Cell towers
+**Common Projections:**
 
-**Attributes:** Can attach data (sales, demographics, etc.)
-
-**Visualizations:**
-- Scatter on map
-- Bubble map (size = value)
-- Heat map (density)
-- Clustering
-
-**2. Line Data (Routes/Boundaries)**
-
-**Definition:** Connected sequences of points
-
-**Examples:**
-- Roads and highways
-- Rivers and streams
-- Flight paths
-- Delivery routes
-- Transit lines
-
-**Visualizations:**
-- Path/route maps
-- Flow maps (width = volume)
-- Network diagrams
-
-**3. Polygon Data (Areas/Regions)**
-
-**Definition:** Enclosed boundaries defining regions
-
-**Examples:**
-- Countries, states, counties
-- ZIP codes
-- Sales territories
-- School districts
-- Climate zones
-
-**Visualizations:**
-- Choropleth maps (color = value)
-- Cartograms (size = value)
-- Boundary maps
-
-**4. Raster Data (Grid Surfaces)**
-
-**Definition:** Continuous surfaces on regular grids
-
-**Examples:**
-- Satellite imagery
-- Elevation (DEMs)
-- Temperature surfaces
-- Land cover
-- Precipitation
-
-**Visualizations:**
-- Heat maps
-- Contour maps
-- 3D surfaces
+| Projection | Preserves | Distorts | Best For |
+|------------|-----------|----------|----------|
+| **Mercator** | Shape | Area (high lat) | Navigation |
+| **Robinson** | Balance | All slightly | World maps |
+| **Albers Equal-Area** | Area | Shape | Choropleth |
+| **Web Mercator** | Web display | Area | Web maps |
 
 ---
 

@@ -1,0 +1,114 @@
+Slide 10 - Playful Academic Cartoon Style
+Model: gpt-image-1
+URL: Generated as base64 (no URL)
+
+Prompt used:
+Create a professional university presentation slide image with the following specifications:
+
+SLIDE CONTENT:
+## Heat Maps (Density Maps)
+
+**Heat maps show concentration and density of point data**
+
+**What are Heat Maps?**
+
+**Heat maps** (or density maps) show where points cluster, using color intensity to represent density.
+
+**When to Use:**
+- Many overlapping points
+- Want to show "hot spots"
+- Interested in density/concentration, not individual points
+
+**Example:** Crime density, customer clusters
+
+**Basic Example:**
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# Generate clustered point data
+np.random.seed(42)
+
+# 3 clusters
+cluster1 = np.random.multivariate_normal([40.7, -74.0], [[0.01, 0], [0, 0.01]], 200)  # NYC area
+cluster2 = np.random.multivariate_normal([34.0, -118.2], [[0.01, 0], [0, 0.01]], 150)  # LA area
+cluster3 = np.random.multivariate_normal([41.8, -87.6], [[0.01, 0], [0, 0.01]], 100)  # Chicago area
+
+points = np.vstack([cluster1, cluster2, cluster3])
+
+# Create hex density plot
+fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+# Scatter (shows individual points)
+axes[0].scatter(points[:, 1], points[:, 0], alpha=0.3, s=20)
+axes[0].set_title('Scatter Plot (Individual Points)', fontsize=13, fontweight='bold')
+axes[0].set_xlabel('Longitude')
+axes[0].set_ylabel('Latitude')
+
+# Hexbin (shows density)
+axes[1].hexbin(points[:, 1], points[:, 0], gridsize=30, cmap='YlOrRd', mincnt=1)
+axes[1].set_title('Heat Map (Density)', fontsize=13, fontweight='bold')
+axes[1].set_xlabel('Longitude')
+axes[1].set_ylabel('Latitude')
+plt.colorbar(axes[1].collections[0], ax=axes[1], label='Point Count')
+
+plt.tight_layout()
+plt.show()
+```
+
+**Types:**
+
+1. **Hexbin** - Hexagonal bins (better than squares)
+2. **KDE** - Kernel density estimation (smooth)
+3. **Contour** - Density contour lines
+
+**Best Practices:**
+
+ Smooth density (KDE) for continuous appearance
+ Choose bin size carefully (too small = noisy, too large = detail loss)
+ Use sequential color scale (light to dark)
+
+---
+
+DESIGN THEME: Playful academic cartoon + clean university style
+
+COLOR PALETTE:
+- Soft blues (primary)
+- Oranges (accents)
+- Greens (secondary)
+- White background with subtle texture
+
+TYPOGRAPHY:
+- Bold headers in rounded friendly font (like Montserrat or Poppins)
+- Body text in clean sans-serif (like Open Sans)
+- Title at top - large, bold, centered
+- Section headers clearly differentiated
+
+VISUAL STYLE:
+- Illustrated cartoon-style icons (simple, friendly, hand-drawn feel)
+- Simple diagrams where appropriate
+- Light shadows for depth
+- Subtle paper/canvas texture background
+- Clean layout with good spacing
+- Playful but professional
+- Icons should be colorful and engaging
+
+LAYOUT:
+- 16:9 aspect ratio landscape (1536x1024)
+- Title at top center
+- Content well-organized with clear hierarchy
+- Bullet points clean and readable
+- Good white space
+- Professional university quality
+
+REQUIREMENTS:
+- All text from content must be included and readable
+- Professional enough for graduate business school
+- Playful enough to be engaging and memorable
+- Cartoon-style illustrations but sophisticated
+- Clean, organized, easy to read at presentation size
+
+Style reference: Coursera, Khan Academy, or Duolingo - educational, friendly, professional
+
