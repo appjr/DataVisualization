@@ -621,6 +621,73 @@ plt.tight_layout()
 
 ---
 
+## Building Bollinger Bands in Python
+
+**Building a complete, publication-quality Bollinger Band chart from scratch:**
+
+**Step 1 — Calculate the bands using pandas:**
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import yfinance as yf
+
+df = yf.download("AAPL", start="2024-01-01", end="2024-12-31")
+
+# Standard parameters: 20-period SMA ± 2 standard deviations
+period, multiplier = 20, 2
+df['BB_mid']   = df['Close'].rolling(period).mean()
+df['BB_std']   = df['Close'].rolling(period).std()
+df['BB_upper'] = df['BB_mid'] + multiplier * df['BB_std']
+df['BB_lower'] = df['BB_mid'] - multiplier * df['BB_std']
+df['BB_width'] = (df['BB_upper'] - df['BB_lower']) / df['BB_mid']   # normalised width
+df['BB_pct_b'] = (df['Close'] - df['BB_lower']) / (df['BB_upper'] - df['BB_lower'])  # 0–1
+df.dropna(inplace=True)
+```
+
+**Step 2 — Plot price + bands + %B indicator panel:**
+```python
+BG, BULL, BEAR, BLUE = '#1e1e1e', '#26a69a', '#ef5350', '#3498db'
+
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(16, 9), sharex=True,
+                                gridspec_kw={'height_ratios': [3, 1]})
+fig.set_facecolor(BG)
+for ax in [ax1, ax2]:
+    ax.set_facecolor(BG); ax.tick_params(colors='white')
+    ax.grid(True, alpha=0.15, color='gray')
+
+# Price + bands
+ax1.plot(df.index, df['Close'],    color='white', linewidth=1.0, label='Price')
+ax1.plot(df.index, df['BB_upper'], color=BLUE,    linewidth=1.2, linestyle='--', label='Upper (2σ)')
+ax1.plot(df.index, df['BB_mid'],   color='yellow',linewidth=1.0, linestyle='--', label='SMA 20')
+ax1.plot(df.index, df['BB_lower'], color=BLUE,    linewidth=1.2, linestyle='--', label='Lower (2σ)')
+ax1.fill_between(df.index, df['BB_upper'], df['BB_lower'], alpha=0.07, color=BLUE)
+ax1.set_title('AAPL – Bollinger Bands (20,2) + %B', color='white', fontsize=13)
+ax1.legend(facecolor='#2a2a2a', labelcolor='white', fontsize=9)
+
+# %B panel (0 = lower band, 1 = upper band)
+ax2.plot(df.index, df['BB_pct_b'], color=BLUE, linewidth=1.2, label='%B')
+ax2.axhline(1.0, color=BEAR,   linewidth=0.8, linestyle='--')
+ax2.axhline(0.5, color='gray', linewidth=0.6, linestyle=':')
+ax2.axhline(0.0, color=BULL,   linewidth=0.8, linestyle='--')
+ax2.fill_between(df.index, df['BB_pct_b'], 1, where=(df['BB_pct_b'] >= 1), alpha=0.25, color=BEAR)
+ax2.fill_between(df.index, df['BB_pct_b'], 0, where=(df['BB_pct_b'] <= 0), alpha=0.25, color=BULL)
+ax2.set_ylabel('%B', color='white'); ax2.set_ylim(-0.2, 1.2)
+plt.tight_layout(); plt.show()
+```
+
+**Key parameters to experiment with:**
+
+| Parameter | Default | Effect of increasing |
+|-----------|---------|----------------------|
+| Period (n) | 20 | Smoother bands, slower response |
+| Multiplier (σ) | 2 | Wider bands, fewer touches |
+| %B = 1 | Price at upper band | Overbought zone |
+| %B = 0 | Price at lower band | Oversold zone |
+
+> **Rule of thumb**: ~95% of price action falls *inside* 2σ Bollinger Bands — the 5% outside signals statistical extremes worth watching.
+
+---
+
 ## Stochastic Oscillator: Visualizing Where Close Sits Within the Range
 
 **The Stochastic Oscillator answers: "Where did price close relative to its recent High-Low range?"**

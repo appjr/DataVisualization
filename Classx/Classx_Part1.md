@@ -10,7 +10,7 @@
 
 # Class X – Data Visualization
 ## Trading Chart Techniques: Data Visualization in Financial Markets
-## Technical Analysis Through a Visual Lens
+### Technical Analysis Through a Visual Lens
 
 **MIS 6380 - Data Visualization**
 **Spring 2026**
